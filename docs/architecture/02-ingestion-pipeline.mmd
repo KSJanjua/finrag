@@ -1,0 +1,41 @@
+%% 02 · Offline ingestion: PDF pages -> typed chunks -> embeddings on disk.
+%% Source of truth: scripts/build_index.py, scripts/describe_charts.py,
+%%                  src/finrag/ingest.py, chunking.py, charts.py, dense.py, retriever.py (save_index)
+flowchart TB
+    pdf[("data/pdfs/*.pdf")] --> page["For each page: PyMuPDF (fitz)"]
+
+    subgraph tables["Tables"]
+        ft["page.find_tables()"] --> ok{"table_is_usable?<br/>≤40% empty cells,<br/>first column ≥50% unique"}
+        ok -- yes --> md["to_markdown()"]
+        ok -- "no (merged cells)" --> rw["rows_from_words():<br/>group words by y (±3pt),<br/>split cells on x-gaps > 8pt"]
+        md --> st["split_table(): ≤1500 chars,<br/>header repeated in every part"]
+        rw --> st
+    end
+
+    subgraph text["Text"]
+        blocks["text blocks outside table boxes<br/>(avoids indexing tables twice)"] --> clean["clean_text(): un-space headings,<br/>drop runs of ≥4 number-only lines"]
+        clean --> rs["recursive_split(800, overlap 150)<br/>separators ¶ → line → '. ' → ' ' → char"]
+        rs --> drop["drop pieces < 40 chars"]
+    end
+
+    subgraph charts["Charts (scripts/describe_charts.py, needs LLM key)"]
+        cand{"chart_candidate(page)?<br/>axis-tick run ≥4 lines<br/>or > 4 raster images"} -- "yes (37 of 82 pages)" --> png["render_page_png(150 dpi)"]
+        png --> vlm["Vision LLM via llm.chat()<br/>prompt: describe every chart as JSON"]
+        vlm --> pj["parse_json(): tolerate ```json fences"]
+        pj --> cachef[("data/cache/chart_descriptions.json<br/>{doc, page, description, source}<br/>null description = 'no charts'")]
+    end
+
+    page --> ft
+    page --> blocks
+    page --> cand
+    st --> tc["table chunks (40)"]
+    drop --> xc["text chunks (127)"]
+    cachef --> cc["chart chunks (40)"]
+
+    tc --> chunk["Chunk(chunk_id, doc, doc_label, page, type, section, text)"]
+    xc --> chunk
+    cc --> chunk
+    chunk --> it["index_text() = 'doc_label | page N | section | type' + text"]
+    it --> emb["bge-small-en-v1.5 encode_docs()<br/>L2-normalised, float32"]
+    chunk --> jl[("data/index/chunks.jsonl")]
+    emb --> npy[("data/index/embeddings.npy  (207 × 384)")]

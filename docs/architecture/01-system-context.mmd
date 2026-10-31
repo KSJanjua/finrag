@@ -1,0 +1,38 @@
+%% 01 · System context: who uses the system, what it stores, which external services it calls.
+%% Source of truth: scripts/*.py, src/finrag/api.py, src/finrag/llm.py, src/finrag/config.py
+flowchart LR
+    dev(["Developer<br/>(terminal)"])
+    client(["HTTP client<br/>(curl, browser /docs)"])
+
+    subgraph app["financial-multimodal-rag (Python 3.10+, runs locally, CPU only)"]
+        direction TB
+        cli["CLI scripts<br/>build_index · describe_charts · ask<br/>run_eval · validate_questions · check_llm<br/>reranker_sweep · chunk_sweep · faiss_benchmark"]
+        api["FastAPI app (src/finrag/api.py)<br/>GET /health · POST /search · POST /ask"]
+        core["finrag package<br/>ingest · chunking · charts · sparse · dense<br/>hybrid · rerank · retriever · generate · evaluate · llm"]
+        cli --> core
+        api --> core
+    end
+
+    subgraph files["Local files (no database)"]
+        direction TB
+        pdfs[("data/pdfs/*.pdf<br/>3 quarterly reports, 82 pages")]
+        cache[("data/cache/chart_descriptions.json")]
+        index[("data/index/chunks.jsonl<br/>+ embeddings.npy (207 × 384)")]
+        evalq[("data/eval/questions.json<br/>38 labelled questions")]
+        results[("results/*.md, *.json")]
+    end
+
+    tesla["digitalassets.tesla.com<br/>(PDF download, HTTPS)"]
+    hf["Hugging Face Hub<br/>(model weights, first run)"]
+    gemini["Gemini API · OpenAI-compatible<br/>generativelanguage.googleapis.com<br/>(default LLM, free tier)"]
+    openai["OpenAI API (optional, paid)"]
+    custom["Custom OpenAI-compatible server<br/>(optional, e.g. local Ollama, untested)"]
+
+    dev -- "python scripts/…" --> cli
+    client -- "HTTP JSON" --> api
+    core <-- "read / write" --> files
+    cli -- "urllib GET if PDFs missing" --> tesla
+    core -- "download bge-small, MiniLM cross-encoder" --> hf
+    core -- "chat.completions (text + images)" --> gemini
+    core -. "FINRAG_LLM_PROVIDER=openai" .-> openai
+    core -. "FINRAG_LLM_PROVIDER=custom" .-> custom

@@ -1,0 +1,13 @@
+N=100,000 d=384 queries=500
+
+index                                  knob  build s  ms/query      MB   R@10
+Flat (exact)                              -     0.06     0.373   153.6  1.000
+HNSW M=32                       efSearch=16     8.68     0.086   180.8  0.388
+HNSW M=32                       efSearch=64     8.68     0.154   180.8  0.517
+HNSW M=32                      efSearch=256     8.68     0.374   180.8  0.758
+IVF-Flat nlist=1264                nprobe=4     8.46     0.077   156.4  0.627
+IVF-Flat nlist=1264               nprobe=16     8.46     0.146   156.4  0.909
+IVF-Flat nlist=1264               nprobe=64     8.46     0.452   156.4  0.993
+IVF-PQ nlist=1264 m=48             nprobe=4   111.79     0.074     7.9  0.540
+IVF-PQ nlist=1264 m=48            nprobe=16   111.79     0.095     7.9  0.669
+IVF-PQ nlist=1264 m=48            nprobe=64   111.79     0.201     7.9  0.677

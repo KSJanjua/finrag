@@ -1,0 +1,46 @@
+%% 07 · Data model: in-memory types and on-disk records (there is no database).
+%% Source of truth: src/finrag/schema.py, retriever.py, ingest.py, charts.py, evaluate.py
+classDiagram
+    class Chunk {
+        +str chunk_id   "doc:pN:text0 / table0.1 / chart0"
+        +str doc        "PDF file name"
+        +str doc_label  "human-readable report name"
+        +int page       "1-based, used in citations"
+        +str type       "text | table | chart"
+        +str section    "page heading"
+        +str text
+        +index_text() str
+        +citation() str
+    }
+    class RetrievedChunk {
+        +Chunk chunk
+        +float score
+        +dict ranks   "bm25, dense, rrf"
+    }
+    class ChartCacheEntry {
+        +str doc
+        +int page
+        +str description   "null = page checked, no charts"
+        +str source        "vision model that produced it"
+    }
+    class Question {
+        +str id
+        +str type          "text | table | chart"
+        +str question
+        +list gold         "[report, page] pairs"
+        +list evidence
+        +list answer_facts "groups of alternatives"
+    }
+    class AnswerRecord {
+        +str modality
+        +str id
+        +str model
+        +str answer
+        +list citations
+        +bool fact_match
+        +bool judge        "optional"
+    }
+    RetrievedChunk --> Chunk : wraps
+    ChartCacheEntry ..> Chunk : becomes a chart chunk
+    Question ..> RetrievedChunk : is_relevant()
+    AnswerRecord ..> Question : scored against answer_facts

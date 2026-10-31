@@ -1,0 +1,44 @@
+%% 04 · REST API: request/response flow with error paths.
+%% Source of truth: src/finrag/api.py, retriever.py, llm.py, generate.py
+sequenceDiagram
+    autonumber
+    participant C as HTTP client
+    participant A as FastAPI app
+    participant R as Retriever (in memory)
+    participant L as llm.py (OpenAI SDK)
+    participant G as Gemini API
+
+    Note over A,R: Startup (lifespan): load_retriever() reads chunks.jsonl + embeddings.npy,<br/>builds BM25 + FAISS once. FileNotFoundError if the index was never built.
+
+    C->>A: POST /ask {question, mode?, top_k?, doc?}
+    alt body fails pydantic validation (question 3–500 chars, top_k 1–20)
+        A-->>C: 422 Unprocessable Entity
+    else mode not in MODES, or unknown doc file name
+        A-->>C: 400 Bad Request
+    else valid request
+        A->>R: retrieve(question, mode, top_k, doc)
+        R-->>A: top-k RetrievedChunk list
+        A->>L: get_client()
+        alt LLM key not set for the provider
+            L-->>A: RuntimeError
+            A-->>C: 503 Service Unavailable (names the missing key)
+        else key set
+            A->>L: answer(): chat(model, system + user prompt)
+            Note over L: throttle: ≥4 s between calls (Gemini)
+            L->>G: POST /v1beta/openai/chat/completions (HTTPS)
+            alt HTTP 429 or 5xx
+                G-->>L: error
+                Note over L: SDK retries with exponential backoff (max_retries = 6)
+            end
+            G-->>L: completion text
+            L-->>A: text → parse_citations()
+            A-->>C: 200 {answer, citations, doc_filter, sources}
+        end
+    end
+
+    C->>A: POST /search {question, …}
+    A->>R: retrieve(...)
+    A-->>C: 200 {doc_filter, results: [n, doc, page, type, score, text]}  (no LLM call)
+
+    C->>A: GET /health
+    A-->>C: 200 {status, chunks, llm_provider, llm_configured}

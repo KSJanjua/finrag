@@ -1,0 +1,13 @@
+# Compatible ranges. For the exact versions this project was verified with,
+# use requirements-lock.txt instead.
+pymupdf>=1.24
+numpy>=1.26
+faiss-cpu>=1.8
+rank-bm25>=0.2.2
+sentence-transformers>=3.0
+openai>=1.40
+fastapi>=0.110
+uvicorn>=0.29
+httpx            # used by FastAPI's TestClient in the tests
+tqdm
+pytest

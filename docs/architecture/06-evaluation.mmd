@@ -1,0 +1,28 @@
+%% 06 · Evaluation workflow: labels -> retrieval grid -> answer correctness -> reports.
+%% Source of truth: scripts/validate_questions.py, scripts/run_eval.py, src/finrag/evaluate.py
+flowchart TB
+    qs[("questions.json<br/>38 questions: 14 text · 13 table · 11 chart<br/>gold pages · evidence strings · answer_facts")] --> val["validate_questions.py<br/>every question has evidence on a gold page?"]
+    idx[("chunks.jsonl + embeddings.npy")] --> val
+
+    qs --> grid
+    idx --> grid
+    subgraph grid["run_eval.py · retrieval grid (no API key)"]
+        direction TB
+        corp["3 corpora: text-only · text+tables · multimodal<br/>(Retriever.subset by chunk type)"] --> modes["4 modes: bm25 · dense · hybrid · hybrid_rerank<br/>+ 2 report-filter variants = 14 configurations"]
+        modes --> rel["first_relevant_rank(top-10):<br/>relevant = gold page AND contains evidence"]
+        rel --> met["Recall@1/3/5/10 · MRR"]
+    end
+    met --> rr[("results/retrieval_results.md<br/>retrieval_metrics.json · retrieval_misses.md")]
+    rr -. "--check-repro: compare per-question ranks with last run" .-> met
+
+    qs --> ans
+    subgraph ans["run_eval.py --answers (LLM key, resumable)"]
+        direction TB
+        gen["per question, per corpus (76 requests):<br/>hybrid + report filter → generate.answer()"] --> fm["facts_correct(): every fact group present,<br/>numbers matched whole ('5%' ≠ '35%')"]
+        fm --> abst["abstained = answer contains refusal sentence"]
+        gen -. "--judge (optional)" .-> judge["judge_correct(): LLM-as-judge"]
+    end
+    abst --> ar[("results/answer_results.md · answer_records.json")]
+    judge -.-> ar
+
+    sweeps["reranker_sweep.py · chunk_sweep.py · faiss_benchmark.py"] --> sr[("results/reranker_sweep.md · chunk_sweep.md<br/>faiss_benchmark.txt")]

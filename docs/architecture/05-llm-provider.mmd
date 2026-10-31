@@ -1,0 +1,21 @@
+%% 05 · LLM provider layer: one OpenAI-compatible client, three providers.
+%% Source of truth: src/finrag/llm.py
+flowchart LR
+    env["Environment<br/>FINRAG_LLM_PROVIDER · FINRAG_CHAT/VISION/JUDGE_MODEL<br/>FINRAG_BASE_URL · FINRAG_MIN_INTERVAL · *_API_KEY"] --> s["settings()<br/>provider defaults + env overrides"]
+
+    s --> gem["gemini (default)<br/>key GEMINI_API_KEY<br/>model gemini-3.8-flash<br/>reasoning_effort = low, no token cap<br/>min interval 4 s"]
+    s --> oai["openai<br/>key OPENAI_API_KEY<br/>gpt-4o-mini / gpt-4o<br/>temperature 0, max_completion_tokens"]
+    s --> cus["custom<br/>FINRAG_BASE_URL + FINRAG_CHAT_MODEL<br/>temperature 0, max_completion_tokens"]
+
+    gem --> gc["get_client(): OpenAI(api_key, base_url, max_retries=6)"]
+    oai --> gc
+    cus --> gc
+    gc --> chat["chat(client, model, messages)<br/>wait for min interval → create() → content or ''"]
+
+    chat --> u1["generate.answer()"]
+    chat --> u2["charts.describe_page()"]
+    chat --> u3["evaluate.judge_correct()"]
+    u2 --> pj["parse_json(): strip ```json fences,<br/>fall back to first {...} block"]
+    u3 --> pj
+
+    gc -. "key missing" .-> err["RuntimeError → API 503 / CLI message"]
