@@ -1,10 +1,13 @@
 %% 03 · Online query: question -> retrieval funnel -> grounded answer with citations.
-%% Source of truth: src/finrag/retriever.py (Retriever.retrieve, infer_doc), sparse.py, dense.py,
-%%                  hybrid.py, rerank.py, generate.py, config.py
+%% Source of truth: src/finrag/query.py (parse_periods), retriever.py (Retriever.retrieve, report_filters),
+%%                  sparse.py, dense.py, hybrid.py, rerank.py, generate.py, config.py
 flowchart LR
-    q(["question"]) --> f{"doc = 'auto' (default)?<br/>infer_doc(): regex Q1–Q3 2023<br/>exactly one quarter → that report"}
-    f -- "report found" --> k1a["k1 = all chunks, keep only that report"]
-    f -- "no / several quarters" --> k1b["k1 = 50, all reports"]
+    q(["question"]) --> pp["parse_periods(): 'Q3 2024', '3Q-2024',<br/>'third quarter of 2024', 'Q1, Q2 and Q3 2024',<br/>full-year 2024 → Q4 2024 report"]
+    pp --> f{"periods named<br/>(doc = 'auto')"}
+    f -- "one, with a report" --> k1a["k1 = all chunks, keep only that report"]
+    f -- "none" --> k1b["k1 = 50, all reports"]
+    f -- "several" --> dec["decomposition: one search per period's report<br/>(merged round-robin, duplicates dropped)"]
+    dec --> k1a
 
     k1a --> bm25
     k1b --> bm25
@@ -16,7 +19,7 @@ flowchart LR
     rrf["Reciprocal Rank Fusion<br/>score = Σ 1 / (60 + rank)"] --> mode{"mode"}
 
     mode -- "hybrid (default)" --> top5["top-5 RetrievedChunk<br/>(chunk, score, ranks)"]
-    mode -. "hybrid_rerank (optional,<br/>lowered MRR 0.854→0.779)" .-> ce["cross-encoder ms-marco-MiniLM-L-6-v2<br/>scores top-20, batch 4, max 512 tokens<br/>(loaded lazily on first use)"]
+    mode -. "hybrid_rerank (optional,<br/>lowered MRR 0.692→0.636)" .-> ce["cross-encoder ms-marco-MiniLM-L-6-v2<br/>scores top-20, batch 4, max 512 tokens<br/>(loaded lazily on first use)"]
     ce -.-> top5
 
     top5 --> ctx["build_context():<br/>[n] (doc_label, page, type) + text"]

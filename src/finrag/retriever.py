@@ -8,35 +8,42 @@ Modes (used for ablations): "bm25", "dense", "hybrid", "hybrid_rerank".
 The cross-encoder is optional: it was evaluated and did not help on this corpus.
 """
 import json
-import re
 
 import numpy as np
 
 from . import config
 from .dense import DenseRetriever, Embedder
 from .hybrid import reciprocal_rank_fusion
+from .query import parse_periods
 from .rerank import CrossEncoderReranker
 from .schema import Chunk, RetrievedChunk
 from .sparse import BM25Retriever
 
 MODES = ("bm25", "dense", "hybrid", "hybrid_rerank")
 
-# "Q3 2023", "Q3-2023", "Q3'23" -> (2023, 3)
-QUARTER_PATTERN = re.compile(r"\bQ([1-4])[\s\-']*(?:20)?(\d\d)\b", re.IGNORECASE)
+def report_filters(query):
+    """Reports to search for the periods a question names, in order of mention.
+
+    None stands for "all reports": a period with no report of its own (e.g. a
+    2022 quarter that only appears in later reports' tables) must not be
+    filtered away. An empty list means the question names no period.
+    """
+    docs = []
+    for period in parse_periods(query).periods():
+        doc = config.DOC_BY_PERIOD.get(period)
+        if doc not in docs:
+            docs.append(doc)
+    return docs
 
 
 def infer_doc(query):
-    """Metadata extraction from the query: which report is it asking about?
+    """The single report a question is about, or None (no period, several periods, or not in the corpus).
 
     The quarterly reports share near-identical tables, so "connectors at the
     end of Q3 2023" otherwise matches the other quarters' tables just as well.
-    Returns None when the query names no quarter, several quarters, or a
-    quarter that isn't in the registry, i.e. no filter.
     """
-    periods = {(2000 + int(yy), int(q)) for q, yy in QUARTER_PATTERN.findall(query)}
-    if len(periods) != 1:
-        return None
-    return config.DOC_BY_PERIOD.get(periods.pop())
+    docs = report_filters(query)
+    return docs[0] if len(docs) == 1 else None
 
 
 class Retriever:
@@ -56,14 +63,38 @@ class Retriever:
         return Retriever([self.chunks[i] for i in keep], self.embeddings[keep],
                          self.dense.embedder, self.reranker)
 
-    def retrieve(self, query, mode=config.DEFAULT_MODE, top_k=config.FINAL_K, doc=None):
-        """doc: None (no filter), a PDF file name, or "auto" (infer from the query)."""
+    def retrieve(self, query, mode=config.DEFAULT_MODE, top_k=config.FINAL_K, doc=None,
+                 decompose=config.DECOMPOSE_PERIODS):
+        """doc: None (no filter), a PDF file name, or "auto" (infer from the query).
+
+        With doc="auto" and a question naming several periods, ``decompose``
+        runs one search per period's report and interleaves the results, so
+        every period is represented in the context.
+        """
         if mode not in MODES:
             raise ValueError(f"mode must be one of {MODES}")
         if doc == "auto":
-            doc = infer_doc(query)
+            docs = report_filters(query)
+            if decompose and len(docs) > 1:
+                return self._retrieve_per_period(query, mode, top_k, docs)
+            doc = docs[0] if len(docs) == 1 else None
         elif doc is not None and doc not in config.DOC_LABELS:
             raise ValueError(f"unknown doc {doc!r}; use None, 'auto' or one of {list(config.DOC_LABELS)}")
+        return self._retrieve_one(query, mode, top_k, doc)
+
+    def _retrieve_per_period(self, query, mode, top_k, docs):
+        """Round-robin merge of one search per report, in the order the periods were named."""
+        lists = [self._retrieve_one(query, mode, top_k, d) for d in docs]
+        merged, seen = [], set()
+        for depth in range(top_k):
+            for period, hits in enumerate(lists):
+                if depth < len(hits) and hits[depth].chunk.chunk_id not in seen:
+                    seen.add(hits[depth].chunk.chunk_id)
+                    hits[depth].ranks["period"] = period
+                    merged.append(hits[depth])
+        return merged[:top_k]
+
+    def _retrieve_one(self, query, mode, top_k, doc):
         # With a document filter we score everything and filter afterwards;
         # fine for ~200 chunks (at scale: per-document indexes or FAISS IDSelector).
         k1 = len(self.chunks) if doc else config.FIRST_STAGE_K

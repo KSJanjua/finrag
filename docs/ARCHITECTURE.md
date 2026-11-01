@@ -20,21 +20,22 @@ flowchart LR
     dev(["Developer<br/>(terminal)"])
     client(["HTTP client<br/>(curl, browser /docs)"])
 
-    subgraph app["financial-multimodal-rag (Python 3.10+, runs locally, CPU only)"]
+    subgraph app["finrag (Python 3.10+, runs locally, CPU only)"]
         direction TB
         cli["CLI scripts<br/>build_index · describe_charts · ask<br/>run_eval · validate_questions · check_llm<br/>reranker_sweep · chunk_sweep · faiss_benchmark"]
         api["FastAPI app (src/finrag/api.py)<br/>GET /health · POST /search · POST /ask"]
-        core["finrag package<br/>ingest · chunking · charts · sparse · dense<br/>hybrid · rerank · retriever · generate · evaluate · llm"]
+        core["finrag package<br/>ingest · chunking · charts · sparse · dense · query<br/>hybrid · rerank · retriever · generate · evaluate · llm"]
         cli --> core
         api --> core
     end
 
     subgraph files["Local files (no database)"]
         direction TB
-        pdfs[("data/pdfs/*.pdf<br/>3 quarterly reports, 82 pages")]
+        reg[("data/documents.json<br/>registry: file, period, label, url")]
+        pdfs[("data/pdfs/*.pdf<br/>11 quarterly reports, 339 pages")]
         cache[("data/cache/chart_descriptions.json")]
-        index[("data/index/chunks.jsonl<br/>+ embeddings.npy (207 × 384)")]
-        evalq[("data/eval/questions.json<br/>38 labelled questions")]
+        index[("data/index/chunks.jsonl<br/>+ embeddings.npy (901 × 384)")]
+        evalq[("data/eval/questions.json<br/>116 labelled questions")]
         results[("results/*.md, *.json")]
     end
 
@@ -64,13 +65,14 @@ _Source: [`architecture/02-ingestion-pipeline.mmd`](architecture/02-ingestion-pi
 %% Source of truth: scripts/build_index.py, scripts/describe_charts.py,
 %%                  src/finrag/ingest.py, chunking.py, charts.py, dense.py, retriever.py (save_index)
 flowchart TB
-    pdf[("data/pdfs/*.pdf")] --> page["For each page: PyMuPDF (fitz)"]
+    reg[("data/documents.json")] --> pdf[("data/pdfs/*.pdf")]
+    pdf --> page["For each page: PyMuPDF (fitz)"]
 
     subgraph tables["Tables"]
         ft["page.find_tables()"] --> ok{"table_is_usable?<br/>≤40% empty cells,<br/>first column ≥50% unique"}
         ok -- yes --> md["to_markdown()"]
         ok -- "no (merged cells)" --> rw["rows_from_words():<br/>group words by y (±3pt),<br/>split cells on x-gaps > 8pt"]
-        md --> st["split_table(): ≤1500 chars,<br/>header repeated in every part"]
+        md --> st["split_table(): ≤450 tokens (embedding tokenizer),<br/>header repeated in every part"]
         rw --> st
     end
 
@@ -81,7 +83,7 @@ flowchart TB
     end
 
     subgraph charts["Charts (scripts/describe_charts.py, needs LLM key)"]
-        cand{"chart_candidate(page)?<br/>axis-tick run ≥4 lines<br/>or > 4 raster images"} -- "yes (37 of 82 pages)" --> png["render_page_png(150 dpi)"]
+        cand{"chart_candidate(page)?<br/>axis-tick run ≥4 lines<br/>or > 4 raster images"} -- "yes (164 of 339 pages)" --> png["render_page_png(150 dpi)"]
         png --> vlm["Vision LLM via llm.chat()<br/>prompt: describe every chart as JSON"]
         vlm --> pj["parse_json(): tolerate ```json fences"]
         pj --> cachef[("data/cache/chart_descriptions.json<br/>{doc, page, description, source}<br/>null description = 'no charts'")]
@@ -90,32 +92,35 @@ flowchart TB
     page --> ft
     page --> blocks
     page --> cand
-    st --> tc["table chunks (40)"]
-    drop --> xc["text chunks (127)"]
-    cachef --> cc["chart chunks (40)"]
+    st --> tc["table chunks (253)"]
+    drop --> xc["text chunks (513)"]
+    cachef --> cc["chart chunks (135)"]
 
-    tc --> chunk["Chunk(chunk_id, doc, doc_label, page, type, section, text)"]
+    tc --> chunk["Chunk(chunk_id, doc, doc_label, page, type, section, text,<br/>fiscal_year, quarter from the registry)"]
     xc --> chunk
     cc --> chunk
     chunk --> it["index_text() = 'doc_label | page N | section | type' + text"]
     it --> emb["bge-small-en-v1.5 encode_docs()<br/>L2-normalised, float32"]
     chunk --> jl[("data/index/chunks.jsonl")]
-    emb --> npy[("data/index/embeddings.npy  (207 × 384)")]
+    emb --> npy[("data/index/embeddings.npy  (901 × 384)")]
 ```
 
 ## Online query
 
 03 · Online query: question -> retrieval funnel -> grounded answer with citations.  
-_Source: [`architecture/03-query-pipeline.mmd`](architecture/03-query-pipeline.mmd)_ · Source of truth: src/finrag/retriever.py (Retriever.retrieve, infer_doc), sparse.py, dense.py, hybrid.py, rerank.py, generate.py, config.py
+_Source: [`architecture/03-query-pipeline.mmd`](architecture/03-query-pipeline.mmd)_ · Source of truth: src/finrag/query.py (parse_periods), retriever.py (Retriever.retrieve, report_filters), sparse.py, dense.py, hybrid.py, rerank.py, generate.py, config.py
 
 ```mermaid
 %% 03 · Online query: question -> retrieval funnel -> grounded answer with citations.
-%% Source of truth: src/finrag/retriever.py (Retriever.retrieve, infer_doc), sparse.py, dense.py,
-%%                  hybrid.py, rerank.py, generate.py, config.py
+%% Source of truth: src/finrag/query.py (parse_periods), retriever.py (Retriever.retrieve, report_filters),
+%%                  sparse.py, dense.py, hybrid.py, rerank.py, generate.py, config.py
 flowchart LR
-    q(["question"]) --> f{"doc = 'auto' (default)?<br/>infer_doc(): regex Q1–Q3 2023<br/>exactly one quarter → that report"}
-    f -- "report found" --> k1a["k1 = all chunks, keep only that report"]
-    f -- "no / several quarters" --> k1b["k1 = 50, all reports"]
+    q(["question"]) --> pp["parse_periods(): 'Q3 2024', '3Q-2024',<br/>'third quarter of 2024', 'Q1, Q2 and Q3 2024',<br/>full-year 2024 → Q4 2024 report"]
+    pp --> f{"periods named<br/>(doc = 'auto')"}
+    f -- "one, with a report" --> k1a["k1 = all chunks, keep only that report"]
+    f -- "none" --> k1b["k1 = 50, all reports"]
+    f -- "several" --> dec["decomposition: one search per period's report<br/>(merged round-robin, duplicates dropped)"]
+    dec --> k1a
 
     k1a --> bm25
     k1b --> bm25
@@ -127,7 +132,7 @@ flowchart LR
     rrf["Reciprocal Rank Fusion<br/>score = Σ 1 / (60 + rank)"] --> mode{"mode"}
 
     mode -- "hybrid (default)" --> top5["top-5 RetrievedChunk<br/>(chunk, score, ranks)"]
-    mode -. "hybrid_rerank (optional,<br/>lowered MRR 0.854→0.779)" .-> ce["cross-encoder ms-marco-MiniLM-L-6-v2<br/>scores top-20, batch 4, max 512 tokens<br/>(loaded lazily on first use)"]
+    mode -. "hybrid_rerank (optional,<br/>lowered MRR 0.692→0.636)" .-> ce["cross-encoder ms-marco-MiniLM-L-6-v2<br/>scores top-20, batch 4, max 512 tokens<br/>(loaded lazily on first use)"]
     ce -.-> top5
 
     top5 --> ctx["build_context():<br/>[n] (doc_label, page, type) + text"]
@@ -177,13 +182,13 @@ sequenceDiagram
             end
             G-->>L: completion text
             L-->>A: text → parse_citations()
-            A-->>C: 200 {answer, citations, doc_filter, sources}
+            A-->>C: 200 {answer, citations, doc_filters, sources}
         end
     end
 
     C->>A: POST /search {question, …}
     A->>R: retrieve(...)
-    A-->>C: 200 {doc_filter, results: [n, doc, page, type, score, text]}  (no LLM call)
+    A-->>C: 200 {doc_filters, results: [n, doc, page, type, score, text]}  (no LLM call)
 
     C->>A: GET /health
     A-->>C: 200 {status, chunks, llm_provider, llm_configured}
@@ -227,7 +232,7 @@ _Source: [`architecture/06-evaluation.mmd`](architecture/06-evaluation.mmd)_ · 
 %% 06 · Evaluation workflow: labels -> retrieval grid -> answer correctness -> reports.
 %% Source of truth: scripts/validate_questions.py, scripts/run_eval.py, src/finrag/evaluate.py
 flowchart TB
-    qs[("questions.json<br/>38 questions: 14 text · 13 table · 11 chart<br/>gold pages · evidence strings · answer_facts")] --> val["validate_questions.py<br/>every question has evidence on a gold page?"]
+    qs[("questions.json<br/>116 questions: 32 text · 37 table · 15 chart<br/>10 paraphrase · 12 multi-period · 10 unanswerable<br/>evidence sets: graded gold pages + evidence strings")] --> val["validate_questions.py<br/>every evidence set found on a gold page?"]
     idx[("chunks.jsonl + embeddings.npy")] --> val
 
     qs --> grid
@@ -235,8 +240,8 @@ flowchart TB
     subgraph grid["run_eval.py · retrieval grid (no API key)"]
         direction TB
         corp["3 corpora: text-only · text+tables · multimodal<br/>(Retriever.subset by chunk type)"] --> modes["4 modes: bm25 · dense · hybrid · hybrid_rerank<br/>+ 2 report-filter variants = 14 configurations"]
-        modes --> rel["first_relevant_rank(top-10):<br/>relevant = gold page AND contains evidence"]
-        rel --> met["Recall@1/3/5/10 · MRR"]
+        modes --> rel["score_ranking(top-10):<br/>relevant = gold page AND contains evidence<br/>grade 2 = own report, 1 = later copy"]
+        rel --> met["Hit@k · Recall@k · Precision@k<br/>NDCG@k (graded) · MRR"]
     end
     met --> rr[("results/retrieval_results.md<br/>retrieval_metrics.json · retrieval_misses.md")]
     rr -. "--check-repro: compare per-question ranks with last run" .-> met
@@ -244,8 +249,10 @@ flowchart TB
     qs --> ans
     subgraph ans["run_eval.py --answers (LLM key, resumable)"]
         direction TB
-        gen["per question, per corpus (76 requests):<br/>hybrid + report filter → generate.answer()"] --> fm["facts_correct(): every fact group present,<br/>numbers matched whole ('5%' ≠ '35%')"]
-        fm --> abst["abstained = answer contains refusal sentence"]
+        gen["per question (116 requests):<br/>hybrid + period filter → generate.answer()"] --> fm["facts_correct(): every fact group present,<br/>numbers matched whole ('5%' ≠ '35%')"]
+        fm --> abst["abstained = answer contains refusal sentence<br/>(correct only for unanswerable questions)"]
+        gen --> un["unsupported_numbers(): answer numbers<br/>not found in the cited chunks"]
+        un --> ar
         gen -. "--judge (optional)" .-> judge["judge_correct(): LLM-as-judge"]
     end
     abst --> ar[("results/answer_results.md · answer_records.json")]
@@ -271,13 +278,15 @@ classDiagram
         +str type       "text | table | chart"
         +str section    "page heading"
         +str text
+        +int fiscal_year "from the registry"
+        +int quarter
         +index_text() str
         +citation() str
     }
     class RetrievedChunk {
         +Chunk chunk
         +float score
-        +dict ranks   "bm25, dense, rrf"
+        +dict ranks   "bm25, dense, rrf, period"
     }
     class ChartCacheEntry {
         +str doc
@@ -287,10 +296,9 @@ classDiagram
     }
     class Question {
         +str id
-        +str type          "text | table | chart"
+        +str type          "text | table | chart | paraphrase | multi | unanswerable"
         +str question
-        +list gold         "[report, page] pairs"
-        +list evidence
+        +list evidence_sets "{gold: [period, page, grade], evidence}"
         +list answer_facts "groups of alternatives"
     }
     class AnswerRecord {
@@ -299,7 +307,9 @@ classDiagram
         +str model
         +str answer
         +list citations
-        +bool fact_match
+        +bool abstained
+        +bool fact_match   "null for unanswerable"
+        +list unsupported_numbers
         +bool judge        "optional"
     }
     RetrievedChunk --> Chunk : wraps

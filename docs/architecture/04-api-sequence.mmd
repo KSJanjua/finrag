@@ -32,13 +32,13 @@ sequenceDiagram
             end
             G-->>L: completion text
             L-->>A: text → parse_citations()
-            A-->>C: 200 {answer, citations, doc_filter, sources}
+            A-->>C: 200 {answer, citations, doc_filters, sources}
         end
     end
 
     C->>A: POST /search {question, …}
     A->>R: retrieve(...)
-    A-->>C: 200 {doc_filter, results: [n, doc, page, type, score, text]}  (no LLM call)
+    A-->>C: 200 {doc_filters, results: [n, doc, page, type, score, text]}  (no LLM call)
 
     C->>A: GET /health
     A-->>C: 200 {status, chunks, llm_provider, llm_configured}

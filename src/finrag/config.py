@@ -39,7 +39,9 @@ DOC_BY_PERIOD = {(d["fiscal_year"], d["quarter"]): name for name, d in DOCUMENTS
 # --- Chunking ---------------------------------------------------------------
 CHUNK_SIZE = 800          # characters
 CHUNK_OVERLAP = 150       # characters shared between neighbouring chunks
-TABLE_MAX_CHARS = 1500    # long tables are split by rows, header repeated
+# Long tables are split by rows (header repeated) so that every part fits the
+# embedding model's 512-token input, leaving room for the chunk's label line.
+TABLE_MAX_TOKENS = 450
 
 # --- Embeddings / FAISS -----------------------------------------------------
 EMBED_MODEL = "BAAI/bge-small-en-v1.5"   # 384-dim bi-encoder
@@ -60,6 +62,9 @@ DEFAULT_DOC_FILTER = "auto"   # CLI/API default: infer the report from "Q3 2023"
 # MRR on this corpus while adding ~2 s/query (results/retrieval_results.md,
 # results/reranker_sweep.md), so plain hybrid RRF is the default.
 DEFAULT_MODE = "hybrid"
+# A question naming several periods ("Q4 2022 vs Q4 2024") is answered from one
+# search per period's report instead of one search over all reports.
+DECOMPOSE_PERIODS = True
 RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 RERANK_BATCH_SIZE = 4     # small batches = less padding (see rerank.py)
 

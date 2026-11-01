@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 
 from . import config
 from .llm import llm_configured, settings
-from .retriever import MODES, infer_doc, load_retriever
+from .retriever import MODES, load_retriever, report_filters
 
 state = {}
 
@@ -45,7 +45,12 @@ def _retrieve(q: Query):
         hits = state["retriever"].retrieve(q.question, mode=q.mode, top_k=q.top_k, doc=q.doc)
     except ValueError as exc:
         raise HTTPException(400, str(exc))
-    applied = infer_doc(q.question) if q.doc == "auto" else q.doc
+    # One entry per search that was run: a report file, or null for a search over all
+    # reports. Empty when the question names no period (a single search over everything).
+    if q.doc == "auto":
+        applied = report_filters(q.question)
+    else:
+        applied = [q.doc] if q.doc else []
     return hits, applied
 
 
@@ -65,7 +70,7 @@ def health():
 def search(q: Query):
     """Retrieval only - no LLM call."""
     hits, applied = _retrieve(q)
-    return {"doc_filter": applied, "results": [_source(n, h) for n, h in enumerate(hits, 1)]}
+    return {"doc_filters": applied, "results": [_source(n, h) for n, h in enumerate(hits, 1)]}
 
 
 @app.post("/ask")
@@ -78,4 +83,4 @@ def ask(q: Query):
     except RuntimeError as exc:
         raise HTTPException(503, str(exc))
     out = answer(client, q.question, hits)
-    return {**out, "doc_filter": applied, "sources": [_source(n, h) for n, h in enumerate(hits, 1)]}
+    return {**out, "doc_filters": applied, "sources": [_source(n, h) for n, h in enumerate(hits, 1)]}

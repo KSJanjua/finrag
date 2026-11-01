@@ -80,7 +80,7 @@ def test_api_health(api):
 def test_api_search(api):
     r = api.post("/search", json={"question": "Supercharger connectors at the end of Q3 2023?", "top_k": 2})
     body = r.json()
-    assert r.status_code == 200 and body["doc_filter"] == "TSLA-Q3-2023-Update-3.pdf"
+    assert r.status_code == 200 and body["doc_filters"] == ["TSLA-Q3-2023-Update-3.pdf"]
     assert body["results"][0]["page"] == 6 and body["results"][0]["type"] == "table"
 
 

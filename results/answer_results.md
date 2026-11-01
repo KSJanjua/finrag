@@ -8,10 +8,10 @@
 
 | Corpus | Fact match | False refusals | Correct refusals (unanswerable) | Unsupported numbers |
 |---|---|---|---|---|
-| multimodal | 0.840 | 0.132 | 1.000 | 0.011 |
+| multimodal | 0.896 | 0.094 | 1.000 | 0.010 |
 
 ## Fact match by question type
 
 | Corpus | text | table | chart | paraphrase | multi |
 |---|---|---|---|---|---|
-| multimodal | 0.812 | 0.946 | 1.000 | 0.500 | 0.667 |
+| multimodal | 0.906 | 0.919 | 0.933 | 0.800 | 0.833 |

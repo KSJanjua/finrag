@@ -9,7 +9,8 @@ from finrag.schema import Chunk, RetrievedChunk
 from finrag.generate import parse_citations
 from finrag.hybrid import reciprocal_rank_fusion
 from finrag.ingest import clean_text, rows_to_markdown, table_is_usable
-from finrag.retriever import infer_doc
+from finrag.query import parse_periods
+from finrag.retriever import infer_doc, report_filters
 from finrag.sparse import tokenize
 
 TEXT = ("Revenue grew 9% YoY to $23.4B.\n\n" + "Operating margin was 7.6%. " * 30 +
@@ -41,9 +42,18 @@ def test_short_text_is_one_chunk():
 
 def test_split_table_repeats_header():
     md = "|Metric|Q3|\n|---|---|\n" + "\n".join(f"|row{i}|{i}|" for i in range(100))
-    parts = split_table(md, max_chars=200)
+    parts = split_table(md, max_size=200)
     assert len(parts) > 1
     assert all(p.startswith("|Metric|Q3|\n|---|---|") for p in parts)
+    assert all(len(p) <= 200 for p in parts)
+
+
+def test_split_table_uses_the_given_size_measure():
+    md = "|Metric|Q3|\n|---|---|\n" + "\n".join(f"|row {i}|{i}|" for i in range(40))
+    words = lambda text: len(text.split())          # stand-in for a token counter
+    parts = split_table(md, max_size=20, size=words)
+    assert len(parts) > 1 and all(words(p) <= 20 for p in parts)
+    assert sum(p.count("|row ") for p in parts) == 40   # no row lost or duplicated
 
 
 def test_rrf_rewards_agreement():
@@ -180,3 +190,31 @@ def test_table_quality_check():
 def test_rows_to_markdown():
     md = rows_to_markdown([["Metric", "Q3"], ["R&D", "1,161"]])
     assert md.splitlines()[0] == "|Metric|Q3|" and "|R&D|1,161|" in md
+
+
+@pytest.mark.parametrize("query, quarters, full_years", [
+    ("Operating margin in Q3 2024", [(2024, 3)], []),
+    ("Revenue in Q4'24 and Q1-2025", [(2024, 4), (2025, 1)], []),
+    ("Total production in 2Q-2024", [(2024, 2)], []),
+    ("Revenue in Q1 FY2025", [(2025, 1)], []),
+    ("Margin for the third quarter of 2024", [(2024, 3)], []),
+    ("Cash at the end of quarter three, 2024", [(2024, 3)], []),
+    ("Connectors at the end of Quarter 1 2025", [(2025, 1)], []),
+    ("Deliveries in Q1, Q2 and Q3 2024", [(2024, 1), (2024, 2), (2024, 3)], []),
+    ("Operating margin for full-year 2022", [], [2022]),
+    ("AI training compute growth in 2024", [], [2024]),
+    ("Model Y price in Colorado", [], []),
+    ("Over 400 vehicles in Q3 results", [], []),
+])
+def test_parse_periods(query, quarters, full_years):
+    p = parse_periods(query)
+    assert p.quarters == quarters and p.full_years == full_years
+
+
+def test_report_filters():
+    assert report_filters("Deliveries in Q1, Q2 and Q3 2024") == [
+        "TSLA-Q1-2024-Update.pdf", "TSLA-Q2-2024-Update.pdf", "TSLA-Q3-2024-Update.pdf"]
+    assert report_filters("Free cash flow for full-year 2024") == ["TSLA-Q4-2024-Update.pdf"]
+    assert report_filters("Deliveries in Q3 2025") == [None]      # named, but no report of its own: search all
+    assert report_filters("Model Y price in Colorado") == []
+    assert infer_doc("Deliveries in Q1, Q2 and Q3 2024") is None  # several periods: no single filter

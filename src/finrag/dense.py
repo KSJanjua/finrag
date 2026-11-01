@@ -1,8 +1,18 @@
 """Dense retrieval: bi-encoder embeddings + FAISS."""
+import functools
+
 import faiss
 import numpy as np
 
 from . import config
+
+
+@functools.lru_cache(maxsize=1)
+def token_counter(model_name=config.EMBED_MODEL):
+    """Number of tokens the embedding model sees for a text (without special tokens)."""
+    from transformers import AutoTokenizer
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    return lambda text: len(tokenizer(text, add_special_tokens=False)["input_ids"])
 
 
 class Embedder:

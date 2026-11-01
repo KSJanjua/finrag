@@ -14,11 +14,13 @@ Features that don't are recorded as rejected in [DECISIONS.md](DECISIONS.md).
 | M0 | Re-run the v1 evaluation on the v2 code base | A refactor must start from known-good numbers | identical per-question ranks in all 14 configurations |
 | M1 | Corpus: 11 Tesla quarterly updates (Q4 2022 – Q2 2025) with a document registry (company, fiscal year, quarter, URL) | Time is where the hard problems are (repeated tables, revised numbers, new quarters) | Ingestion works on ~300 pages, not 82 |
 | M2 | **Evaluation v2 before any new feature**: ~100 questions incl. multi-period, unanswerable and re-worded ones; Precision@k, NDCG@k, context recall, abstention accuracy, number-grounding faithfulness | You can't claim an improvement without a baseline | The v1 pipeline's real failure modes at scale |
-| M3 | Retrieval fixes, one at a time: token-aware chunking + parent–child tables (the 512-token truncation), query parser for periods (the "Q1, Q2 and Q3" bug), query decomposition for multi-period questions | These are the failures v1 already showed | Each one's metric delta |
-| M4 | Context engineering + grounded generation: de-duplication, token budget, ordering, conflicting evidence, runtime citation check, corrective retry / early abstention | Better retrieval is wasted if the context or the answer is sloppy | Faithfulness and abstention numbers |
+| M3 | Retrieval fixes, one at a time: query parser for periods (the "Q1, Q2 and Q3" bug), query decomposition for multi-period questions, token-aware table splitting (the 512-token truncation) | These are the failures v1 already showed | Each one's metric delta (D8–D10) |
+| M4 | Context engineering + grounded generation: de-duplication, token budget, ordering, parent–child tables (send the whole table when a part is retrieved), conflicting evidence, runtime citation check, corrective retry / early abstention | Better retrieval is wasted if the context or the answer is sloppy | Faithfulness and abstention numbers |
 | M5 | Production: vector store with stable IDs, incremental indexing, caching, request tracing, latency/cost report | Only matters once retrieval is right | Adding a quarter re-embeds only new chunks; per-request traces |
 | M6 | Security: indirect prompt-injection test documents and mitigations | Retrieved text is untrusted input to the LLM | Injection success rate before/after |
 | M7 | Documentation: decision log, architecture, README | Every choice must be traceable | — |
+
+Status: M0–M3 done. Results per milestone are in the README; the reasoning behind each choice is in DECISIONS.md.
 
 ## Constraints that shape decisions
 

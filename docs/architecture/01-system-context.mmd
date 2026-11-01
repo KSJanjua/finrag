@@ -4,21 +4,22 @@ flowchart LR
     dev(["Developer<br/>(terminal)"])
     client(["HTTP client<br/>(curl, browser /docs)"])
 
-    subgraph app["financial-multimodal-rag (Python 3.10+, runs locally, CPU only)"]
+    subgraph app["finrag (Python 3.10+, runs locally, CPU only)"]
         direction TB
         cli["CLI scripts<br/>build_index · describe_charts · ask<br/>run_eval · validate_questions · check_llm<br/>reranker_sweep · chunk_sweep · faiss_benchmark"]
         api["FastAPI app (src/finrag/api.py)<br/>GET /health · POST /search · POST /ask"]
-        core["finrag package<br/>ingest · chunking · charts · sparse · dense<br/>hybrid · rerank · retriever · generate · evaluate · llm"]
+        core["finrag package<br/>ingest · chunking · charts · sparse · dense · query<br/>hybrid · rerank · retriever · generate · evaluate · llm"]
         cli --> core
         api --> core
     end
 
     subgraph files["Local files (no database)"]
         direction TB
-        pdfs[("data/pdfs/*.pdf<br/>3 quarterly reports, 82 pages")]
+        reg[("data/documents.json<br/>registry: file, period, label, url")]
+        pdfs[("data/pdfs/*.pdf<br/>11 quarterly reports, 339 pages")]
         cache[("data/cache/chart_descriptions.json")]
-        index[("data/index/chunks.jsonl<br/>+ embeddings.npy (207 × 384)")]
-        evalq[("data/eval/questions.json<br/>38 labelled questions")]
+        index[("data/index/chunks.jsonl<br/>+ embeddings.npy (901 × 384)")]
+        evalq[("data/eval/questions.json<br/>116 labelled questions")]
         results[("results/*.md, *.json")]
     end
 

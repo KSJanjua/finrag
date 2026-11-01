@@ -51,7 +51,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How much energy storage did Tesla deploy in Q3 2023 and how much did it grow year over year?",
-    "answer": "Tesla deployed 4.0 GWh of energy storage in Q3 2023 [1, 4]. This represents a 90% year-over-year increase in deployments [4].",
+    "answer": "Tesla deployed 4.0 GWh of energy storage in Q3 2023 [1], [4]. This represents an increase of 90% year over year [4].",
     "citations": [
       {
         "n": 1,
@@ -77,13 +77,19 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "Why did Tesla's solar deployments decline in Q3 2023?",
-    "answer": "Tesla's solar deployments declined in Q3 2023 due to sustained high interest rates and the end of net metering in California, which created downward pressure on demand [1].",
+    "answer": "Tesla's solar deployments declined in Q3 2023 due to \"sustained high interest rates and the end of net metering in California,\" which have created downward pressure on demand [1]. Deployments for the quarter totaled 49 MW [1], [2].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q3 2023 Quarterly Update",
         "page": 9,
         "type": "text"
+      },
+      {
+        "n": 2,
+        "doc": "Tesla Q3 2023 Quarterly Update",
+        "page": 6,
+        "type": "table"
       }
     ],
     "abstained": false,
@@ -130,19 +136,19 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What powertrain voltage architecture will the Cybertruck adopt and why?",
-    "answer": "The Cybertruck will adopt an 800-volt architecture [1]. This decision is made because a high-voltage powertrain architecture brings \"notable cost savings\" for very heavy vehicles [1]. Additionally, an 800-volt battery system is more energy efficient for high-power vehicles and enables the use of smaller cables, which reduces cost and mass while allowing for higher power (500kW) charging [4].",
+    "answer": "The Cybertruck will adopt an 800-volt architecture because a high-voltage powertrain architecture brings \"notable cost savings\" for very heavy vehicles [2]. This 800-volt battery system is more energy efficient for high-power vehicles and enables smaller cables, which reduces cost and mass while allowing for 500kW charging [1].",
     "citations": [
       {
         "n": 1,
-        "doc": "Tesla Q3 2023 Quarterly Update",
-        "page": 8,
-        "type": "text"
-      },
-      {
-        "n": 4,
         "doc": "Tesla Q4 2024 Quarterly Update",
         "page": 15,
         "type": "table"
+      },
+      {
+        "n": 2,
+        "doc": "Tesla Q3 2023 Quarterly Update",
+        "page": 8,
+        "type": "text"
       }
     ],
     "abstained": false,
@@ -156,7 +162,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "Which automakers announced adoption of the NACS charging standard in Q2 2023?",
-    "answer": "In the second quarter of 2023, Ford, GM, Mercedes, Nissan, Polestar, Rivian, and Volvo announced their adoption of the NACS charging standard [1].",
+    "answer": "In Q2 2023, the companies that announced adoption of the NACS charging standard included Ford, GM, Mercedes, Nissan, Polestar, Rivian, Volvo, and Electrify America [1].",
     "citations": [
       {
         "n": 1,
@@ -176,7 +182,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "By how much did energy storage deployments grow year over year in Q1 2023?",
-    "answer": "Energy storage deployments increased by 360% year over year in Q1 2023 to 3.9 GWh [1].",
+    "answer": "In Q1 2023, energy storage deployments increased by 360% year over year to 3.9 GWh [1].",
     "citations": [
       {
         "n": 1,
@@ -196,7 +202,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How many miles had been driven on FSD Beta as of the Q1 2023 update?",
-    "answer": "As of the Q1 2023 update, there were over 150 million miles driven with FSD Beta [1]. According to a chart description in the same update, the cumulative miles driven reached approximately 140 million by March 2023 [2].",
+    "answer": "As of the Q1 2023 update, Tesla reported over 150 million miles driven with FSD Beta [1]. Additionally, a chart showing cumulative miles driven with FSD Beta indicates the value reached approximately 140 million miles by March 2023 [2].",
     "citations": [
       {
         "n": 1,
@@ -222,7 +228,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's cost of goods sold per vehicle in Q3 2023?",
-    "answer": "Tesla's cost of goods sold per vehicle in Q3 2023 was approximately $37,500 [1, 2, 3].",
+    "answer": "Tesla's cost of goods sold per vehicle in Q3 2023 was approximately $37,500 [1, 2, 4].",
     "citations": [
       {
         "n": 1,
@@ -237,7 +243,7 @@
         "type": "text"
       },
       {
-        "n": 3,
+        "n": 4,
         "doc": "Tesla Q3 2023 Quarterly Update",
         "page": 8,
         "type": "text"
@@ -254,18 +260,12 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What happened to Tesla's AI training compute in Q3 2023?",
-    "answer": "In Q3 2023, Tesla more than doubled the size of its AI training compute [1]. This increase was intended to accommodate the company's growing dataset as well as its Optimus robot project [1]. Additionally, Tesla commissioned one of the world's largest supercomputers to accelerate its AI development, with compute capacity more than doubling compared to Q2 [5].",
+    "answer": "In Q3 2023, Tesla more than doubled the size of its AI training compute to accommodate its growing dataset and the Optimus robot project [1].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q3 2023 Quarterly Update",
         "page": 3,
-        "type": "text"
-      },
-      {
-        "n": 5,
-        "doc": "Tesla Q3 2023 Quarterly Update",
-        "page": 8,
         "type": "text"
       }
     ],
@@ -306,16 +306,10 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How large was the negative foreign exchange impact on revenue in Q2 2023?",
-    "answer": "The negative foreign exchange impact on revenue in Q2 2023 was $0.6B [1]. This impact is calculated on a constant currency basis [3].",
+    "answer": "The negative foreign exchange impact on revenue in Q2 2023 was $0.6B [1].",
     "citations": [
       {
         "n": 1,
-        "doc": "Tesla Q2 2023 Quarterly Update",
-        "page": 5,
-        "type": "text"
-      },
-      {
-        "n": 3,
         "doc": "Tesla Q2 2023 Quarterly Update",
         "page": 5,
         "type": "text"
@@ -332,7 +326,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What were Tesla's total revenues in Q3 2023?",
-    "answer": "Tesla's total revenue in Q3 2023 was $23,350 million [1, 3].",
+    "answer": "Tesla's total revenues in Q3 2023 were $23,350 million [1, 2]. This reflects a 9% year-over-year increase [2, 4].",
     "citations": [
       {
         "n": 1,
@@ -341,10 +335,16 @@
         "type": "table"
       },
       {
-        "n": 3,
+        "n": 2,
         "doc": "Tesla Q3 2023 Quarterly Update",
         "page": 4,
         "type": "table"
+      },
+      {
+        "n": 4,
+        "doc": "Tesla Q3 2023 Quarterly Update",
+        "page": 5,
+        "type": "text"
       }
     ],
     "abstained": false,
@@ -358,7 +358,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Model 3/Y vehicles did Tesla deliver in Q3 2023?",
-    "answer": "In Q3 2023, Tesla delivered 419,074 Model 3/Y vehicles [2].",
+    "answer": "Tesla delivered 419,074 Model 3/Y vehicles in Q3 2023 [2].",
     "citations": [
       {
         "n": 2,
@@ -398,7 +398,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Supercharger connectors did Tesla have at the end of Q3 2023?",
-    "answer": "At the end of Q3 2023, Tesla had 51,105 Supercharger connectors [1].",
+    "answer": "Tesla had 51,105 Supercharger connectors at the end of Q3 2023 [1].",
     "citations": [
       {
         "n": 1,
@@ -418,7 +418,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How much did Tesla spend on capital expenditures in Q3 2023?",
-    "answer": "Tesla's capital expenditures in Q3 2023 were $2,460 million [1, 3].",
+    "answer": "Tesla spent $2,460 million on capital expenditures in Q3 2023 [1], [2], [5].",
     "citations": [
       {
         "n": 1,
@@ -427,9 +427,15 @@
         "type": "table"
       },
       {
-        "n": 3,
+        "n": 2,
         "doc": "Tesla Q3 2023 Quarterly Update",
         "page": 4,
+        "type": "table"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q3 2023 Quarterly Update",
+        "page": 24,
         "type": "table"
       }
     ],
@@ -444,7 +450,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's diluted GAAP EPS in Q3 2023?",
-    "answer": "Tesla's diluted GAAP EPS in Q3 2023 was $0.53 [1, 2, 3].",
+    "answer": "Tesla's diluted GAAP EPS in Q3 2023 was 0.53 [1, 2, 3].",
     "citations": [
       {
         "n": 1,
@@ -496,7 +502,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What installed annual capacity did the Q2 2023 update list for Shanghai?",
-    "answer": "The Q2 2023 update lists the installed annual vehicle capacity for Shanghai (Model 3 / Model Y) as \">750,000\" [1].",
+    "answer": "The Q2 2023 update lists the installed annual vehicle capacity for the Shanghai factory as \">750,000\" [1].",
     "citations": [
       {
         "n": 1,
@@ -516,10 +522,10 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's global vehicle inventory in days of supply in Q1 2023?",
-    "answer": "In Q1 2023, Tesla's global vehicle inventory was 15 days of supply [2].",
+    "answer": "Tesla's global vehicle inventory was 15 days of supply in Q1 2023 [1].",
     "citations": [
       {
-        "n": 2,
+        "n": 1,
         "doc": "Tesla Q1 2023 Quarterly Update",
         "page": 6,
         "type": "table"
@@ -536,7 +542,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's free cash flow in Q1 2023?",
-    "answer": "Tesla’s free cash flow in Q1 2023 was $0.4B [3]. This figure is also identified as $441M in the quarterly update [2].",
+    "answer": "Tesla's free cash flow in Q1 2023 was $441M [2]. Another section of the report lists it as \"$0.4B in Q1\" [4].",
     "citations": [
       {
         "n": 2,
@@ -545,7 +551,7 @@
         "type": "text"
       },
       {
-        "n": 3,
+        "n": 4,
         "doc": "Tesla Q1 2023 Quarterly Update",
         "page": 3,
         "type": "text"
@@ -562,7 +568,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's Adjusted EBITDA margin in Q2 2023?",
-    "answer": "Tesla's Adjusted EBITDA margin in Q2 2023 was 18.7% [2], [4].",
+    "answer": "Tesla's Adjusted EBITDA margin in Q2 2023 was 18.7% [2, 4].",
     "citations": [
       {
         "n": 2,
@@ -608,7 +614,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How much did Tesla spend on research and development in Q3 2023?",
-    "answer": "Tesla spent 1,161 million USD on research and development in Q3 2023 [1].",
+    "answer": "Tesla spent $1,161 million on research and development in Q3 2023 [1].",
     "citations": [
       {
         "n": 1,
@@ -648,7 +654,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "What Model Y starting price applies in most US states after subsidies?",
-    "answer": "In most U.S. states, the starting price of a Model Y vehicle, inclusive of national and state-level subsidies, is approximately $36,490 [1].",
+    "answer": "In most U.S. states, the Model Y starting price is $36,490 [1].",
     "citations": [
       {
         "n": 1,
@@ -668,7 +674,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "What is the Model Y starting price in Illinois after subsidies?",
-    "answer": "According to the Q3 2023 Quarterly Update, the Model Y starting price in Illinois, inclusive of national and state-level subsidies, is $32,490 [2].",
+    "answer": "According to the chart showing Model Y starting prices inclusive of national and state-level subsidies, the starting price in Illinois (IL) is approximately $32,490 [2].",
     "citations": [
       {
         "n": 2,
@@ -688,7 +694,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "How much Dojo compute did Tesla internally project reaching by October 2024?",
-    "answer": "Tesla internally projected that its compute power would reach approximately 100 Exa-Flops by October 2024 [1].",
+    "answer": "Tesla internally projected reaching 100 Exa-Flops of compute power by October 2024 [1].",
     "citations": [
       {
         "n": 1,
@@ -728,7 +734,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "Approximately what was the cost of goods sold per vehicle in Q4 2022, as shown in the Q3 2023 chart?",
-    "answer": "Based on the Q3 2023 quarterly update, the cost of goods sold per vehicle for Q4 2022 was approximately $39,500 [2].",
+    "answer": "According to the Q3 2023 quarterly update chart, the cost of goods sold per vehicle in Q4 2022 was approximately $39,500 [2].",
     "citations": [
       {
         "n": 2,
@@ -748,17 +754,10 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "Approximately what was Tesla's trailing-twelve-month YoY revenue growth in Q2 2023, according to the key metrics chart?",
-    "answer": "According to the chart description, Tesla's year-over-year revenue growth declined to approximately 40% by Q1-2023 [1]. The provided documents do not state Tesla's trailing-twelve-month YoY revenue growth for Q2 2023.",
-    "citations": [
-      {
-        "n": 1,
-        "doc": "Tesla Q2 2023 Quarterly Update",
-        "page": 19,
-        "type": "chart"
-      }
-    ],
-    "abstained": false,
-    "fact_match": true,
+    "answer": "I could not find this in the provided documents.",
+    "citations": [],
+    "abstained": true,
+    "fact_match": false,
     "unsupported_numbers": []
   },
   {
@@ -768,7 +767,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "Which regions are compared in the chart of Tesla's market share?",
-    "answer": "The chart of Tesla's market share compares the regions of US/Canada, Europe, and China [1], [2], [3], [4], [5].",
+    "answer": "The chart comparing Tesla's market share displays data for three regions: US/Canada, Europe, and China [1, 2, 3, 4, 5].",
     "citations": [
       {
         "n": 1,
@@ -812,7 +811,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "How has cumulative FSD Beta mileage trended according to the Q3 2023 update?",
-    "answer": "According to the Q3 2023 update, cumulative miles driven with FSD Beta showed a sharp, exponential-like upward trend starting around early 2023 [2]. By September 2023, the total mileage had reached over 500 million miles [2].",
+    "answer": "According to the Q3 2023 update, cumulative miles driven with FSD Beta started near zero in early 2021 and grew gradually through 2022 [2]. Starting in early 2023, the trend showed a sharp, exponential-like increase, ending at approximately 500 million miles by September 2023 [2].",
     "citations": [
       {
         "n": 2,
@@ -832,7 +831,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "By roughly how much did normalized Global Model 3 cost decline from 2018 to 2022?",
-    "answer": "The normalized Global Model 3 cost experienced a \"~30% decline\" between 2018 and 2022 [1]. This represents an approximately 30% decline as noted in the chart [2].",
+    "answer": "The normalized Global Model 3 cost experienced a ~30% decline from 2018 to 2022 [1][2].",
     "citations": [
       {
         "n": 1,
@@ -858,7 +857,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "What does the Dojo compute projection chart say about Tesla's expected global ranking?",
-    "answer": "The Dojo compute projection chart includes an annotation for \"Top 5 in the Entire World Projected\" around early 2024 [1].",
+    "answer": "The Dojo compute projection chart includes an annotation projecting that Tesla will be in the \"Top 5 in the Entire World\" by approximately early 2024 [1].",
     "citations": [
       {
         "n": 1,
@@ -878,17 +877,10 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How many vehicles did Tesla deliver in Q4 2022?",
-    "answer": "Tesla delivered 405,278 vehicles in Q4 2022 [5].",
-    "citations": [
-      {
-        "n": 5,
-        "doc": "Tesla Q4 2022 Quarterly Update",
-        "page": 7,
-        "type": "table"
-      }
-    ],
-    "abstained": false,
-    "fact_match": true,
+    "answer": "I could not find this in the provided documents.",
+    "citations": [],
+    "abstained": true,
+    "fact_match": false,
     "unsupported_numbers": []
   },
   {
@@ -918,10 +910,17 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How many vehicles did Tesla deliver in Q1 2025?",
-    "answer": "I could not find this in the provided documents.",
-    "citations": [],
-    "abstained": true,
-    "fact_match": false,
+    "answer": "Tesla delivered a total of 336,681 vehicles in Q1 2025 [4].",
+    "citations": [
+      {
+        "n": 4,
+        "doc": "Tesla Q1 2025 Quarterly Update",
+        "page": 6,
+        "type": "table"
+      }
+    ],
+    "abstained": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -944,17 +943,10 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How many vehicles did Tesla produce in Q4 2023?",
-    "answer": "Tesla produced 494,989 vehicles in Q4 2023 [5].",
-    "citations": [
-      {
-        "n": 5,
-        "doc": "Tesla Q4 2023 Quarterly Update",
-        "page": 7,
-        "type": "table"
-      }
-    ],
-    "abstained": false,
-    "fact_match": true,
+    "answer": "I could not find this in the provided documents.",
+    "citations": [],
+    "abstained": true,
+    "fact_match": false,
     "unsupported_numbers": []
   },
   {
@@ -964,7 +956,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's total production in Q2 2025?",
-    "answer": "Tesla's total production in Q2 2025 was 410,244 [3].",
+    "answer": "Tesla's total production in Q2 2025 was 410,244 vehicles [3].",
     "citations": [
       {
         "n": 3,
@@ -984,7 +976,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What were Tesla's total revenues in Q3 2024?",
-    "answer": "Tesla's total revenues in Q3 2024 were 25,182 million [1, 2].",
+    "answer": "Tesla's total revenues in Q3 2024 were $25,182 million [1][2].",
     "citations": [
       {
         "n": 1,
@@ -1010,7 +1002,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What were Tesla's total revenues in Q2 2025?",
-    "answer": "Tesla's total revenues in Q2 2025 were 22,496 million USD [1, 2].",
+    "answer": "Tesla's total revenues in Q2 2025 were $22,496 million [1, 2].",
     "citations": [
       {
         "n": 1,
@@ -1036,12 +1028,18 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What were Tesla's total revenues in Q1 2022?",
-    "answer": "Tesla's total revenues in Q1 2022 were 18,756 million USD [2], [5].",
+    "answer": "Tesla's total revenue in Q1 2022 was 18,756 million USD [1], [3], [5].",
     "citations": [
       {
-        "n": 2,
+        "n": 1,
         "doc": "Tesla Q1 2023 Quarterly Update",
         "page": 23,
+        "type": "table"
+      },
+      {
+        "n": 3,
+        "doc": "Tesla Q1 2023 Quarterly Update",
+        "page": 4,
         "type": "table"
       },
       {
@@ -1062,19 +1060,13 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's operating margin in Q4 2023?",
-    "answer": "Tesla's operating margin in Q4 2023 was 8.2% [1], [5].",
+    "answer": "Tesla's operating margin in Q4 2023 was 8.2% [1].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q4 2023 Quarterly Update",
         "page": 4,
         "type": "table"
-      },
-      {
-        "n": 5,
-        "doc": "Tesla Q4 2023 Quarterly Update",
-        "page": 6,
-        "type": "text"
       }
     ],
     "abstained": false,
@@ -1088,13 +1080,19 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's operating margin in Q2 2025?",
-    "answer": "Tesla's operating margin in Q2 2025 was 4.1% [1].",
+    "answer": "Tesla's operating margin in Q2 2025 was 4.1% [1] [3].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q2 2025 Quarterly Update",
         "page": 4,
         "type": "table"
+      },
+      {
+        "n": 3,
+        "doc": "Tesla Q2 2025 Quarterly Update",
+        "page": 5,
+        "type": "text"
       }
     ],
     "abstained": false,
@@ -1108,16 +1106,16 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Supercharger connectors did Tesla have at the end of Q4 2024?",
-    "answer": "At the end of Q4 2024, Tesla had 65,495 Supercharger connectors [2, 4].",
+    "answer": "At the end of Q4 2024, Tesla had 65,495 Supercharger connectors [1], [3].",
     "citations": [
       {
-        "n": 2,
+        "n": 1,
         "doc": "Tesla Q4 2024 Quarterly Update",
         "page": 7,
         "type": "table"
       },
       {
-        "n": 4,
+        "n": 3,
         "doc": "Tesla Q4 2024 Quarterly Update",
         "page": 8,
         "type": "table"
@@ -1214,7 +1212,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How much cash and investments did Tesla hold at the end of Q1 2024?",
-    "answer": "Tesla held $26.9B in cash, cash equivalents, and investments at the end of Q1 2024 [1], [2].",
+    "answer": "Tesla held $26.9B in cash, cash equivalents, and investments at the end of Q1 2024 [1], [2]. This figure is also reported as $26,863 million in the company's financial tables [3].",
     "citations": [
       {
         "n": 1,
@@ -1227,6 +1225,12 @@
         "doc": "Tesla Q1 2024 Quarterly Update",
         "page": 3,
         "type": "text"
+      },
+      {
+        "n": 3,
+        "doc": "Tesla Q1 2024 Quarterly Update",
+        "page": 4,
+        "type": "table"
       }
     ],
     "abstained": false,
@@ -1240,7 +1244,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Model 3 and Model Y vehicles did Tesla deliver in Q2 2024?",
-    "answer": "In Q2 2024, Tesla delivered 422,405 Model 3 and Model Y vehicles [3].",
+    "answer": "Tesla delivered 422,405 Model 3 and Model Y vehicles in Q2 2024 [3].",
     "citations": [
       {
         "n": 3,
@@ -1260,19 +1264,19 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How much energy storage did Tesla deploy in Q4 2024?",
-    "answer": "In Q4 2024, Tesla achieved record energy storage deployments of 11.0 GWh [3]. Additionally, chart data indicates that Q4 2024 deployments reached a peak of approximately 11 GWh [4].",
+    "answer": "In Q4 2024, Tesla deployed 11.0 GWh of energy storage [3]. This figure is also confirmed as a record for the quarter [4].",
     "citations": [
       {
         "n": 3,
         "doc": "Tesla Q4 2024 Quarterly Update",
-        "page": 11,
-        "type": "text"
+        "page": 7,
+        "type": "table"
       },
       {
         "n": 4,
         "doc": "Tesla Q4 2024 Quarterly Update",
         "page": 11,
-        "type": "chart"
+        "type": "text"
       }
     ],
     "abstained": false,
@@ -1326,7 +1330,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's GAAP net income in Q4 2023?",
-    "answer": "Tesla's GAAP net income attributable to common stockholders in Q4 2023 was $7,928 million [2], [3].",
+    "answer": "Tesla's GAAP net income attributable to common stockholders in Q4 2023 was $7,928 million [2, 3, 4].",
     "citations": [
       {
         "n": 2,
@@ -1336,6 +1340,12 @@
       },
       {
         "n": 3,
+        "doc": "Tesla Q4 2023 Quarterly Update",
+        "page": 28,
+        "type": "table"
+      },
+      {
+        "n": 4,
         "doc": "Tesla Q4 2023 Quarterly Update",
         "page": 28,
         "type": "table"
@@ -1352,7 +1362,7 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's free cash flow in Q1 2024?",
-    "answer": "Tesla's free cash flow in Q1 2024 was negative $2.5B [1, 5].",
+    "answer": "Tesla's free cash flow in Q1 2024 was negative $2.5B [1], [5].",
     "citations": [
       {
         "n": 1,
@@ -1378,12 +1388,24 @@
     "type": "table",
     "model": "gemini-3.1-flash-lite",
     "question": "How much did Tesla spend on capital expenditures in Q3 2024?",
-    "answer": "Tesla spent $(3,513) million on capital expenditures in Q3 2024 [1].",
+    "answer": "Tesla spent $(3,513) million on capital expenditures in Q3 2024 [1], [3], [4].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q3 2024 Quarterly Update",
         "page": 4,
+        "type": "table"
+      },
+      {
+        "n": 3,
+        "doc": "Tesla Q3 2024 Quarterly Update",
+        "page": 28,
+        "type": "table"
+      },
+      {
+        "n": 4,
+        "doc": "Tesla Q3 2024 Quarterly Update",
+        "page": 30,
         "type": "table"
       }
     ],
@@ -1398,12 +1420,12 @@
     "type": "paraphrase",
     "model": "gemini-3.1-flash-lite",
     "question": "What were Tesla's total deliveries in the second quarter of 2024?",
-    "answer": "Tesla's total deliveries in the second quarter of 2024 were 443,956 [4].",
+    "answer": "Tesla's total deliveries in the second quarter of 2024 were 443,956 [1].",
     "citations": [
       {
-        "n": 4,
-        "doc": "Tesla Q4 2024 Quarterly Update",
-        "page": 7,
+        "n": 1,
+        "doc": "Tesla Q2 2024 Quarterly Update",
+        "page": 6,
         "type": "table"
       }
     ],
@@ -1418,10 +1440,23 @@
     "type": "paraphrase",
     "model": "gemini-3.1-flash-lite",
     "question": "What was the operating margin for the third quarter of 2024?",
-    "answer": "I could not find this in the provided documents.",
-    "citations": [],
-    "abstained": true,
-    "fact_match": false,
+    "answer": "The operating margin for the third quarter of 2024 was 10.8% [2], [4].",
+    "citations": [
+      {
+        "n": 2,
+        "doc": "Tesla Q3 2024 Quarterly Update",
+        "page": 4,
+        "type": "table"
+      },
+      {
+        "n": 4,
+        "doc": "Tesla Q3 2024 Quarterly Update",
+        "page": 5,
+        "type": "text"
+      }
+    ],
+    "abstained": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -1431,17 +1466,11 @@
     "type": "paraphrase",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Supercharger connectors did Tesla have at the end of Quarter 1 2025?",
-    "answer": "Tesla had 67,316 Supercharger connectors at the end of Q1 2025 [1], [5].",
+    "answer": "Tesla had 67,316 Supercharger connectors at the end of Q1 2025 [1].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q1 2025 Quarterly Update",
-        "page": 6,
-        "type": "table"
-      },
-      {
-        "n": 5,
-        "doc": "Tesla Q2 2025 Quarterly Update",
         "page": 6,
         "type": "table"
       }
@@ -1457,7 +1486,7 @@
     "type": "paraphrase",
     "model": "gemini-3.1-flash-lite",
     "question": "What were Tesla's revenues in Q4'24?",
-    "answer": "Tesla's total revenue in Q4 2024 was $25,707 million [1, 2].",
+    "answer": "Tesla's total revenue in Q4 2024 was $25,707 million [1], [2].",
     "citations": [
       {
         "n": 1,
@@ -1496,18 +1525,18 @@
     "type": "paraphrase",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Tesla locations were there at the end of the fourth quarter of 2023?",
-    "answer": "At the end of the fourth quarter of 2023, there were 1,208 Tesla locations [1], [2].",
+    "answer": "There were 1,208 Tesla locations at the end of the fourth quarter of 2023 [1], [2].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q4 2023 Quarterly Update",
-        "page": 7,
+        "page": 8,
         "type": "table"
       },
       {
         "n": 2,
-        "doc": "Tesla Q1 2024 Quarterly Update",
-        "page": 6,
+        "doc": "Tesla Q4 2023 Quarterly Update",
+        "page": 7,
         "type": "table"
       }
     ],
@@ -1535,17 +1564,17 @@
     "type": "paraphrase",
     "model": "gemini-3.1-flash-lite",
     "question": "How much energy storage was deployed in the 3rd quarter of 2024?",
-    "answer": "In the third quarter of 2024, Tesla deployed approximately 7 GWh of energy storage [1].",
+    "answer": "In the 3rd quarter of 2024, Tesla deployed 6.9 GWh of energy storage [1].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q3 2024 Quarterly Update",
-        "page": 9,
-        "type": "chart"
+        "page": 6,
+        "type": "table"
       }
     ],
     "abstained": false,
-    "fact_match": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -1555,7 +1584,7 @@
     "type": "paraphrase",
     "model": "gemini-3.1-flash-lite",
     "question": "What were total revenues in Q1 FY2025?",
-    "answer": "Total revenues in Q1 2025 were 19,335 million USD [1], [3].",
+    "answer": "Total revenues in Q1 2025 were $19,335 million [1], [5] (or $19.3 billion) [3].",
     "citations": [
       {
         "n": 1,
@@ -1565,8 +1594,14 @@
       },
       {
         "n": 3,
-        "doc": "Tesla Q2 2025 Quarterly Update",
-        "page": 24,
+        "doc": "Tesla Q1 2025 Quarterly Update",
+        "page": 5,
+        "type": "text"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q1 2025 Quarterly Update",
+        "page": 4,
         "type": "table"
       }
     ],
@@ -1581,10 +1616,29 @@
     "type": "paraphrase",
     "model": "gemini-3.1-flash-lite",
     "question": "What were cash and investments at the end of quarter three, 2024?",
-    "answer": "I could not find this in the provided documents.",
-    "citations": [],
-    "abstained": true,
-    "fact_match": false,
+    "answer": "Cash, cash equivalents and investments at the end of Q3 2024 were $33,648 million [3]. This is also referred to as $33.6B in the provided text [4, 5].",
+    "citations": [
+      {
+        "n": 3,
+        "doc": "Tesla Q3 2024 Quarterly Update",
+        "page": 4,
+        "type": "table"
+      },
+      {
+        "n": 4,
+        "doc": "Tesla Q3 2024 Quarterly Update",
+        "page": 3,
+        "type": "text"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q3 2024 Quarterly Update",
+        "page": 5,
+        "type": "text"
+      }
+    ],
+    "abstained": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -1594,29 +1648,11 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "How did Tesla's total deliveries change from Q1 2024 to Q2 2024?",
-    "answer": "In Q1 2024, Tesla's total deliveries were 386,810 [1, 2, 3]. By Q2 2024, this figure increased to 443,956 [1, 3, 4].",
+    "answer": "Tesla's total deliveries increased from 386,810 in Q1 2024 to 443,956 in Q2 2024 [2].",
     "citations": [
       {
-        "n": 1,
-        "doc": "Tesla Q2 2024 Quarterly Update",
-        "page": 6,
-        "type": "table"
-      },
-      {
         "n": 2,
-        "doc": "Tesla Q1 2024 Quarterly Update",
-        "page": 6,
-        "type": "table"
-      },
-      {
-        "n": 3,
-        "doc": "Tesla Q4 2024 Quarterly Update",
-        "page": 7,
-        "type": "table"
-      },
-      {
-        "n": 4,
-        "doc": "Tesla Q2 2025 Quarterly Update",
+        "doc": "Tesla Q2 2024 Quarterly Update",
         "page": 6,
         "type": "table"
       }
@@ -1632,17 +1668,23 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "Compare Tesla's operating margin in Q4 2022 and Q4 2024.",
-    "answer": "I could not find information regarding Tesla's operating margin in Q4 2024 in the provided documents. The documents only provide data up to Q3 2023 [5].",
+    "answer": "Tesla’s operating margin was 16.0% in Q4 2022 [5] and 6.2% in Q4 2024 [2].",
     "citations": [
       {
+        "n": 2,
+        "doc": "Tesla Q4 2024 Quarterly Update",
+        "page": 4,
+        "type": "table"
+      },
+      {
         "n": 5,
-        "doc": "Tesla Q3 2023 Quarterly Update",
-        "page": 18,
-        "type": "chart"
+        "doc": "Tesla Q4 2022 Quarterly Update",
+        "page": 4,
+        "type": "table"
       }
     ],
     "abstained": false,
-    "fact_match": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -1652,18 +1694,24 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "How did total revenues in Q2 2025 compare with Q2 2023?",
-    "answer": "Total revenues were $22,496 million in Q2 2025, compared to $24,927 million in Q2 2023 [2], [3].",
+    "answer": "Total revenues in Q2 2025 were $22,496 million [1, 5], while total revenues in Q2 2023 were $24,927 million [2].",
     "citations": [
       {
-        "n": 2,
+        "n": 1,
         "doc": "Tesla Q2 2025 Quarterly Update",
         "page": 24,
         "type": "table"
       },
       {
-        "n": 3,
+        "n": 2,
         "doc": "Tesla Q2 2023 Quarterly Update",
         "page": 21,
+        "type": "table"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q2 2025 Quarterly Update",
+        "page": 4,
         "type": "table"
       }
     ],
@@ -1678,7 +1726,7 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Supercharger connectors did Tesla have at the end of Q4 2022 versus Q2 2025?",
-    "answer": "Tesla had 42,419 Supercharger connectors at the end of Q4 2022 [1]. At the end of Q2 2025, Tesla had 70,228 Supercharger connectors [4].",
+    "answer": "Tesla had 42,419 Supercharger connectors at the end of Q4 2022 [1, 3]. As of Q2 2025, Tesla had 70,228 Supercharger connectors [2].",
     "citations": [
       {
         "n": 1,
@@ -1687,9 +1735,15 @@
         "type": "table"
       },
       {
-        "n": 4,
+        "n": 2,
         "doc": "Tesla Q2 2025 Quarterly Update",
         "page": 6,
+        "type": "table"
+      },
+      {
+        "n": 3,
+        "doc": "Tesla Q4 2022 Quarterly Update",
+        "page": 8,
         "type": "table"
       }
     ],
@@ -1704,16 +1758,16 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "How did Model 3/Y deliveries in Q4 2024 compare with Q4 2023?",
-    "answer": "In Q4 2024, Model 3/Y deliveries were 471,930, while in Q4 2023, they were 461,538 [2], [3].",
+    "answer": "In Q4 2024, Tesla recorded 471,930 Model 3/Y deliveries [1], compared to 461,538 deliveries in Q4 2023 [1, 2].",
     "citations": [
       {
-        "n": 2,
+        "n": 1,
         "doc": "Tesla Q4 2024 Quarterly Update",
         "page": 7,
         "type": "table"
       },
       {
-        "n": 3,
+        "n": 2,
         "doc": "Tesla Q4 2023 Quarterly Update",
         "page": 7,
         "type": "table"
@@ -1730,9 +1784,16 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "Compare Tesla's total production in Q1 2023 and Q1 2025.",
-    "answer": "I could not find this in the provided documents.",
-    "citations": [],
-    "abstained": true,
+    "answer": "Tesla's total production in Q1 2023 was 440,808 vehicles [1]. The provided documents do not contain the total production figure for Q1 2025.",
+    "citations": [
+      {
+        "n": 1,
+        "doc": "Tesla Q1 2023 Quarterly Update",
+        "page": 6,
+        "type": "table"
+      }
+    ],
+    "abstained": false,
     "fact_match": false,
     "unsupported_numbers": []
   },
@@ -1743,10 +1804,23 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "How did energy storage deployments change from Q1 2024 to Q2 2024?",
-    "answer": "I could not find this in the provided documents.",
-    "citations": [],
-    "abstained": true,
-    "fact_match": false,
+    "answer": "Energy storage deployments increased from 4.1 GWh in Q1 2024 to 9.4 GWh in Q2 2024 [2, 3].",
+    "citations": [
+      {
+        "n": 2,
+        "doc": "Tesla Q2 2024 Quarterly Update",
+        "page": 9,
+        "type": "text"
+      },
+      {
+        "n": 3,
+        "doc": "Tesla Q1 2024 Quarterly Update",
+        "page": 9,
+        "type": "text"
+      }
+    ],
+    "abstained": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -1769,25 +1843,25 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "How much did Tesla's cash and investments grow between Q4 2022 and Q4 2024?",
-    "answer": "To determine the growth between Q4 2022 and Q4 2024, the available documents provide the following data points for cash and investments:\n\n*   In Q4 2022, Tesla's cash and investments totaled $22.2B [3].\n*   In 2024, Tesla's cash and investments increased by $7.5B to $36.6B [4].\n\nTherefore, between Q4 2022 and Q4 2024, Tesla's cash and investments grew by $14.4B, reaching a total of $36.6B [3], [4].",
+    "answer": "Tesla's cash, cash equivalents, and investments grew from $22,185 million in Q4 2022 to $36,563 million in Q4 2024 [5], [4]. This represents an increase of $14,378 million.",
     "citations": [
-      {
-        "n": 3,
-        "doc": "Tesla Q4 2022 Quarterly Update",
-        "page": 3,
-        "type": "text"
-      },
       {
         "n": 4,
         "doc": "Tesla Q4 2024 Quarterly Update",
-        "page": 3,
-        "type": "text"
+        "page": 4,
+        "type": "table"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q4 2022 Quarterly Update",
+        "page": 4,
+        "type": "table"
       }
     ],
     "abstained": false,
     "fact_match": true,
     "unsupported_numbers": [
-      "$14.4"
+      "$14,378"
     ]
   },
   {
@@ -1797,8 +1871,14 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Tesla locations were there at the end of Q4 2023 compared with Q2 2025?",
-    "answer": "At the end of Q4 2023, there were 1,208 Tesla locations [3], [4]. By the end of Q2 2025, there were 1,454 Tesla locations [2].",
+    "answer": "There were 1,208 Tesla locations at the end of Q4 2023 [1], [3]. At the end of Q2 2025, there were 1,454 Tesla locations [2].",
     "citations": [
+      {
+        "n": 1,
+        "doc": "Tesla Q4 2023 Quarterly Update",
+        "page": 7,
+        "type": "table"
+      },
       {
         "n": 2,
         "doc": "Tesla Q2 2025 Quarterly Update",
@@ -1808,13 +1888,7 @@
       {
         "n": 3,
         "doc": "Tesla Q4 2023 Quarterly Update",
-        "page": 7,
-        "type": "table"
-      },
-      {
-        "n": 4,
-        "doc": "Tesla Q4 2024 Quarterly Update",
-        "page": 7,
+        "page": 8,
         "type": "table"
       }
     ],
@@ -1829,7 +1903,7 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "How did total deliveries in Q2 2025 compare with Q2 2024?",
-    "answer": "In Q2 2025, total deliveries were 384,122, compared to 443,956 in Q2 2024 [1].",
+    "answer": "In Q2 2025, total deliveries were 384,122, compared to 443,956 in Q2 2024 [1]. This represents a 13% year-over-year decline [1].",
     "citations": [
       {
         "n": 1,
@@ -1849,10 +1923,16 @@
     "type": "multi",
     "model": "gemini-3.1-flash-lite",
     "question": "Compare Tesla's operating margin in Q1 2024 and Q1 2025.",
-    "answer": "According to the table in the Q1 2025 Quarterly Update, Tesla’s operating margin was 5.5% in Q1 2024 and 2.1% in Q1 2025 [4].",
+    "answer": "Tesla’s operating margin was 5.5% in Q1 2024 [1, 2] and 2.1% in Q1 2025 [2].",
     "citations": [
       {
-        "n": 4,
+        "n": 1,
+        "doc": "Tesla Q1 2024 Quarterly Update",
+        "page": 4,
+        "type": "table"
+      },
+      {
+        "n": 2,
         "doc": "Tesla Q1 2025 Quarterly Update",
         "page": 4,
         "type": "table"
@@ -1869,10 +1949,23 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's operating margin for full-year 2022?",
-    "answer": "I could not find this in the provided documents.",
-    "citations": [],
-    "abstained": true,
-    "fact_match": false,
+    "answer": "Tesla's operating margin for full-year 2022 was 16.8% [4], [5].",
+    "citations": [
+      {
+        "n": 4,
+        "doc": "Tesla Q4 2022 Quarterly Update",
+        "page": 5,
+        "type": "table"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q4 2022 Quarterly Update",
+        "page": 3,
+        "type": "text"
+      }
+    ],
+    "abstained": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -1882,10 +1975,17 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How much did Tesla's total revenue grow in 2022, and to what amount?",
-    "answer": "I could not find this in the provided documents.",
-    "citations": [],
-    "abstained": true,
-    "fact_match": false,
+    "answer": "In 2022, Tesla's total revenue grew 51% year-over-year to $81.5B [5].",
+    "citations": [
+      {
+        "n": 5,
+        "doc": "Tesla Q4 2022 Quarterly Update",
+        "page": 3,
+        "type": "text"
+      }
+    ],
+    "abstained": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -1895,7 +1995,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How large was the one-time non-cash tax benefit Tesla recorded in Q4 2023?",
-    "answer": "Tesla recorded a one-time non-cash tax benefit of $5.9B in Q4 2023 for the release of valuation allowance on certain deferred tax assets [1, 2, 3]. According to the detailed financial tables, this amount is specifically listed as $(5,927) million [4].",
+    "answer": "Tesla recorded a one-time non-cash tax benefit of $5.9B in Q4 2023 for the release of a valuation allowance on certain deferred tax assets [1, 2, 3]. A more precise figure from the financial tables shows this benefit was $5,927 million [4].",
     "citations": [
       {
         "n": 1,
@@ -1933,13 +2033,25 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How much energy storage did Tesla deploy in full-year 2023?",
-    "answer": "Tesla deployed a total of 14.7 GWh of energy storage in 2023 [3].",
+    "answer": "Tesla deployed 14.7 GWh of energy storage in 2023 [1], [2]. This figure is also listed as 14,724 MWh in Tesla's data tables [5].",
     "citations": [
       {
-        "n": 3,
+        "n": 1,
         "doc": "Tesla Q4 2023 Quarterly Update",
         "page": 11,
         "type": "text"
+      },
+      {
+        "n": 2,
+        "doc": "Tesla Q4 2023 Quarterly Update",
+        "page": 3,
+        "type": "text"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q4 2023 Quarterly Update",
+        "page": 8,
+        "type": "table"
       }
     ],
     "abstained": false,
@@ -1973,7 +2085,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "To what price did Tesla reduce the FSD (Supervised) subscription in Q1 2024?",
-    "answer": "In Q1 2024, Tesla reduced the price of the FSD (Supervised) subscription to $99/month in the US [1].",
+    "answer": "Tesla reduced the price of the FSD (Supervised) subscription to $99/month in the US [1].",
     "citations": [
       {
         "n": 1,
@@ -1993,7 +2105,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "By how much did Tesla increase AI training compute in Q1 2024?",
-    "answer": "Tesla increased its AI training compute by more than 130% in Q1 2024 [1].",
+    "answer": "In Q1 2024, Tesla increased AI training compute by more than 130% [1].",
     "citations": [
       {
         "n": 1,
@@ -2013,7 +2125,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's record energy storage deployment in Q2 2024?",
-    "answer": "Tesla's record energy storage deployment in Q2 was 9.4 GWh [1], [2], [4].",
+    "answer": "Tesla's energy storage deployment in Q2 2024 reached a record of 9.4 GWh [1, 2, 4, 5].",
     "citations": [
       {
         "n": 1,
@@ -2030,6 +2142,12 @@
       {
         "n": 4,
         "doc": "Tesla Q2 2024 Quarterly Update",
+        "page": 6,
+        "type": "table"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q2 2024 Quarterly Update",
         "page": 3,
         "type": "text"
       }
@@ -2045,7 +2163,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What market milestone did Cybertruck reach in Q2 2024?",
-    "answer": "In Q2, the Cybertruck became the best-selling EV pickup in the U.S. [2].",
+    "answer": "In Q2 2024, the Cybertruck became the best-selling EV pickup in the U.S. [2].",
     "citations": [
       {
         "n": 2,
@@ -2065,7 +2183,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Megapacks did the Lathrop Megafactory produce in a week, according to the Q3 2024 update?",
-    "answer": "According to the Q3 2024 update, the Lathrop Megafactory demonstrated production of 200 Megapacks in a single week [1], [2].",
+    "answer": "According to the Q3 2024 update, the Lathrop Megafactory produced 200 Megapacks in a single week [1, 2].",
     "citations": [
       {
         "n": 1,
@@ -2091,8 +2209,14 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How many cumulative miles had been driven on FSD (Supervised) as of Q3 2024?",
-    "answer": "As of Q3 2024, there were over two billion miles driven cumulatively on FSD (Supervised) [4].",
+    "answer": "As of Q3 2024, there were over two billion cumulative miles driven on FSD (Supervised) [4]. Additionally, the FSD (Supervised) chart indicates that the cumulative miles driven reached approximately 1.9 billion miles by September 2024 [1].",
     "citations": [
+      {
+        "n": 1,
+        "doc": "Tesla Q3 2024 Quarterly Update",
+        "page": 8,
+        "type": "chart"
+      },
       {
         "n": 4,
         "doc": "Tesla Q3 2024 Quarterly Update",
@@ -2131,13 +2255,19 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What were Tesla's cash and investments at the end of 2024?",
-    "answer": "Tesla's cash and investments were $36.6B at the end of 2024 [5].",
+    "answer": "Tesla's cash, cash equivalents, and investments totaled $36,563 million at the end of 2024 [4], [5].",
     "citations": [
+      {
+        "n": 4,
+        "doc": "Tesla Q4 2024 Quarterly Update",
+        "page": 4,
+        "type": "table"
+      },
       {
         "n": 5,
         "doc": "Tesla Q4 2024 Quarterly Update",
-        "page": 3,
-        "type": "text"
+        "page": 30,
+        "type": "table"
       }
     ],
     "abstained": false,
@@ -2151,10 +2281,17 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What were Tesla's operating cash flow and free cash flow for full-year 2024?",
-    "answer": "I could not find this in the provided documents.",
-    "citations": [],
-    "abstained": true,
-    "fact_match": false,
+    "answer": "For full-year 2024, Tesla reported operating cash flow of $14.9B and free cash flow of $3.6B [4].",
+    "citations": [
+      {
+        "n": 4,
+        "doc": "Tesla Q4 2024 Quarterly Update",
+        "page": 3,
+        "type": "text"
+      }
+    ],
+    "abstained": false,
+    "fact_match": true,
     "unsupported_numbers": []
   },
   {
@@ -2164,8 +2301,14 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "How many Megapacks had Megafactory Shanghai produced, according to the Q1 2025 update?",
-    "answer": "According to the Q1 2025 update, Megafactory Shanghai produced \">100 Megapacks\" [3].",
+    "answer": "According to the Q1 2025 update, Megafactory Shanghai produced over 100 Megapacks [1], [3].",
     "citations": [
+      {
+        "n": 1,
+        "doc": "Tesla Q1 2025 Quarterly Update",
+        "page": 9,
+        "type": "text"
+      },
       {
         "n": 3,
         "doc": "Tesla Q1 2025 Quarterly Update",
@@ -2184,12 +2327,30 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "When are Semi and Cybercab slated for volume production?",
-    "answer": "Both the Semi and Cybercab are slated for volume production in 2026 [1].",
+    "answer": "Both the Semi and Cybercab are slated for volume production in 2026 [1], [2], [4], [5]. Specifically regarding the Semi, the first truck builds are scheduled to start by the end of 2025 with a ramp beginning in early 2026 [2].",
     "citations": [
       {
         "n": 1,
         "doc": "Tesla Q2 2025 Quarterly Update",
         "page": 3,
+        "type": "text"
+      },
+      {
+        "n": 2,
+        "doc": "Tesla Q4 2024 Quarterly Update",
+        "page": 9,
+        "type": "text"
+      },
+      {
+        "n": 4,
+        "doc": "Tesla Q4 2024 Quarterly Update",
+        "page": 12,
+        "type": "text"
+      },
+      {
+        "n": 5,
+        "doc": "Tesla Q1 2025 Quarterly Update",
+        "page": 10,
         "type": "text"
       }
     ],
@@ -2204,16 +2365,9 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "What was Tesla's free cash flow in Q2 2025?",
-    "answer": "Based on the provided documents, Free Cash Flow in Q2 2025 was \"well under 6B\" [2].",
-    "citations": [
-      {
-        "n": 2,
-        "doc": "Tesla Q2 2025 Quarterly Update",
-        "page": 22,
-        "type": "chart"
-      }
-    ],
-    "abstained": false,
+    "answer": "I could not find this in the provided documents.",
+    "citations": [],
+    "abstained": true,
     "fact_match": false,
     "unsupported_numbers": []
   },
@@ -2224,7 +2378,7 @@
     "type": "text",
     "model": "gemini-3.1-flash-lite",
     "question": "To what price did Tesla reduce the FSD (Supervised) purchase price in the US in Q1 2024?",
-    "answer": "Tesla reduced the FSD (Supervised) purchase price in the US to $8,000 [1].",
+    "answer": "In the US, Tesla reduced the FSD (Supervised) purchase price to $8,000 [1].",
     "citations": [
       {
         "n": 1,
@@ -2244,16 +2398,10 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "Approximately what was Tesla's average cost of goods sold per vehicle in Q4 2024?",
-    "answer": "In Q4 2024, Tesla's average cost of goods sold per vehicle was approximately $34,700 [3]. This figure is consistent with the company's report that COGS per vehicle reached its lowest level ever at <$35,000 in Q4 [1].",
+    "answer": "In Q4 2024, Tesla's average cost of goods sold per vehicle was approximately $34,700 [4].",
     "citations": [
       {
-        "n": 1,
-        "doc": "Tesla Q4 2024 Quarterly Update",
-        "page": 3,
-        "type": "text"
-      },
-      {
-        "n": 3,
+        "n": 4,
         "doc": "Tesla Q4 2024 Quarterly Update",
         "page": 14,
         "type": "chart"
@@ -2270,7 +2418,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "Approximately what was the cost of goods sold per vehicle in Q4 2023?",
-    "answer": "The cost of goods sold per vehicle in Q4 2023 was approximately $36,300 [1]. Tesla also noted that this cost declined sequentially to slightly above $36,000 in Q4 [2].",
+    "answer": "The cost of goods sold per vehicle in Q4 2023 was approximately $36,300 [1]. This figure is also described in the text as being slightly above $36,000 [2].",
     "citations": [
       {
         "n": 1,
@@ -2296,7 +2444,7 @@
     "type": "chart",
     "model": "gemini-3.1-flash-lite",
     "question": "In which quarter did Tesla's average COGS per vehicle reach its all-time low, according to the Q4 2024 update?",
-    "answer": "According to the Q4 2024 update, Tesla’s average COGS per vehicle reached its all-time low in Q4 2024 [1, 2, 3].",
+    "answer": "According to the Q4 2024 update, Tesla's average cost of goods sold (COGS) per vehicle reached its all-time low in Q4 2024 [1], [2]. This milestone was highlighted as a result of cost improvements that helped reach a level of <$35,000 [3].",
     "citations": [
       {
         "n": 1,

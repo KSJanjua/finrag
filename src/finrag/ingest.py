@@ -10,6 +10,7 @@ import fitz  # PyMuPDF
 
 from . import config
 from .chunking import recursive_split, split_table
+from .dense import token_counter
 from .schema import Chunk
 
 fitz.TOOLS.mupdf_display_errors(False)  # these PDFs trigger harmless structure-tree warnings
@@ -196,7 +197,7 @@ def _parse_pages(pdf, doc_name, label, chunk_size, overlap):
         tables = extract_tables(page)
 
         for t_idx, (_, md) in enumerate(tables):
-            for part_idx, part in enumerate(split_table(md, config.TABLE_MAX_CHARS)):
+            for part_idx, part in enumerate(split_table(md, config.TABLE_MAX_TOKENS, token_counter())):
                 yield Chunk(
                     chunk_id=f"{doc_name}:p{page_no}:table{t_idx}.{part_idx}",
                     doc=doc_name, doc_label=label, page=page_no, type="table",

@@ -9,13 +9,15 @@ classDiagram
         +str type       "text | table | chart"
         +str section    "page heading"
         +str text
+        +int fiscal_year "from the registry"
+        +int quarter
         +index_text() str
         +citation() str
     }
     class RetrievedChunk {
         +Chunk chunk
         +float score
-        +dict ranks   "bm25, dense, rrf"
+        +dict ranks   "bm25, dense, rrf, period"
     }
     class ChartCacheEntry {
         +str doc
@@ -25,10 +27,9 @@ classDiagram
     }
     class Question {
         +str id
-        +str type          "text | table | chart"
+        +str type          "text | table | chart | paraphrase | multi | unanswerable"
         +str question
-        +list gold         "[report, page] pairs"
-        +list evidence
+        +list evidence_sets "{gold: [period, page, grade], evidence}"
         +list answer_facts "groups of alternatives"
     }
     class AnswerRecord {
@@ -37,7 +38,9 @@ classDiagram
         +str model
         +str answer
         +list citations
-        +bool fact_match
+        +bool abstained
+        +bool fact_match   "null for unanswerable"
+        +list unsupported_numbers
         +bool judge        "optional"
     }
     RetrievedChunk --> Chunk : wraps

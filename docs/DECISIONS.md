@@ -124,3 +124,63 @@ Rejected ideas are recorded as well, so the reasoning behind what is *not* in th
 - **Why not only an LLM judge:** the judge needs another free-tier model with a 20-request daily
   quota, and is non-deterministic; number grounding runs on every answer for free and is
   reproducible. The judge remains available (`--judge`).
+
+---
+
+## D8 · A rule-based query parser for reporting periods
+
+- **Problem (measured):** the report filter only recognised "Q3 2024". Re-worded periods
+  ("third quarter of 2024", "2Q-2024", "Q1 FY2025", "quarter three, 2024") searched all 11
+  reports (Hit@5 0.40 on those questions); "full-year 2024" questions had no filter at all; and
+  "Q1, Q2 and Q3 2024" was narrowed to Q3 only.
+- **Options:**
+  1. Ask the LLM to extract periods (query rewriting / self-query).
+  2. A rule-based parser.
+- **Choice:** rules (`src/finrag/query.py`). Quarter mentions in the common formats, lists of
+  quarters sharing a year, and full-year mentions mapped to that year's Q4 report (where annual
+  results are published).
+- **Why rules here:** the set of period formats in financial questions is small and enumerable,
+  so a parser covers it deterministically, at zero latency and zero API cost (an LLM call per
+  question would use the free-tier quota the answers need), and every case is unit-tested. An
+  LLM rewriter would be the next step for open-ended wording, not for periods.
+- **Result:** Hit@5 0.783 → 0.849 (re-worded 0.40 → 0.70, text 0.78 → 0.91 through the
+  full-year rule).
+
+---
+
+## D9 · Query decomposition by period
+
+- **Problem (measured):** a question comparing two periods (e.g. Q4 2022 vs Q4 2024) needs facts
+  from two reports more than a year apart; one search over all reports rarely returns both
+  (multi-period Recall@5 0.54).
+- **Choice:** when a question names several periods, run one filtered search per period's report
+  and merge the result lists round-robin in the order the periods were named, dropping
+  duplicates. Periods without a report of their own get an unfiltered search.
+- **Why round-robin:** scores from different filtered searches aren't comparable, and the goal is
+  coverage, so every period gets a slot near the top.
+- **Result:** multi-period Recall@5 0.54 → 0.63, Hit@5 0.849 → 0.868.
+- **What it revealed:** in the remaining misses the right report *was* searched, but its big
+  summary table was outranked inside that report, which is the table-size problem (D10).
+
+---
+
+## D10 · Split tables by the embedding model's token count
+
+- **Problem (measured):** 97 of 165 table chunks exceeded the embedding model's 512-token input
+  (numbers split into many tokens, so a 1,500-character table is ~630 tokens). Dense retrieval
+  never saw their lower rows, and in multi-period questions the right report's summary table was
+  outranked by shorter chunks.
+- **Choice:** `split_table` measures size with the embedding model's own tokenizer and splits a
+  table by rows (header repeated) so each part is at most 450 tokens, leaving room for the chunk's
+  label line.
+- **Compared (production configuration, same questions):**
+
+| Table parts | Chunks | Over 512 tokens | Hit@5 | MRR | text | table | multi (Recall@5) |
+|---|---|---|---|---|---|---|---|
+| ≤ 1,500 characters (before) | 813 | 97 | 0.868 | 0.681 | 0.906 | 0.865 | 0.625 |
+| **≤ 450 tokens** | 901 | 0 | **0.896** | **0.692** | 0.906 | 0.892 | **0.750** |
+| ≤ 200 tokens | 1,340 | 0 | 0.830 | 0.678 | 0.719 | 0.919 | 0.667 |
+
+- **Why not smaller:** 200-token row groups help table questions slightly, but 692 table fragments
+  crowd text chunks out of the top results (text 0.91 → 0.72). Split only as much as the model
+  needs.

@@ -179,6 +179,11 @@ def eval_answers(retrievers, questions, corpora, use_judge):
             _save(records)
             print(f"  {corpus} {i}/{len(pending)} {q['id']}")
 
+    # Reused answers are rescored so that label corrections apply without new LLM calls.
+    for r in records.values():
+        q = by_id[r["id"]]
+        r["fact_match"] = facts_correct(r["answer"], q["answer_facts"]) if q["sets"] else None
+
     if use_judge:  # ideally a different model than the generator
         for r in records.values():
             if r["fact_match"] is not None and r.get("judge_model") != judge_model:

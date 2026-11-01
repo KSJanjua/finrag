@@ -62,24 +62,24 @@ def _merge(pieces, chunk_size, overlap):
     return [c for c in chunks if c]
 
 
-def split_table(markdown, max_chars):
+def split_table(markdown, max_size, size=len):
     """Split a markdown table by rows, repeating the header in every part.
 
     A table row without its header ("|1,129|") is meaningless to both the
-    retriever and the LLM, so the header always travels with the rows.
+    retriever and the LLM, so the header always travels with the rows. ``size``
+    measures a piece of text (characters by default; ingestion passes the
+    embedding model's token count so every part fits the model's input).
     """
     lines = [l for l in markdown.strip().splitlines() if l.strip()]
-    if len(markdown) <= max_chars or len(lines) <= 3:
+    if len(lines) <= 3 or size(markdown) <= max_size:
         return [markdown.strip()]
     header, rows = lines[:2], lines[2:]
-    header_len = sum(len(h) + 1 for h in header)
-    parts, current, size = [], [], header_len
+    parts, current = [], []
     for row in rows:
-        if current and size + len(row) + 1 > max_chars:
+        if current and size("\n".join(header + current + [row])) > max_size:
             parts.append("\n".join(header + current))
-            current, size = [], header_len
+            current = []
         current.append(row)
-        size += len(row) + 1
     if current:
         parts.append("\n".join(header + current))
     return parts
