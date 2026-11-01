@@ -56,8 +56,8 @@ BM25_B = 0.75    # document-length normalisation
 FIRST_STAGE_K = 50        # candidates taken from each of BM25 and FAISS
 RRF_K = 60                # constant in 1 / (k + rank)
 RERANK_CANDIDATES = 20    # fused candidates sent to the cross-encoder
-FINAL_K = 5               # chunks given to the LLM
-DEFAULT_DOC_FILTER = "auto"   # CLI/API default: infer the report from "Q3 2023" in the question
+FINAL_K = 8               # chunks given to the LLM; evidence recall flattens after 8 (DECISIONS D13)
+DEFAULT_DOC_FILTER = "auto"   # CLI/API default: search the reports for the periods named in the question
 # Default retrieval mode. The cross-encoder ("hybrid_rerank") was evaluated and lowered
 # MRR on this corpus while adding ~2 s/query (results/retrieval_results.md,
 # results/reranker_sweep.md), so plain hybrid RRF is the default.

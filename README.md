@@ -17,7 +17,7 @@ PDF ──► PyMuPDF ──┬─ text blocks ─► clean ─► recursive chu
 question ─► period parser ("Q3 2024", "third quarter of 2024", "full-year 2024")
          ─► one search per named report (all reports if none named)
         ─┬─ BM25 top-50 ───────────────┐
-         └─ FAISS (bge-small) top-50 ──┴─► RRF ─► top-5 ─► LLM ─► answer with [n] page citations
+         └─ FAISS (bge-small) top-50 ──┴─► RRF ─► top-8 ─► LLM ─► answer with [n] page citations
                                 (optional: cross-encoder rerank of the top-20 - evaluated, not the default)
 ```
 
@@ -25,6 +25,32 @@ Chunking, the BM25 tokenizer, RRF, the retrieval funnel, the table fallback and 
 implemented by hand (no LangChain/LlamaIndex), so each step can be inspected and explained.
 
 ## Results
+
+### v2 context (M4)
+
+After M3 every wrong answer was a refusal, and most had their evidence at ranks 6–8. The model now
+gets 8 chunks instead of 5 ([docs/DECISIONS.md](docs/DECISIONS.md) D13), where evidence recall
+levels off (0.887 → 0.943; 0.948 at 10).
+
+| Context | Fact match | False refusals | Correct refusals on unanswerable | Answers with unsupported numbers | Context tokens (mean) |
+|---|---|---|---|---|---|
+| 5 chunks (M3) | 0.896 | 0.094 | 1.000 (10/10) | 0.010 | 1,172 |
+| **8 chunks (M4)** | **0.943** | **0.038** | 1.000 (10/10) | 0.010 | 1,904 |
+
+Fact match by question type: text 0.906, table 0.973, chart 1.000, re-worded periods 0.900,
+multi-period 0.917. Five answers became correct and none became wrong. The other M4 ideas
+(stemming for BM25, de-duplication, an answer-time number check with retry, chart-vs-table conflict
+handling, parent–child tables) were measured first and not built, because the data showed no
+problem for them to fix (D11, D12, D14).
+
+The 6 answers still wrong: tb04, tx17, mp08, pw07 (evidence ranked 9th–20th), t02 (the text
+splitter put "operating income was impacted by the following items" and the list of reasons in
+different chunks, and the list alone doesn't match the question) and t05 (a forecast stated before the year's Q4
+report, see Limitations).
+
+Full grid: [results/retrieval_results.md](results/retrieval_results.md); remaining misses:
+[results/retrieval_misses.md](results/retrieval_misses.md); answers:
+[results/answer_results.md](results/answer_results.md).
 
 ### v2 after the retrieval fixes (M3)
 
@@ -62,19 +88,16 @@ Answers (`gemini-3.1-flash-lite`, one question per request):
 | **M3** | **0.896** | **0.094** | 1.000 (10/10) | 0.010 |
 
 Nine answers became correct, mostly re-worded and multi-period questions. Three became wrong:
-- **tb01, tb05** (deliveries in Q4 2022, production in Q4 2023): after splitting, those rows sit in a
-  table part whose only header is the quarter columns, and it falls out of the top 5. The part
-  doesn't carry the table's context; that is an M4 (context) problem.
+- **tb01, tb05** ("How many vehicles did Tesla deliver / produce …"): the operational summary table
+  is now in two parts, and the part with the delivery rows lands at rank 6–7. Dense search ranks it
+  1st–3rd, but BM25 ranks it ~30th because "deliver" never matches "deliveries" (D11), so it drops
+  just below the 5 chunks given to the model.
 - **c07**: same retrieved chunks as before; the chart description says the data ends in Q1 2023, and
   the model refused this time.
 
 The cross-encoder still lowers ranking quality (MRR 0.692 → 0.636). The full grid was run twice and
 gave identical per-question ranks. The one answer flagged for unsupported numbers is again the
 correctly computed $14,378M difference.
-
-Full grid: [results/retrieval_results.md](results/retrieval_results.md); remaining misses:
-[results/retrieval_misses.md](results/retrieval_misses.md); answers:
-[results/answer_results.md](results/answer_results.md).
 
 ### v2 baseline (M2: the v1 pipeline on 11 reports, 116 questions)
 
@@ -200,7 +223,7 @@ python scripts/reranker_sweep.py | chunk_sweep.py | faiss_benchmark.py   # exper
 | Retrieval evaluation | M3 on 116 questions; deterministic (identical ranks across runs) |
 | Chart descriptions | All 164 candidate pages of the 11 reports described by `gemini-3.1-flash-lite` (model recorded per entry); chart answer labels checked against the rendered page images |
 | LLM code paths (generation, vision, judge, JSON parsing, per-provider parameters) | Tested against the real OpenAI SDK with a mocked HTTP transport; generation and vision also verified live against Gemini |
-| Answer evaluation | M3: 116 answers on the one-question production path (`gemini-3.1-flash-lite`); fact match, refusals and number grounding; LLM judge optional, not run |
+| Answer evaluation | M4: 116 answers on the one-question production path (`gemini-3.1-flash-lite`); fact match, refusals and number grounding; LLM judge optional, not run |
 
 ## Project layout
 
@@ -238,6 +261,8 @@ docs/ARCHITECTURE.md       architecture diagrams (Mermaid, generated from docs/a
 - Statement tables with merged cells are rebuilt heuristically from word positions.
 - The period parser is rule-based. It doesn't understand relative periods ("last quarter"), reads
   "first half of 2024" as the full year, and takes only the endpoints of a range ("Q1 to Q3 2024").
+  A full year always maps to that year's Q4 report, so a question about a forecast made earlier in
+  the year ("expected to produce in 2023") searches the wrong report.
 - Decomposition splits a question by period only; a question comparing two metrics in one period
   is still a single search.
 - Number grounding flags correctly computed figures (e.g. a difference between two quarters) as
@@ -245,5 +270,5 @@ docs/ARCHITECTURE.md       architecture diagrams (Mermaid, generated from docs/a
 
 ## Next steps
 
-See [docs/ROADMAP.md](docs/ROADMAP.md): context engineering and grounded generation checks (M4),
-then production concerns and prompt-injection tests.
+See [docs/ROADMAP.md](docs/ROADMAP.md): production concerns (M5: a vector store with stable IDs,
+incremental indexing, caching, tracing) and prompt-injection tests (M6).

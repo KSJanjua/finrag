@@ -145,7 +145,7 @@ def _save(records):
     return ordered
 
 
-def eval_answers(retrievers, questions, corpora, use_judge):
+def eval_answers(retrievers, questions, corpora, use_judge, context_k=config.FINAL_K):
     """Generate and score answers on the production path (one question per request).
 
     Resumable: records are saved after every request and a re-run reuses answers
@@ -161,18 +161,19 @@ def eval_answers(retrievers, questions, corpora, use_judge):
     by_id = {q["id"]: q for q in questions}
     previous = json.loads(ANSWERS_FILE.read_text(encoding="utf-8")) if ANSWERS_FILE.exists() else []
     records = {(r["modality"], r["id"]): r for r in previous
-               if r.get("model") == chat_model and r["id"] in by_id and r["modality"] in corpora}
+               if r.get("model") == chat_model and r.get("context_k") == context_k
+               and r["id"] in by_id and r["modality"] in corpora}
 
     for corpus in corpora:
         pending = [q for q in questions if (corpus, q["id"]) not in records]
         for i, q in enumerate(pending, 1):
-            hits = retrievers[corpus].retrieve(q["question"], mode=mode, doc=doc)
+            hits = retrievers[corpus].retrieve(q["question"], mode=mode, top_k=context_k, doc=doc)
             out = answer(client, q["question"], hits)
             cited = [hits[c["n"] - 1].chunk.index_text() for c in out["citations"]]
             abstained = NOT_FOUND in out["answer"]
             records[(corpus, q["id"])] = {
                 "modality": corpus, "id": q["id"], "order": order[q["id"]], "type": q["type"],
-                "model": chat_model, "question": q["question"], "answer": out["answer"],
+                "model": chat_model, "context_k": context_k, "question": q["question"], "answer": out["answer"],
                 "citations": out["citations"], "abstained": abstained,
                 "fact_match": facts_correct(out["answer"], q["answer_facts"]) if q["sets"] else None,
                 "unsupported_numbers": [] if abstained else unsupported_numbers(out["answer"], cited)}
@@ -213,9 +214,9 @@ def eval_answers(retrievers, questions, corpora, use_judge):
     return ordered, summary
 
 
-def answers_report(summary, use_judge):
+def answers_report(summary, use_judge, context_k):
     s = settings()
-    lines = [f"# Answer evaluation ({PRODUCTION[2]}, doc filter={PRODUCTION[3]}, top-{config.FINAL_K} context)", "",
+    lines = [f"# Answer evaluation ({PRODUCTION[2]}, doc filter={PRODUCTION[3]}, top-{context_k} context)", "",
              f"- Generator: `{s['chat_model']}`, one question per request (the production path)",
              "- Fact match: every required fact appears in the answer (numbers matched whole)",
              f"- Refusal: the answer contains \"{NOT_FOUND}\"",
@@ -247,6 +248,8 @@ def main():
     ap.add_argument("--limit", type=int, default=None,
                     help="only the first N questions (e.g. to try --answers on a free tier first)")
     ap.add_argument("--answers-only", action="store_true", help="skip the retrieval grid")
+    ap.add_argument("--context-k", type=int, default=config.FINAL_K,
+                    help="chunks given to the LLM per question (answer evaluation)")
     args = ap.parse_args()
 
     questions = load_questions()[:args.limit]
@@ -272,8 +275,8 @@ def main():
 
     if args.answers:
         corpora = ["multimodal"] + (["text-only"] if args.text_only else [])
-        _, summary = eval_answers(retrievers, questions, corpora, args.judge)
-        (config.RESULTS_DIR / "answer_results.md").write_text(answers_report(summary, args.judge), encoding="utf-8")
+        _, summary = eval_answers(retrievers, questions, corpora, args.judge, args.context_k)
+        (config.RESULTS_DIR / "answer_results.md").write_text(answers_report(summary, args.judge, args.context_k), encoding="utf-8")
         print(f"wrote {config.RESULTS_DIR / 'answer_results.md'}")
 
     sys.exit(0 if reproducible else 1)

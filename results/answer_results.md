@@ -1,4 +1,4 @@
-# Answer evaluation (hybrid, doc filter=auto, top-5 context)
+# Answer evaluation (hybrid, doc filter=auto, top-8 context)
 
 - Generator: `gemini-3.1-flash-lite`, one question per request (the production path)
 - Fact match: every required fact appears in the answer (numbers matched whole)
@@ -8,10 +8,10 @@
 
 | Corpus | Fact match | False refusals | Correct refusals (unanswerable) | Unsupported numbers |
 |---|---|---|---|---|
-| multimodal | 0.896 | 0.094 | 1.000 | 0.010 |
+| multimodal | 0.943 | 0.038 | 1.000 | 0.010 |
 
 ## Fact match by question type
 
 | Corpus | text | table | chart | paraphrase | multi |
 |---|---|---|---|---|---|
-| multimodal | 0.906 | 0.919 | 0.933 | 0.800 | 0.833 |
+| multimodal | 0.906 | 0.973 | 1.000 | 0.900 | 0.917 |

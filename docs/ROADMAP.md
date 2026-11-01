@@ -20,7 +20,8 @@ Features that don't are recorded as rejected in [DECISIONS.md](DECISIONS.md).
 | M6 | Security: indirect prompt-injection test documents and mitigations | Retrieved text is untrusted input to the LLM | Injection success rate before/after |
 | M7 | Documentation: decision log, architecture, README | Every choice must be traceable | — |
 
-Status: M0–M3 done. Results per milestone are in the README; the reasoning behind each choice is in DECISIONS.md.
+Status: M0–M4 done. In M4 only the context size changed; the other planned items were measured
+and not built (DECISIONS D11–D14). Results per milestone are in the README; the reasoning behind each choice is in DECISIONS.md.
 
 ## Constraints that shape decisions
 
