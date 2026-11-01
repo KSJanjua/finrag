@@ -11,7 +11,7 @@ import _bootstrap  # noqa: F401
 import time
 
 from finrag import config
-from finrag.evaluate import first_relevant_rank, load_questions, retrieval_metrics
+from finrag.evaluate import aggregate, ideal_grades, load_questions, score_ranking
 from finrag.rerank import CrossEncoderReranker
 from finrag.retriever import load_retriever
 
@@ -33,19 +33,19 @@ class Reranker(CrossEncoderReranker):
 
 
 def main():
-    questions = load_questions()
+    questions = [q for q in load_questions() if q["sets"]]
     retriever = load_retriever(use_reranker=False)
-    lines = ["# Reranker sweep (multimodal corpus, 38 questions)", "",
-             "| Reranker | Report filter | Recall@1 | Recall@5 | MRR | ms/query |", "|---|---|---|---|---|---|"]
+    ideal = {q["id"]: ideal_grades(retriever.chunks, q) for q in questions}
+    lines = [f"# Reranker sweep (multimodal corpus, {len(questions)} answerable questions)", "",
+             "| Reranker | Report filter | Hit@1 | Hit@5 | MRR | ms/query |", "|---|---|---|---|---|---|"]
 
     def run(label, mode):
         for doc in (None, "auto"):
             t0 = time.perf_counter()
-            ranks = [first_relevant_rank(retriever.retrieve(q["question"], mode=mode, top_k=10, doc=doc), q)
-                     for q in questions]
+            m = aggregate([score_ranking(retriever.retrieve(q["question"], mode=mode, top_k=10, doc=doc), q,
+                                         ideal[q["id"]]) for q in questions])
             ms = 1000 * (time.perf_counter() - t0) / len(questions)
-            m = retrieval_metrics(ranks)
-            line = (f"| {label} | {'auto' if doc else 'none'} | {m['recall@1']:.3f} | {m['recall@5']:.3f} | "
+            line = (f"| {label} | {'auto' if doc else 'none'} | {m['hit@1']:.3f} | {m['hit@5']:.3f} | "
                     f"{m['mrr']:.3f} | {ms:.0f} |")
             print(line, flush=True)
             lines.append(line)

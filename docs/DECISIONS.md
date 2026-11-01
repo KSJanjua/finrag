@@ -68,3 +68,59 @@ Rejected ideas are recorded as well, so the reasoning behind what is *not* in th
 - **Why:** flash-lite's free quota is the only one large enough for evaluation runs (76+
   answers per run). The judge is a separate model so no answer is graded by the model that wrote
   it (self-preference bias), and it is called rarely enough for the smaller quota.
+
+---
+
+## D5 · Build the evaluation set before adding features
+
+- **Problem:** v1's 38 questions cover three reports and only single facts. They can't show
+  whether a feature helps with multi-period questions, re-worded periods or unanswerable questions.
+- **Choice:** a 116-question set (`data/eval/questions.json`) measured against the unchanged v1
+  pipeline first. Every later feature is judged against that baseline.
+
+| Type | Count | Source |
+|---|---|---|
+| text | 32 | 14 from v1 + 18 quoted from each report's highlights page |
+| table | 37 | 13 from v1 + 24 generated from extracted summary-table cells |
+| chart | 15 | 11 from v1 + 4 new, values checked against the rendered page images |
+| paraphrase | 10 | table facts with re-worded periods ("second quarter of 2024", "2Q-2024", "Q1 FY2025") |
+| multi | 12 | two periods per question, several more than a year apart (two reports needed) |
+| unanswerable | 10 | facts verified absent by searching every chunk |
+
+- **Checks on the set itself:** `validate_questions.py` requires every evidence set to have its
+  evidence on a gold page. While building the unanswerable questions, a search showed Q2 2021
+  figures *are* in the corpus (reconciliation tables reach back to 2020), so that question was
+  dropped.
+
+---
+
+## D6 · Graded relevance and NDCG
+
+- **Problem:** the same figure appears in up to five reports. Any copy answers the question, but
+  the quarter's own report is the better citation.
+- **Choice:** gold pages carry a grade: 2 for the period's own report, 1 for a later report
+  repeating the figure. Metrics:
+  - `hit@k`: any relevant chunk in the top k (v1's "Recall@k").
+  - `recall@k`: share of a question's evidence sets found (context recall; only differs from
+    hit@k for multi-period questions).
+  - `precision@k`: share of the top k that is relevant.
+  - `ndcg@k`: rewards ranking the own report above later copies; the only metric that uses grades.
+  - `MRR`.
+- **Why not page-level relevance:** a page can hold a footnote-only chunk next to the chart that
+  answers the question; a relevant chunk must contain the evidence string.
+
+---
+
+## D7 · Number grounding as a deterministic faithfulness check
+
+- **Problem:** fact matching says whether the right number is present, not whether the answer
+  also states numbers its sources don't contain.
+- **Choice:** every number in an answer must be supported by one of the sources it cites. A source
+  value supports it if, rounded to the precision the answer uses, it equals the answer's number
+  ("$2.5B" ⇐ 2,531 in a $M table; "$26.1B" is not supported by 25,500). Small integers and bare
+  years are ignored.
+- **Rejected:** a flat relative tolerance (first version, 2.5%). It accepted "$26.1B" for 25,500
+  and would reject correct roundings of small values ("$0.4B" for 441 is 9% off).
+- **Why not only an LLM judge:** the judge needs another free-tier model with a 20-request daily
+  quota, and is non-deterministic; number grounding runs on every answer for free and is
+  reproducible. The judge remains available (`--judge`).

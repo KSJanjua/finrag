@@ -1,8 +1,11 @@
 """Unit tests for the pieces implemented from scratch (no models needed)."""
+import math
+
 import pytest
 
 from finrag.chunking import recursive_split, split_table
-from finrag.evaluate import contains, facts_correct, normalize, retrieval_metrics
+from finrag.evaluate import aggregate, contains, facts_correct, normalize, score_ranking, unsupported_numbers
+from finrag.schema import Chunk, RetrievedChunk
 from finrag.generate import parse_citations
 from finrag.hybrid import reciprocal_rank_fusion
 from finrag.ingest import clean_text, rows_to_markdown, table_is_usable
@@ -69,10 +72,35 @@ def test_clean_text_unspaces_headings():
     assert clean_text("C O R E   T E C H N O L O G Y") == "CORE TECHNOLOGY"
 
 
-def test_metrics():
-    m = retrieval_metrics([1, 3, None, 6], ks=(1, 5))
-    assert m["recall@1"] == 0.25 and m["recall@5"] == 0.5
-    assert abs(m["mrr"] - (1 + 1 / 3 + 1 / 6) / 4) < 1e-12
+def _hit(doc, text):
+    return RetrievedChunk(Chunk("id", doc, doc, 4, "table", text), 1.0)
+
+
+def test_ranking_scores_for_a_multi_period_question():
+    # Two evidence sets; A.pdf is the own report (grade 2), B.pdf a later copy (grade 1).
+    q = {"sets": [{"pages": {("A.pdf", 4): 2, ("B.pdf", 4): 1}, "evidence": ["443,956"]},
+                  {"pages": {("A.pdf", 4): 2}, "evidence": ["386,810"]}]}
+    ranked = [_hit("C.pdf", "noise"), _hit("B.pdf", "443,956"), _hit("A.pdf", "386,810 and 443,956")]
+    s = score_ranking(ranked, q, ideal=[2, 1], ks=(1, 2, 3))
+    assert s["rank"] == 2 and s["rr"] == 0.5
+    assert s["hit@1"] == 0 and s["hit@2"] == 1
+    assert s["recall@2"] == 0.5 and s["recall@3"] == 1.0      # second set only found at rank 3
+    assert abs(s["precision@3"] - 2 / 3) < 1e-12
+    dcg = 1 / math.log2(3) + 3 / math.log2(4)
+    idcg = 3 / math.log2(2) + 1 / math.log2(3)
+    assert abs(s["ndcg@3"] - dcg / idcg) < 1e-12
+    assert aggregate([s, {**s, "rr": 1.0}])["mrr"] == 0.75
+
+
+@pytest.mark.parametrize("answer, unsupported", [
+    ("Revenue was $25.5 billion in Q2 2024 [1].", []),          # $B vs a table in $M, rounding allowed
+    ("Revenue was $26.1 billion [1].", ["$26.1"]),               # not in any source
+    ("Revenue was about $21.3 billion [1].", []),                # 21,301 rounds to 21.3
+    ("It covers three reports and 2024 [1].", []),               # small counts and years are not claims
+])
+def test_unsupported_numbers(answer, unsupported):
+    sources = ["Tesla Q2 2024 Quarterly Update | page 4\n|Total revenues|21,301|25,500|"]
+    assert unsupported_numbers(answer, sources) == unsupported
 
 
 def test_fact_matching_normalises_numbers():

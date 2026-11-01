@@ -5,9 +5,9 @@ updates. It answers questions whose evidence sits in **text, tables or charts**,
 used, and says "I could not find this" instead of guessing.
 
 > **v2 in progress.** The corpus now covers 11 quarterly updates (Q4 2022 – Q2 2025, 339 pages,
-> listed in `data/documents.json`). The results below are from v1 (tag `v1.0`, three 2023
-> reports) until the v2 evaluation is in place. Plan: [docs/ROADMAP.md](docs/ROADMAP.md);
-> design decisions: [docs/DECISIONS.md](docs/DECISIONS.md).
+> listed in `data/documents.json`), with a 116-question evaluation set. The results below are the
+> v2 baseline; improvements are tracked in [docs/ROADMAP.md](docs/ROADMAP.md) and every design
+> decision in [docs/DECISIONS.md](docs/DECISIONS.md).
 
 ```
 PDF ──► PyMuPDF ──┬─ text blocks ─► clean ─► recursive chunks (800 chars / 150 overlap) ─┐
@@ -25,48 +25,57 @@ implemented by hand (no LangChain/LlamaIndex), so each step can be inspected and
 
 ## Results
 
-**Retrieval** (38 hand-labelled questions: 14 text, 13 table, 11 chart). A retrieved chunk counts as a
-hit only if it comes from a gold page **and** contains the answer evidence. Reproducible: two
-consecutive runs give identical per-question ranks (`run_eval.py --check-repro`).
+### v2 baseline (11 reports, 116 questions)
 
-| Corpus | Retriever | Recall@1 | Recall@5 | MRR | ms/query (CPU) |
-|---|---|---|---|---|---|
-| text-only | hybrid | 0.342 | 0.421 | 0.377 | 25 |
-| text + tables | hybrid | 0.579 | 0.711 | 0.634 | 32 |
-| text + tables + charts | BM25 | 0.658 | 0.868 | 0.751 | 1 |
-| text + tables + charts | dense (FAISS) | 0.737 | 0.895 | 0.793 | 31 |
-| text + tables + charts | hybrid (RRF) | 0.789 | 0.947 | 0.854 | 32 |
-| text + tables + charts | hybrid + cross-encoder rerank | 0.684 | 0.947 | 0.779 | ~1400 |
-| **text + tables + charts** | **hybrid + report filter (default)** | **0.868** | **0.974** | **0.912** | 31 |
+These numbers measure the v1 pipeline, unchanged, on the larger corpus and the harder v2 question
+set. They are the baseline that the v2 retrieval and generation work is measured against.
 
-By question type (Recall@5): text-only retrieval finds **0 %** of chart answers and 23 % of table answers;
-the multimodal index finds **100 %** of both. Full grid: [results/retrieval_results.md](results/retrieval_results.md).
+The question set has 106 answerable questions (32 text, 37 table, 15 chart, 10 with re-worded
+periods, 12 multi-period) and 10 that the documents can't answer. A retrieved chunk is relevant if
+it comes from a gold page and contains the answer evidence. Grade 2 means the period's own report;
+grade 1 means a later report repeating the figure.
 
-What the experiments showed:
-- **Charts and tables are what make the difference**: Recall@5 goes 0.42 → 0.71 → 0.97 as tables, then charts, are indexed.
-- **Hybrid beats either retriever alone** (0.947 vs 0.868 BM25 / 0.895 dense at Recall@5).
-- **The cross-encoder reranker made results worse here** (MRR 0.854 → 0.779) and costs ~1.4 s/query, so it is
-  available as `--mode hybrid_rerank` but not the default. See [results/reranker_sweep.md](results/reranker_sweep.md).
-- **Filtering to the report named in the question** ("Q3 2023") fixes confusion between the three reports'
-  near-identical tables (MRR 0.854 → 0.912).
-- **Chunk size**: [results/chunk_sweep.md](results/chunk_sweep.md). **FAISS at scale** (100k vectors, exact vs
-  HNSW / IVF / IVF-PQ): [results/faiss_benchmark.txt](results/faiss_benchmark.txt).
+| Corpus | Retriever | Hit@1 | Hit@5 | Recall@5 | NDCG@10 | MRR | ms/query (CPU) |
+|---|---|---|---|---|---|---|---|
+| text-only | hybrid | 0.151 | 0.236 | 0.236 | 0.212 | 0.192 | 57 |
+| text + tables | hybrid | 0.340 | 0.575 | 0.557 | 0.452 | 0.441 | 57 |
+| text + tables + charts | hybrid (RRF) | 0.396 | 0.642 | 0.637 | 0.512 | 0.510 | 59 |
+| text + tables + charts | hybrid + cross-encoder rerank | 0.302 | 0.575 | 0.561 | 0.450 | 0.420 | ~2300 |
+| **text + tables + charts** | **hybrid + report filter (default)** | **0.528** | **0.783** | **0.778** | **0.603** | **0.639** | 61 |
 
-**Answer correctness** (38 questions per corpus, one question per request, generator `gemini-3.1-flash-lite`,
-default retrieval). An answer is correct if it contains every required fact (numbers matched whole).
+Hit@5 by question type for the default configuration (Recall@5 for multi-period):
 
-| Corpus | Fact match | text | table | chart | Abstained |
-|---|---|---|---|---|---|
-| text-only | 0.395 | 0.929 | 0.154 | 0.000 | 0.526 |
-| **text + tables + charts** | **0.974** | 0.929 | 1.000 | 1.000 | 0.000 |
+| text | table | chart | re-worded periods | multi-period |
+|---|---|---|---|---|
+| 0.781 | 0.865 | 1.000 | **0.400** | **0.542** |
 
-- **Stable:** two full runs gave identical per-question correctness (76/76 pairs agree).
-- **Error analysis:** the single multimodal miss (t02) is a retrieval miss: the list of operating-income drivers sits
-  in a chunk outside the top 5, and the model answered with the nearby *revenue* drivers instead. Text-only mostly
-  abstained when evidence was missing, but once (c09) it reported "8 million" FSD miles, which is the page
-  number printed under the chart title, a hallucination the chart descriptions prevent.
-- The optional LLM judge was not run (free-tier quota); fact-match results were checked by reading the answers.
-  Details: [results/answer_results.md](results/answer_results.md), [results/answer_records.json](results/answer_records.json).
+Answers (default configuration, `gemini-3.1-flash-lite`, one question per request):
+
+| Fact match | False refusals | Correct refusals on unanswerable | Answers with unsupported numbers |
+|---|---|---|---|
+| 0.840 | 0.132 | 1.000 (10/10) | 0.011 |
+
+Where the baseline fails ([results/retrieval_misses.md](results/retrieval_misses.md)):
+- **Re-worded periods** ("third quarter of 2024", "2Q-2024", "Q1 FY2025"): the report filter only
+  recognises "Q3 2024", so these questions search all 11 reports and 6 of 10 miss.
+- **Multi-period questions** spanning reports more than a year apart: one search rarely brings back
+  both periods (Recall@5 0.54).
+- **Full-year questions** ("full-year 2024"): annual figures live in the Q4 report, but nothing
+  maps the year to it.
+- **Large tables:** 97 of 165 table chunks exceed the embedding model's 512-token input, and
+  several table facts only appear at ranks 6–8.
+- The cross-encoder still lowers ranking quality (MRR 0.639 → 0.538 with the report filter), as it did in v1.
+
+Full grid: [results/retrieval_results.md](results/retrieval_results.md); answers:
+[results/answer_results.md](results/answer_results.md). The one flagged "unsupported number" is a
+correctly computed difference ($14.4B growth); computed figures are a known limitation of the
+number-grounding check.
+
+### v1 (tag `v1.0`, 3 reports, 38 questions)
+
+On the original corpus the default configuration reached Hit@5 0.974, MRR 0.912 and 0.974 answer
+fact match (0.395 text-only). The chunk-size, reranker and FAISS experiments in `results/`
+(`chunk_sweep.md`, `reranker_sweep.md`, `faiss_benchmark.txt`) are from v1.
 
 ## Setup
 
@@ -126,8 +135,10 @@ question), `null` (all reports) or a PDF file name. Interactive docs: http://loc
 
 ```bash
 python scripts/run_eval.py --check-repro                 # retrieval grid -> results/, compares with the last run
-python scripts/run_eval.py --answers-only --answers      # answer correctness (76 LLM requests, resumable)
-python scripts/run_eval.py --answers-only --answers --judge   # + LLM-as-judge (another 76)
+python scripts/run_eval.py --answers-only --answers      # answer evaluation (116 LLM requests, resumable)
+python scripts/run_eval.py --answers-only --answers --text-only   # + the text-only corpus for comparison
+python scripts/run_eval.py --answers-only --answers --judge       # + LLM-as-judge
+python scripts/validate_questions.py                     # every evidence set must be findable in the index
 python scripts/describe_charts.py                        # (re)describe chart pages - resumable, quota-aware
 python scripts/reranker_sweep.py | chunk_sweep.py | faiss_benchmark.py   # experiments -> results/
 ```
@@ -137,10 +148,10 @@ python scripts/reranker_sweep.py | chunk_sweep.py | faiss_benchmark.py   # exper
 | Item | Status |
 |---|---|
 | Ingestion, index, retrieval, API `/search`, CLI | Working, tested |
-| Retrieval evaluation | Complete and reproducible (identical ranks across runs) |
-| Chart descriptions | Complete: all 37 candidate pages described by Gemini (`gemini-3.8/3.7/3.6-flash`, model recorded per entry); chart answers c06/c07 checked against the rendered page images |
+| Retrieval evaluation | v2 baseline on 116 questions; deterministic (identical ranks across runs) |
+| Chart descriptions | All 164 candidate pages of the 11 reports described by `gemini-3.1-flash-lite` (model recorded per entry); chart answer labels checked against the rendered page images |
 | LLM code paths (generation, vision, judge, JSON parsing, per-provider parameters) | Tested against the real OpenAI SDK with a mocked HTTP transport; generation and vision also verified live against Gemini |
-| Answer-correctness evaluation | Complete: 76 answers on the one-question production path (`gemini-3.1-flash-lite`), two runs with identical per-question correctness; LLM judge optional, not run |
+| Answer evaluation | v2 baseline: 116 answers on the one-question production path (`gemini-3.1-flash-lite`); fact match, refusals and number grounding; LLM judge optional, not run |
 
 ## Project layout
 
@@ -163,24 +174,26 @@ src/finrag/
 scripts/         build_index, check_llm, describe_charts, ask, run_eval, validate_questions,
                  reranker_sweep, chunk_sweep, faiss_benchmark
 data/documents.json        document registry (period, label, URL, publication date)
-data/eval/questions.json   38 labelled questions      data/cache/   chart descriptions
+data/eval/questions.json   116 labelled questions     data/cache/   chart descriptions
 results/                   generated reports          tests/        52 tests
 docs/ARCHITECTURE.md       architecture diagrams (Mermaid, generated from docs/architecture/*.mmd)
 ```
 
 ## Limitations
 
-- 38 questions is a small test set (1 question = 2.6 recall points), written by the author.
+- 116 questions is still a small test set (1 question ≈ 0.9 points of Hit@5), written by the author;
+  table questions are generated from extracted table cells, so they share one phrasing style.
 - Chart values come from a vision model and are approximate, so chart-based answer labels were
   checked against the rendered pages.
 - Statement tables with merged cells are rebuilt heuristically from word positions.
 - The report filter only understands "Qn 2023"-style mentions, and it narrows to a single report
   when only one quarter carries the year (e.g. "Q1, Q2 and Q3 2023").
 - Large tables can exceed the embedding model's 512-token input; the overflow is only visible to BM25.
+- Number grounding flags correctly computed figures (e.g. a difference between two quarters) as
+  unsupported, because computed values don't appear in any source.
 
 ## Next steps
 
-- A larger evaluation set with multi-period and unanswerable questions.
-- A query parser for quarter and year mentions in any wording.
-- Smaller table chunks so every chunk fits the embedding model.
-- Per-report indexes or a vector store with metadata filters once the corpus grows.
+See [docs/ROADMAP.md](docs/ROADMAP.md): retrieval fixes for the baseline's failure modes (query
+parsing, query decomposition, table chunks that fit the embedding model), then context engineering,
+grounded generation checks, production concerns and prompt-injection tests.

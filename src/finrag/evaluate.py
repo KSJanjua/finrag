@@ -1,9 +1,13 @@
-"""Evaluation: retrieval metrics (Recall@k, MRR) and answer correctness."""
+"""Evaluation: retrieval metrics, answer correctness and number grounding."""
 import json
+import math
 import re
 
 from . import config
 from .llm import chat, parse_json, settings
+
+KS = (1, 3, 5, 10)
+
 
 def doc_for_code(code):
     """'2023Q3' -> the registered PDF for that period."""
@@ -14,9 +18,19 @@ def doc_for_code(code):
 
 
 def load_questions(path=config.QUESTIONS_FILE):
+    """Questions with their evidence sets resolved to {(pdf, page): grade} maps.
+
+    Accepts the current format (``evidence_sets``) and the original one
+    (``gold`` + ``evidence`` at the top level, every page grade 2).
+    Unanswerable questions have no evidence sets.
+    """
     data = json.loads(path.read_text(encoding="utf-8"))
     for q in data["questions"]:
-        q["gold_pages"] = {(doc_for_code(d), p) for d, p in q["gold"]}
+        sets = q.get("evidence_sets")
+        if sets is None:
+            sets = [{"gold": q["gold"], "evidence": q["evidence"]}]
+        q["sets"] = [{"pages": {(doc_for_code(g[0]), g[1]): (g[2] if len(g) > 2 else 2) for g in s["gold"]},
+                      "evidence": s["evidence"]} for s in sets]
     return data["questions"]
 
 
@@ -43,16 +57,29 @@ def contains(text, phrase):
 # --------------------------------------------------------------------------
 # Retrieval
 # --------------------------------------------------------------------------
-def is_relevant(chunk, question):
-    """A chunk is relevant if it comes from a gold page AND contains the evidence.
+def satisfied_sets(chunk, question):
+    """[(set index, grade)] for every evidence set this chunk satisfies.
 
-    Page-level matching alone would be too generous: the Model Y price page
-    has a text chunk that is just a footnote, which should not count as
-    retrieving the answer.
+    A chunk satisfies a set if it comes from one of the set's gold pages and
+    contains one of its evidence strings. Page-level matching alone would be too
+    generous: a page can hold a footnote-only text chunk next to the chart that
+    actually answers the question.
     """
-    if (chunk.doc, chunk.page) not in question["gold_pages"]:
-        return False
-    return any(contains(chunk.text, e) for e in question["evidence"])
+    out = []
+    for i, s in enumerate(question["sets"]):
+        grade = s["pages"].get((chunk.doc, chunk.page), 0)
+        if grade and any(contains(chunk.text, e) for e in s["evidence"]):
+            out.append((i, grade))
+    return out
+
+
+def relevance(chunk, question):
+    """Graded relevance: 2 = the period's own report, 1 = a later report repeating the figure."""
+    return max((g for _, g in satisfied_sets(chunk, question)), default=0)
+
+
+def is_relevant(chunk, question):
+    return relevance(chunk, question) > 0
 
 
 def first_relevant_rank(retrieved, question):
@@ -62,18 +89,42 @@ def first_relevant_rank(retrieved, question):
     return None
 
 
-def retrieval_metrics(ranks, ks=(1, 3, 5, 10)):
-    """ranks: first-relevant rank per question (None = not found in top-K).
+def ideal_grades(chunks, question):
+    """Grades of all relevant chunks in the searched corpus, best first (NDCG's ideal ranking)."""
+    return sorted((g for g in (relevance(c, question) for c in chunks) if g), reverse=True)
 
-    Recall@k here is the fraction of questions with at least one relevant
-    chunk in the top k (every question has one answer to find, so this equals
-    Hit Rate@k). MRR = mean of 1/rank of the first relevant chunk (0 if missing).
+
+def score_ranking(retrieved, question, ideal, ks=KS):
+    """Retrieval scores of one ranked list for one answerable question.
+
+    hit@k        any relevant chunk in the top k
+    recall@k     share of the question's evidence sets covered in the top k (context recall;
+                 differs from hit@k only for multi-period questions)
+    precision@k  share of the top k that is relevant
+    ndcg@k       graded ranking quality: own-report chunks above later copies
+    rr           reciprocal rank of the first relevant chunk
     """
-    n = len(ranks)
-    if n == 0:
-        return {**{f"recall@{k}": None for k in ks}, "mrr": None}
-    out = {f"recall@{k}": sum(1 for r in ranks if r and r <= k) / n for k in ks}
-    out["mrr"] = sum(1 / r for r in ranks if r) / n
+    satisfied = [satisfied_sets(r.chunk, question) for r in retrieved]
+    grades = [max((g for _, g in s), default=0) for s in satisfied]
+    first = next((i + 1 for i, g in enumerate(grades) if g), None)
+    out = {"rank": first, "rr": 1 / first if first else 0.0}
+    for k in ks:
+        covered = {i for s in satisfied[:k] for i, _ in s}
+        dcg = sum((2 ** g - 1) / math.log2(i + 2) for i, g in enumerate(grades[:k]))
+        idcg = sum((2 ** g - 1) / math.log2(i + 2) for i, g in enumerate(ideal[:k]))
+        out[f"hit@{k}"] = float(any(grades[:k]))
+        out[f"recall@{k}"] = len(covered) / len(question["sets"])
+        out[f"precision@{k}"] = sum(1 for g in grades[:k] if g) / k
+        out[f"ndcg@{k}"] = dcg / idcg if idcg else 0.0
+    return out
+
+
+def aggregate(scores):
+    """Mean of each per-question score; the mean reciprocal rank is reported as MRR."""
+    if not scores:
+        return {}
+    out = {k: sum(s[k] for s in scores) / len(scores) for k in scores[0] if k != "rank"}
+    out["mrr"] = out.pop("rr")
     return out
 
 
@@ -105,3 +156,44 @@ def judge_correct(client, question, answer, fact_groups, model=None):
     except ValueError:  # json.JSONDecodeError is a ValueError
         return False, f"unparseable judge output: {raw[:100]!r}"
     return verdict.get("correct") is True, verdict.get("reason", "")
+
+
+# --------------------------------------------------------------------------
+# Number grounding (a deterministic faithfulness check)
+# --------------------------------------------------------------------------
+_CITATION = re.compile(r"\[\d+(?:\s*,\s*\d+)*\]")
+_NUMBER = re.compile(r"(?<![\w.])\$?\(?-?\d[\d,]*(?:\.\d+)?")
+
+
+def _numbers(text):
+    """(raw, value) for every number in ``text``; citation markers like [2] are ignored."""
+    out = []
+    for raw in _NUMBER.findall(_CITATION.sub(" ", text)):
+        digits = raw.strip("$(").replace(",", "")
+        try:
+            out.append((raw, abs(float(digits))))
+        except ValueError:
+            continue
+    return out
+
+
+def unsupported_numbers(answer, sources):
+    """Numbers in an answer that none of its sources support.
+
+    A number is supported if some source value, rounded to the precision the
+    answer uses, equals it: "$2.5B" is supported by "(2,531)" in a $M table
+    (2.531 -> 2.5), "$26.1B" is not supported by "25,500". Values are compared
+    as-is and scaled by 1,000 either way (millions vs billions). Small integers
+    and bare years are skipped: they are counts in the wording ("three
+    reports") or period names ("2024") rather than figures.
+    """
+    source_values = [v for text in sources for _, v in _numbers(text)]
+    missing = []
+    for raw, v in _numbers(answer):
+        if (v < 10 and v == int(v)) or re.fullmatch(r"20\d\d", raw):
+            continue
+        decimals = len(raw.split(".")[1]) if "." in raw else 0
+        if not any(abs(round(s * scale, decimals) - v) < 1e-9
+                   for s in source_values for scale in (1, 1000, 0.001)):
+            missing.append(raw)
+    return missing

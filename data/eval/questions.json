@@ -1,83 +1,3908 @@
 {
-  "_doc": "Hand-built evaluation set. gold = pages that contain the answer (codes like 2023Q3 name the report for that quarter). A retrieved chunk is RELEVANT if it comes from a gold page AND contains at least one 'evidence' string. 'answer_facts' is a list of fact groups; an answer is correct if it contains at least one alternative from EVERY group (after normalisation). Chart answers were checked against the rendered page images.",
-  "questions": [
-    {"id": "t01", "type": "text", "question": "What was Tesla's operating margin in Q3 2023?",
-     "gold": [["2023Q3", 3], ["2023Q3", 5], ["2023Q3", 4]], "evidence": ["7.6%"], "answer_facts": [["7.6%"]]},
-    {"id": "t02", "type": "text", "question": "What were the main reasons Tesla's operating income fell year over year in Q3 2023?",
-     "gold": [["2023Q3", 5]], "evidence": ["reduced ASP due to pricing"], "answer_facts": [["ASP", "average selling price", "pricing"], ["Cybertruck", "operating expenses", "R&D"]]},
-    {"id": "t03", "type": "text", "question": "How much energy storage did Tesla deploy in Q3 2023 and how much did it grow year over year?",
-     "gold": [["2023Q3", 3], ["2023Q3", 9]], "evidence": ["4.0 GWh"], "answer_facts": [["4.0 GWh", "4 GWh", "3,980"], ["90%"]]},
-    {"id": "t04", "type": "text", "question": "Why did Tesla's solar deployments decline in Q3 2023?",
-     "gold": [["2023Q3", 9]], "evidence": ["net metering"], "answer_facts": [["interest rate"], ["net metering"]]},
-    {"id": "t05", "type": "text", "question": "How many vehicles did Tesla expect to produce in full-year 2023?",
-     "gold": [["2023Q1", 10], ["2023Q2", 10], ["2023Q3", 10]], "evidence": ["1.8 million"], "answer_facts": [["1.8 million"]]},
-    {"id": "t06", "type": "text", "question": "What share of Q3 deliveries happened in September 2023, compared with September 2022?",
-     "gold": [["2023Q3", 7]], "evidence": ["~40% of Q3 deliveries"], "answer_facts": [["40%"], ["65%"]]},
-    {"id": "t07", "type": "text", "question": "What powertrain voltage architecture will the Cybertruck adopt and why?",
-     "gold": [["2023Q3", 8]], "evidence": ["800-volt"], "answer_facts": [["800-volt", "800 volt", "800v"], ["cost"]]},
-    {"id": "t08", "type": "text", "question": "Which automakers announced adoption of the NACS charging standard in Q2 2023?",
-     "gold": [["2023Q2", 9]], "evidence": ["NACS"], "answer_facts": [["Ford"], ["GM"]]},
-    {"id": "t09", "type": "text", "question": "By how much did energy storage deployments grow year over year in Q1 2023?",
-     "gold": [["2023Q1", 9]], "evidence": ["360%"], "answer_facts": [["360%"]]},
-    {"id": "t10", "type": "text", "question": "How many miles had been driven on FSD Beta as of the Q1 2023 update?",
-     "gold": [["2023Q1", 8]], "evidence": ["150 million miles"], "answer_facts": [["150 million"]]},
-    {"id": "t11", "type": "text", "question": "What was Tesla's cost of goods sold per vehicle in Q3 2023?",
-     "gold": [["2023Q3", 3], ["2023Q3", 8]], "evidence": ["37,500"], "answer_facts": [["37,500", "37.5"]]},
-    {"id": "t12", "type": "text", "question": "What happened to Tesla's AI training compute in Q3 2023?",
-     "gold": [["2023Q3", 3], ["2023Q3", 8]], "evidence": ["doubled", "doubling"], "answer_facts": [["doubl"]]},
-    {"id": "t13", "type": "text", "question": "What milestone did Tesla reach with its Dojo training computer in Q2 2023?",
-     "gold": [["2023Q2", 3], ["2023Q2", 8]], "evidence": ["production of Dojo", "production of our Dojo"], "answer_facts": [["production"]]},
-    {"id": "t14", "type": "text", "question": "How large was the negative foreign exchange impact on revenue in Q2 2023?",
-     "gold": [["2023Q2", 5]], "evidence": ["$0.6B"], "answer_facts": [["0.6"]]},
-
-    {"id": "b01", "type": "table", "question": "What were Tesla's total revenues in Q3 2023?",
-     "gold": [["2023Q3", 4], ["2023Q3", 5], ["2023Q3", 20], ["2023Q3", 23]], "evidence": ["23,350", "23.4B"], "answer_facts": [["23,350", "23.35", "23.4"]]},
-    {"id": "b02", "type": "table", "question": "How many Model 3/Y vehicles did Tesla deliver in Q3 2023?",
-     "gold": [["2023Q3", 6]], "evidence": ["419,074"], "answer_facts": [["419,074"]]},
-    {"id": "b03", "type": "table", "question": "What was Tesla's total vehicle production in Q2 2023?",
-     "gold": [["2023Q2", 6], ["2023Q3", 6]], "evidence": ["479,700"], "answer_facts": [["479,700"]]},
-    {"id": "b04", "type": "table", "question": "How many Supercharger connectors did Tesla have at the end of Q3 2023?",
-     "gold": [["2023Q3", 6]], "evidence": ["51,105"], "answer_facts": [["51,105"]]},
-    {"id": "b05", "type": "table", "question": "How much did Tesla spend on capital expenditures in Q3 2023?",
-     "gold": [["2023Q3", 4], ["2023Q3", 22], ["2023Q3", 24]], "evidence": ["2,460"], "answer_facts": [["2,460", "2.46"]]},
-    {"id": "b06", "type": "table", "question": "What was Tesla's diluted GAAP EPS in Q3 2023?",
-     "gold": [["2023Q3", 4], ["2023Q3", 20], ["2023Q3", 23]], "evidence": ["0.53"], "answer_facts": [["0.53"]]},
-    {"id": "b07", "type": "table", "question": "What is the installed annual vehicle capacity of the Shanghai factory according to the Q3 2023 update?",
-     "gold": [["2023Q3", 7]], "evidence": [">950,000"], "answer_facts": [["950,000"]]},
-    {"id": "b08", "type": "table", "question": "What installed annual capacity did the Q2 2023 update list for Shanghai?",
-     "gold": [["2023Q2", 7]], "evidence": [">750,000"], "answer_facts": [["750,000"]]},
-    {"id": "b09", "type": "table", "question": "What was Tesla's global vehicle inventory in days of supply in Q1 2023?",
-     "gold": [["2023Q1", 6], ["2023Q2", 6], ["2023Q3", 6]], "evidence": ["days of supply"], "answer_facts": [["15"]]},
-    {"id": "b10", "type": "table", "question": "What was Tesla's free cash flow in Q1 2023?",
-     "gold": [["2023Q1", 3], ["2023Q1", 4], ["2023Q1", 5], ["2023Q1", 27], ["2023Q2", 4], ["2023Q2", 25], ["2023Q3", 4], ["2023Q3", 24]], "evidence": ["441", "$0.4B"], "answer_facts": [["441", "0.4"]]},
-    {"id": "b11", "type": "table", "question": "What was Tesla's Adjusted EBITDA margin in Q2 2023?",
-     "gold": [["2023Q2", 4], ["2023Q2", 24], ["2023Q3", 4], ["2023Q3", 23]], "evidence": ["18.7%"], "answer_facts": [["18.7%"]]},
-    {"id": "b12", "type": "table", "question": "How many Tesla locations were there at the end of Q3 2023?",
-     "gold": [["2023Q3", 6]], "evidence": ["1,129"], "answer_facts": [["1,129"]]},
-    {"id": "b13", "type": "table", "question": "How much did Tesla spend on research and development in Q3 2023?",
-     "gold": [["2023Q3", 20]], "evidence": ["1,161"], "answer_facts": [["1,161", "1.16"]]},
-
-    {"id": "c01", "type": "chart", "question": "What is the starting price of a Model Y in Colorado after national and state subsidies?",
-     "gold": [["2023Q3", 12]], "evidence": ["31,490"], "answer_facts": [["31,490"]]},
-    {"id": "c02", "type": "chart", "question": "What Model Y starting price applies in most US states after subsidies?",
-     "gold": [["2023Q3", 12]], "evidence": ["36,490"], "answer_facts": [["36,490"]]},
-    {"id": "c03", "type": "chart", "question": "What is the Model Y starting price in Illinois after subsidies?",
-     "gold": [["2023Q3", 12]], "evidence": ["32,490"], "answer_facts": [["32,490"]]},
-    {"id": "c04", "type": "chart", "question": "How much Dojo compute did Tesla internally project reaching by October 2024?",
-     "gold": [["2023Q2", 8]], "evidence": ["Exa-Flops"], "answer_facts": [["100"]]},
-    {"id": "c05", "type": "chart", "question": "What time period does Tesla's internal Dojo compute projection cover?",
-     "gold": [["2023Q2", 8]], "evidence": ["October 2024", "Oct '24", "Oct-24"], "answer_facts": [["Jan"], ["Oct"]]},
-    {"id": "c06", "type": "chart", "question": "Approximately what was the cost of goods sold per vehicle in Q4 2022, as shown in the Q3 2023 chart?",
-     "gold": [["2023Q3", 8]], "evidence": ["39,500"], "answer_facts": [["39,500", "39,550", "39,600", "39.5"]]},
-    {"id": "c07", "type": "chart", "question": "Approximately what was Tesla's trailing-twelve-month YoY revenue growth in Q2 2023, according to the key metrics chart?",
-     "gold": [["2023Q2", 19]], "evidence": ["40%"], "answer_facts": [["40%", "39%", "41%"]]},
-    {"id": "c08", "type": "chart", "question": "Which regions are compared in the chart of Tesla's market share?",
-     "gold": [["2023Q1", 7], ["2023Q2", 7], ["2023Q3", 7]], "evidence": ["US/Canada"], "answer_facts": [["US"], ["Europe"], ["China"]]},
-    {"id": "c09", "type": "chart", "question": "How has cumulative FSD Beta mileage trended according to the Q3 2023 update?",
-     "gold": [["2023Q3", 8]], "evidence": ["500 million"], "answer_facts": [["increas", "grow", "exponential", "ascend"]]},
-    {"id": "c10", "type": "chart", "question": "By roughly how much did normalized Global Model 3 cost decline from 2018 to 2022?",
-     "gold": [["2023Q1", 8]], "evidence": ["30%"], "answer_facts": [["30%"]]},
-    {"id": "c11", "type": "chart", "question": "What does the Dojo compute projection chart say about Tesla's expected global ranking?",
-     "gold": [["2023Q2", 8]], "evidence": ["Top 5"], "answer_facts": [["top 5", "top five"]]}
-  ]
+ "_doc": "Evaluation set v2. Each question has evidence_sets: a chunk is relevant to a set if it comes from one of the set's gold pages ([report code, page, grade]) and contains one of its evidence strings. Grade 2 = the quarter's own report, grade 1 = a later report repeating the same figure. Multi-period questions have one set per period; unanswerable questions have none and should be declined. answer_facts: an answer is correct if it contains one alternative from every group (numbers matched whole). Chart answers were checked against the rendered page images.",
+ "questions": [
+  {
+   "id": "t01",
+   "type": "text",
+   "question": "What was Tesla's operating margin in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       3,
+       2
+      ],
+      [
+       "2023Q3",
+       5,
+       2
+      ],
+      [
+       "2023Q3",
+       4,
+       2
+      ]
+     ],
+     "evidence": [
+      "7.6%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "7.6%"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t02",
+   "type": "text",
+   "question": "What were the main reasons Tesla's operating income fell year over year in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       5,
+       2
+      ]
+     ],
+     "evidence": [
+      "reduced ASP due to pricing"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "ASP",
+     "average selling price",
+     "pricing"
+    ],
+    [
+     "Cybertruck",
+     "operating expenses",
+     "R&D"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t03",
+   "type": "text",
+   "question": "How much energy storage did Tesla deploy in Q3 2023 and how much did it grow year over year?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       3,
+       2
+      ],
+      [
+       "2023Q3",
+       9,
+       2
+      ]
+     ],
+     "evidence": [
+      "4.0 GWh"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "4.0 GWh",
+     "4 GWh",
+     "3,980"
+    ],
+    [
+     "90%"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t04",
+   "type": "text",
+   "question": "Why did Tesla's solar deployments decline in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       9,
+       2
+      ]
+     ],
+     "evidence": [
+      "net metering"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "interest rate"
+    ],
+    [
+     "net metering"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t05",
+   "type": "text",
+   "question": "How many vehicles did Tesla expect to produce in full-year 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q1",
+       10,
+       2
+      ],
+      [
+       "2023Q2",
+       10,
+       2
+      ],
+      [
+       "2023Q3",
+       10,
+       2
+      ]
+     ],
+     "evidence": [
+      "1.8 million"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "1.8 million"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t06",
+   "type": "text",
+   "question": "What share of Q3 deliveries happened in September 2023, compared with September 2022?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       7,
+       2
+      ]
+     ],
+     "evidence": [
+      "~40% of Q3 deliveries"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "40%"
+    ],
+    [
+     "65%"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t07",
+   "type": "text",
+   "question": "What powertrain voltage architecture will the Cybertruck adopt and why?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "800-volt"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "800-volt",
+     "800 volt",
+     "800v"
+    ],
+    [
+     "cost"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t08",
+   "type": "text",
+   "question": "Which automakers announced adoption of the NACS charging standard in Q2 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       9,
+       2
+      ]
+     ],
+     "evidence": [
+      "NACS"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "Ford"
+    ],
+    [
+     "GM"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t09",
+   "type": "text",
+   "question": "By how much did energy storage deployments grow year over year in Q1 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q1",
+       9,
+       2
+      ]
+     ],
+     "evidence": [
+      "360%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "360%"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t10",
+   "type": "text",
+   "question": "How many miles had been driven on FSD Beta as of the Q1 2023 update?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q1",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "150 million miles"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "150 million"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t11",
+   "type": "text",
+   "question": "What was Tesla's cost of goods sold per vehicle in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       3,
+       2
+      ],
+      [
+       "2023Q3",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "37,500"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "37,500",
+     "37.5"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t12",
+   "type": "text",
+   "question": "What happened to Tesla's AI training compute in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       3,
+       2
+      ],
+      [
+       "2023Q3",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "doubled",
+      "doubling"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "doubl"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t13",
+   "type": "text",
+   "question": "What milestone did Tesla reach with its Dojo training computer in Q2 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       3,
+       2
+      ],
+      [
+       "2023Q2",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "production of Dojo",
+      "production of our Dojo"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "production"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "t14",
+   "type": "text",
+   "question": "How large was the negative foreign exchange impact on revenue in Q2 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       5,
+       2
+      ]
+     ],
+     "evidence": [
+      "$0.6B"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "0.6"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b01",
+   "type": "table",
+   "question": "What were Tesla's total revenues in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       4,
+       2
+      ],
+      [
+       "2023Q3",
+       5,
+       2
+      ],
+      [
+       "2023Q3",
+       20,
+       2
+      ],
+      [
+       "2023Q3",
+       23,
+       2
+      ]
+     ],
+     "evidence": [
+      "23,350",
+      "23.4B"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "23,350",
+     "23.35",
+     "23.4"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b02",
+   "type": "table",
+   "question": "How many Model 3/Y vehicles did Tesla deliver in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "419,074"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "419,074"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b03",
+   "type": "table",
+   "question": "What was Tesla's total vehicle production in Q2 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       6,
+       2
+      ],
+      [
+       "2023Q3",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "479,700"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "479,700"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b04",
+   "type": "table",
+   "question": "How many Supercharger connectors did Tesla have at the end of Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "51,105"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "51,105"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b05",
+   "type": "table",
+   "question": "How much did Tesla spend on capital expenditures in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       4,
+       2
+      ],
+      [
+       "2023Q3",
+       22,
+       2
+      ],
+      [
+       "2023Q3",
+       24,
+       2
+      ]
+     ],
+     "evidence": [
+      "2,460"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "2,460",
+     "2.46"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b06",
+   "type": "table",
+   "question": "What was Tesla's diluted GAAP EPS in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       4,
+       2
+      ],
+      [
+       "2023Q3",
+       20,
+       2
+      ],
+      [
+       "2023Q3",
+       23,
+       2
+      ]
+     ],
+     "evidence": [
+      "0.53"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "0.53"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b07",
+   "type": "table",
+   "question": "What is the installed annual vehicle capacity of the Shanghai factory according to the Q3 2023 update?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       7,
+       2
+      ]
+     ],
+     "evidence": [
+      ">950,000"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "950,000"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b08",
+   "type": "table",
+   "question": "What installed annual capacity did the Q2 2023 update list for Shanghai?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       7,
+       2
+      ]
+     ],
+     "evidence": [
+      ">750,000"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "750,000"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b09",
+   "type": "table",
+   "question": "What was Tesla's global vehicle inventory in days of supply in Q1 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q1",
+       6,
+       2
+      ],
+      [
+       "2023Q2",
+       6,
+       2
+      ],
+      [
+       "2023Q3",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "days of supply"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "15"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b10",
+   "type": "table",
+   "question": "What was Tesla's free cash flow in Q1 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q1",
+       3,
+       2
+      ],
+      [
+       "2023Q1",
+       4,
+       2
+      ],
+      [
+       "2023Q1",
+       5,
+       2
+      ],
+      [
+       "2023Q1",
+       27,
+       2
+      ],
+      [
+       "2023Q2",
+       4,
+       2
+      ],
+      [
+       "2023Q2",
+       25,
+       2
+      ],
+      [
+       "2023Q3",
+       4,
+       2
+      ],
+      [
+       "2023Q3",
+       24,
+       2
+      ]
+     ],
+     "evidence": [
+      "441",
+      "$0.4B"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "441",
+     "0.4"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b11",
+   "type": "table",
+   "question": "What was Tesla's Adjusted EBITDA margin in Q2 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       4,
+       2
+      ],
+      [
+       "2023Q2",
+       24,
+       2
+      ],
+      [
+       "2023Q3",
+       4,
+       2
+      ],
+      [
+       "2023Q3",
+       23,
+       2
+      ]
+     ],
+     "evidence": [
+      "18.7%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "18.7%"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b12",
+   "type": "table",
+   "question": "How many Tesla locations were there at the end of Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "1,129"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "1,129"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "b13",
+   "type": "table",
+   "question": "How much did Tesla spend on research and development in Q3 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       20,
+       2
+      ]
+     ],
+     "evidence": [
+      "1,161"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "1,161",
+     "1.16"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c01",
+   "type": "chart",
+   "question": "What is the starting price of a Model Y in Colorado after national and state subsidies?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       12,
+       2
+      ]
+     ],
+     "evidence": [
+      "31,490"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "31,490"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c02",
+   "type": "chart",
+   "question": "What Model Y starting price applies in most US states after subsidies?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       12,
+       2
+      ]
+     ],
+     "evidence": [
+      "36,490"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "36,490"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c03",
+   "type": "chart",
+   "question": "What is the Model Y starting price in Illinois after subsidies?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       12,
+       2
+      ]
+     ],
+     "evidence": [
+      "32,490"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "32,490"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c04",
+   "type": "chart",
+   "question": "How much Dojo compute did Tesla internally project reaching by October 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "Exa-Flops"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "100"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c05",
+   "type": "chart",
+   "question": "What time period does Tesla's internal Dojo compute projection cover?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "October 2024",
+      "Oct '24",
+      "Oct-24"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "Jan"
+    ],
+    [
+     "Oct"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c06",
+   "type": "chart",
+   "question": "Approximately what was the cost of goods sold per vehicle in Q4 2022, as shown in the Q3 2023 chart?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "39,500"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "39,500",
+     "39,550",
+     "39,600",
+     "39.5"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c07",
+   "type": "chart",
+   "question": "Approximately what was Tesla's trailing-twelve-month YoY revenue growth in Q2 2023, according to the key metrics chart?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       19,
+       2
+      ]
+     ],
+     "evidence": [
+      "40%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "40%",
+     "39%",
+     "41%"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c08",
+   "type": "chart",
+   "question": "Which regions are compared in the chart of Tesla's market share?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q1",
+       7,
+       2
+      ],
+      [
+       "2023Q2",
+       7,
+       2
+      ],
+      [
+       "2023Q3",
+       7,
+       2
+      ]
+     ],
+     "evidence": [
+      "US/Canada"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "US"
+    ],
+    [
+     "Europe"
+    ],
+    [
+     "China"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c09",
+   "type": "chart",
+   "question": "How has cumulative FSD Beta mileage trended according to the Q3 2023 update?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "500 million"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "increas",
+     "grow",
+     "exponential",
+     "ascend"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c10",
+   "type": "chart",
+   "question": "By roughly how much did normalized Global Model 3 cost decline from 2018 to 2022?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q1",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "30%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "30%"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "c11",
+   "type": "chart",
+   "question": "What does the Dojo compute projection chart say about Tesla's expected global ranking?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "Top 5"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "top 5",
+     "top five"
+    ]
+   ],
+   "source": "v1"
+  },
+  {
+   "id": "tb01",
+   "type": "table",
+   "question": "How many vehicles did Tesla deliver in Q4 2022?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2022Q4",
+       7,
+       2
+      ],
+      [
+       "2023Q1",
+       6,
+       1
+      ],
+      [
+       "2023Q2",
+       6,
+       1
+      ],
+      [
+       "2023Q3",
+       6,
+       1
+      ],
+      [
+       "2023Q4",
+       7,
+       1
+      ]
+     ],
+     "evidence": [
+      "405,278"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "405,278"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb02",
+   "type": "table",
+   "question": "What were Tesla's total vehicle deliveries in Q3 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       6,
+       2
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "462,890"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "462,890"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb03",
+   "type": "table",
+   "question": "How many vehicles did Tesla deliver in Q1 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q1",
+       6,
+       2
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "336,681"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "336,681"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb04",
+   "type": "table",
+   "question": "How many vehicles did Tesla deliver in Q2 2022?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2022Q4",
+       7,
+       2
+      ],
+      [
+       "2023Q1",
+       6,
+       2
+      ],
+      [
+       "2023Q2",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "254,695"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "254,695"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb05",
+   "type": "table",
+   "question": "How many vehicles did Tesla produce in Q4 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       7,
+       2
+      ],
+      [
+       "2024Q1",
+       6,
+       1
+      ],
+      [
+       "2024Q2",
+       6,
+       1
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ]
+     ],
+     "evidence": [
+      "494,989"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "494,989"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb06",
+   "type": "table",
+   "question": "What was Tesla's total production in Q2 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q2",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "410,244"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "410,244"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb07",
+   "type": "table",
+   "question": "What were Tesla's total revenues in Q3 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       4,
+       2
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "25,182"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "25,182",
+     "25.2"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb08",
+   "type": "table",
+   "question": "What were Tesla's total revenues in Q2 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q2",
+       4,
+       2
+      ]
+     ],
+     "evidence": [
+      "22,496"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "22,496",
+     "22.5"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb09",
+   "type": "table",
+   "question": "What were Tesla's total revenues in Q1 2022?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2022Q4",
+       4,
+       2
+      ],
+      [
+       "2023Q1",
+       4,
+       2
+      ]
+     ],
+     "evidence": [
+      "18,756"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "18,756",
+     "18.8"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb10",
+   "type": "table",
+   "question": "What was Tesla's operating margin in Q4 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       4,
+       2
+      ],
+      [
+       "2024Q1",
+       4,
+       1
+      ],
+      [
+       "2024Q2",
+       4,
+       1
+      ],
+      [
+       "2024Q3",
+       4,
+       1
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "8.2%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "8.2%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb11",
+   "type": "table",
+   "question": "What was Tesla's operating margin in Q2 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q2",
+       4,
+       2
+      ]
+     ],
+     "evidence": [
+      "4.1%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "4.1%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb12",
+   "type": "table",
+   "question": "How many Supercharger connectors did Tesla have at the end of Q4 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q4",
+       7,
+       2
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "65,495"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "65,495"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb13",
+   "type": "table",
+   "question": "How many Supercharger stations did Tesla have at the end of Q2 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q2",
+       6,
+       2
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "6,473"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "6,473"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb14",
+   "type": "table",
+   "question": "How many Supercharger stations were there at the end of Q1 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q1",
+       6,
+       2
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "7,131"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "7,131"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb15",
+   "type": "table",
+   "question": "How many Tesla locations were there at the end of Q3 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       6,
+       2
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "1,306"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "1,306"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb16",
+   "type": "table",
+   "question": "What was Tesla's GAAP gross margin in Q3 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       4,
+       2
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "19.8%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "19.8%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb17",
+   "type": "table",
+   "question": "How much cash and investments did Tesla hold at the end of Q1 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q1",
+       4,
+       2
+      ],
+      [
+       "2024Q2",
+       4,
+       1
+      ],
+      [
+       "2024Q3",
+       4,
+       1
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "26,863"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "26,863",
+     "26.9"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb18",
+   "type": "table",
+   "question": "How many Model 3 and Model Y vehicles did Tesla deliver in Q2 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q2",
+       6,
+       2
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "422,405"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "422,405"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb19",
+   "type": "table",
+   "question": "How much energy storage did Tesla deploy in Q4 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q4",
+       7,
+       2
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "11.0"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "11.0"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb20",
+   "type": "table",
+   "question": "How many 'other models' vehicles did Tesla deliver in Q4 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       7,
+       2
+      ],
+      [
+       "2024Q1",
+       6,
+       1
+      ],
+      [
+       "2024Q2",
+       6,
+       1
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ]
+     ],
+     "evidence": [
+      "22,969"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "22,969"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb21",
+   "type": "table",
+   "question": "What was Tesla's adjusted EBITDA margin in Q3 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       4,
+       2
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "18.5%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "18.5%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb22",
+   "type": "table",
+   "question": "What was Tesla's GAAP net income in Q4 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       4,
+       2
+      ],
+      [
+       "2024Q1",
+       4,
+       1
+      ],
+      [
+       "2024Q2",
+       4,
+       1
+      ],
+      [
+       "2024Q3",
+       4,
+       1
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "7,928"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "7,928",
+     "7.9"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb23",
+   "type": "table",
+   "question": "What was Tesla's free cash flow in Q1 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q1",
+       4,
+       2
+      ],
+      [
+       "2024Q2",
+       4,
+       1
+      ],
+      [
+       "2024Q3",
+       4,
+       1
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "(2,531)"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "2,531",
+     "2.5"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tb24",
+   "type": "table",
+   "question": "How much did Tesla spend on capital expenditures in Q3 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       4,
+       2
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "(3,513)"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "3,513",
+     "3.5"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw01",
+   "type": "paraphrase",
+   "question": "What were Tesla's total deliveries in the second quarter of 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q2",
+       6,
+       2
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "443,956"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "443,956"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw02",
+   "type": "paraphrase",
+   "question": "What was the operating margin for the third quarter of 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       4,
+       2
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "10.8%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "10.8%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw03",
+   "type": "paraphrase",
+   "question": "How many Supercharger connectors did Tesla have at the end of Quarter 1 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q1",
+       6,
+       2
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "67,316"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "67,316"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw04",
+   "type": "paraphrase",
+   "question": "What were Tesla's revenues in Q4'24?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q4",
+       4,
+       2
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "25,707"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "25,707",
+     "25.7"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw05",
+   "type": "paraphrase",
+   "question": "What was Tesla's total production in 2Q-2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q2",
+       6,
+       2
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "410,831"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "410,831"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw06",
+   "type": "paraphrase",
+   "question": "How many Tesla locations were there at the end of the fourth quarter of 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       7,
+       2
+      ],
+      [
+       "2024Q1",
+       6,
+       1
+      ],
+      [
+       "2024Q2",
+       6,
+       1
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ]
+     ],
+     "evidence": [
+      "1,208"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "1,208"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw07",
+   "type": "paraphrase",
+   "question": "What was the GAAP gross margin in the first quarter of 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q1",
+       4,
+       2
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "16.3%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "16.3%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw08",
+   "type": "paraphrase",
+   "question": "How much energy storage was deployed in the 3rd quarter of 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       6,
+       2
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "6.9"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "6.9"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw09",
+   "type": "paraphrase",
+   "question": "What were total revenues in Q1 FY2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q1",
+       4,
+       2
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "19,335"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "19,335",
+     "19.3"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "pw10",
+   "type": "paraphrase",
+   "question": "What were cash and investments at the end of quarter three, 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       4,
+       2
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "33,648"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "33,648",
+     "33.6"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp01",
+   "type": "multi",
+   "question": "How did Tesla's total deliveries change from Q1 2024 to Q2 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q1",
+       6,
+       2
+      ],
+      [
+       "2024Q2",
+       6,
+       1
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "386,810"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2024Q2",
+       6,
+       2
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "443,956"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "386,810"
+    ],
+    [
+     "443,956"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp02",
+   "type": "multi",
+   "question": "Compare Tesla's operating margin in Q4 2022 and Q4 2024.",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2022Q4",
+       4,
+       2
+      ],
+      [
+       "2023Q1",
+       4,
+       1
+      ],
+      [
+       "2023Q2",
+       4,
+       1
+      ],
+      [
+       "2023Q3",
+       4,
+       1
+      ],
+      [
+       "2023Q4",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "16.0%"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2024Q4",
+       4,
+       2
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "6.2%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "16.0%"
+    ],
+    [
+     "6.2%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp03",
+   "type": "multi",
+   "question": "How did total revenues in Q2 2025 compare with Q2 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q2",
+       4,
+       2
+      ],
+      [
+       "2023Q3",
+       4,
+       1
+      ],
+      [
+       "2023Q4",
+       4,
+       1
+      ],
+      [
+       "2024Q1",
+       4,
+       1
+      ],
+      [
+       "2024Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "24,927"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2025Q2",
+       4,
+       2
+      ]
+     ],
+     "evidence": [
+      "22,496"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "24,927",
+     "24.9"
+    ],
+    [
+     "22,496",
+     "22.5"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp04",
+   "type": "multi",
+   "question": "How many Supercharger connectors did Tesla have at the end of Q4 2022 versus Q2 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2022Q4",
+       7,
+       2
+      ],
+      [
+       "2023Q1",
+       6,
+       1
+      ],
+      [
+       "2023Q2",
+       6,
+       1
+      ],
+      [
+       "2023Q3",
+       6,
+       1
+      ],
+      [
+       "2023Q4",
+       7,
+       1
+      ]
+     ],
+     "evidence": [
+      "42,419"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2025Q2",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "70,228"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "42,419"
+    ],
+    [
+     "70,228"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp05",
+   "type": "multi",
+   "question": "How did Model 3/Y deliveries in Q4 2024 compare with Q4 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       7,
+       2
+      ],
+      [
+       "2024Q1",
+       6,
+       1
+      ],
+      [
+       "2024Q2",
+       6,
+       1
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ]
+     ],
+     "evidence": [
+      "461,538"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2024Q4",
+       7,
+       2
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "471,930"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "461,538"
+    ],
+    [
+     "471,930"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp06",
+   "type": "multi",
+   "question": "Compare Tesla's total production in Q1 2023 and Q1 2025.",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q1",
+       6,
+       2
+      ],
+      [
+       "2023Q2",
+       6,
+       1
+      ],
+      [
+       "2023Q3",
+       6,
+       1
+      ],
+      [
+       "2023Q4",
+       7,
+       1
+      ],
+      [
+       "2024Q1",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "440,808"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2025Q1",
+       6,
+       2
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "362,615"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "440,808"
+    ],
+    [
+     "362,615"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp07",
+   "type": "multi",
+   "question": "How did energy storage deployments change from Q1 2024 to Q2 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q2",
+       6,
+       1
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "4.1"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2024Q2",
+       6,
+       2
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "9.4"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "4.1"
+    ],
+    [
+     "9.4"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp08",
+   "type": "multi",
+   "question": "Compare the GAAP gross margin in Q3 2023 and Q3 2024.",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q3",
+       4,
+       2
+      ],
+      [
+       "2023Q4",
+       4,
+       1
+      ],
+      [
+       "2024Q1",
+       4,
+       1
+      ],
+      [
+       "2024Q2",
+       4,
+       1
+      ],
+      [
+       "2024Q3",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "17.9%"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2024Q3",
+       4,
+       2
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "19.8%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "17.9%"
+    ],
+    [
+     "19.8%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp09",
+   "type": "multi",
+   "question": "How much did Tesla's cash and investments grow between Q4 2022 and Q4 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2022Q4",
+       4,
+       2
+      ],
+      [
+       "2023Q1",
+       4,
+       1
+      ],
+      [
+       "2023Q2",
+       4,
+       1
+      ],
+      [
+       "2023Q3",
+       4,
+       1
+      ],
+      [
+       "2023Q4",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "22,185"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2024Q4",
+       4,
+       2
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "36,563"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "22,185",
+     "22.2"
+    ],
+    [
+     "36,563",
+     "36.6"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp10",
+   "type": "multi",
+   "question": "How many Tesla locations were there at the end of Q4 2023 compared with Q2 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       7,
+       2
+      ],
+      [
+       "2024Q1",
+       6,
+       1
+      ],
+      [
+       "2024Q2",
+       6,
+       1
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ]
+     ],
+     "evidence": [
+      "1,208"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2025Q2",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "1,454"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "1,208"
+    ],
+    [
+     "1,454"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp11",
+   "type": "multi",
+   "question": "How did total deliveries in Q2 2025 compare with Q2 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q2",
+       6,
+       2
+      ],
+      [
+       "2024Q3",
+       6,
+       1
+      ],
+      [
+       "2024Q4",
+       7,
+       1
+      ],
+      [
+       "2025Q1",
+       6,
+       1
+      ],
+      [
+       "2025Q2",
+       6,
+       1
+      ]
+     ],
+     "evidence": [
+      "443,956"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2025Q2",
+       6,
+       2
+      ]
+     ],
+     "evidence": [
+      "384,122"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "443,956"
+    ],
+    [
+     "384,122"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "mp12",
+   "type": "multi",
+   "question": "Compare Tesla's operating margin in Q1 2024 and Q1 2025.",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q1",
+       4,
+       2
+      ],
+      [
+       "2024Q2",
+       4,
+       1
+      ],
+      [
+       "2024Q3",
+       4,
+       1
+      ],
+      [
+       "2024Q4",
+       4,
+       1
+      ],
+      [
+       "2025Q1",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "5.5%"
+     ]
+    },
+    {
+     "gold": [
+      [
+       "2025Q1",
+       4,
+       2
+      ],
+      [
+       "2025Q2",
+       4,
+       1
+      ]
+     ],
+     "evidence": [
+      "2.1%"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "5.5%"
+    ],
+    [
+     "2.1%"
+    ]
+   ],
+   "source": "generated from summary tables"
+  },
+  {
+   "id": "tx01",
+   "type": "text",
+   "question": "What was Tesla's operating margin for full-year 2022?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2022Q4",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "16.8% operating margin in 2022"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "16.8%"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx02",
+   "type": "text",
+   "question": "How much did Tesla's total revenue grow in 2022, and to what amount?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2022Q4",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "revenue grew 51% YoY to $81.5B"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "51%"
+    ],
+    [
+     "81.5"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx03",
+   "type": "text",
+   "question": "How large was the one-time non-cash tax benefit Tesla recorded in Q4 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "One-time non-cash tax benefit of $5.9B"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "5.9"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx04",
+   "type": "text",
+   "question": "How much energy storage did Tesla deploy in full-year 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "14.7 GWh in 2023"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "14.7"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx05",
+   "type": "text",
+   "question": "What was Tesla's free cash flow for full-year 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "free cash flow2 of $4.4B in 2023"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "4.4"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx06",
+   "type": "text",
+   "question": "To what price did Tesla reduce the FSD (Supervised) subscription in Q1 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q1",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "$99/month"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "99"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx07",
+   "type": "text",
+   "question": "By how much did Tesla increase AI training compute in Q1 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q1",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "more than 130% in Q1"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "130%"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx08",
+   "type": "text",
+   "question": "What was Tesla's record energy storage deployment in Q2 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q2",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "Record energy storage deployment of 9.4 GWh"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "9.4"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx09",
+   "type": "text",
+   "question": "What market milestone did Cybertruck reach in Q2 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q2",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "best-selling EV pickup in the U.S. in Q2"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "best-selling"
+    ],
+    [
+     "pickup"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx10",
+   "type": "text",
+   "question": "How many Megapacks did the Lathrop Megafactory produce in a week, according to the Q3 2024 update?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "200 Megapacks in a week"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "200"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx11",
+   "type": "text",
+   "question": "How many cumulative miles had been driven on FSD (Supervised) as of Q3 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q3",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "Over two billion miles driven cumulatively"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "two billion",
+     "2 billion"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx12",
+   "type": "text",
+   "question": "By how much did Tesla increase AI training compute in 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q4",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "over 400% in 2024"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "400%"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx13",
+   "type": "text",
+   "question": "What were Tesla's cash and investments at the end of 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q4",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "in 2024 to $36.6B"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "36.6"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx14",
+   "type": "text",
+   "question": "What were Tesla's operating cash flow and free cash flow for full-year 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q4",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "Operating cash flow of $14.9B in 2024"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "14.9"
+    ],
+    [
+     "3.6"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx15",
+   "type": "text",
+   "question": "How many Megapacks had Megafactory Shanghai produced, according to the Q1 2025 update?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q1",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "Megafactory Shanghai produced >100 Megapacks"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "100"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx16",
+   "type": "text",
+   "question": "When are Semi and Cybercab slated for volume production?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q2",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "slated for volume production in 2026"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "2026"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx17",
+   "type": "text",
+   "question": "What was Tesla's free cash flow in Q2 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q2",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "Free cash flow2 of $0.1B"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "0.1"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "tx18",
+   "type": "text",
+   "question": "To what price did Tesla reduce the FSD (Supervised) purchase price in the US in Q1 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q1",
+       3,
+       2
+      ]
+     ],
+     "evidence": [
+      "price to $8,000 in the US"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "8,000"
+    ]
+   ],
+   "source": "manual"
+  },
+  {
+   "id": "ch01",
+   "type": "chart",
+   "question": "Approximately what was Tesla's average cost of goods sold per vehicle in Q4 2024?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q4",
+       14,
+       2
+      ]
+     ],
+     "evidence": [
+      "34,700"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "34,700",
+     "34,600",
+     "34,800",
+     "34.7"
+    ]
+   ],
+   "source": "manual (checked against page image)"
+  },
+  {
+   "id": "ch02",
+   "type": "chart",
+   "question": "Approximately what was the cost of goods sold per vehicle in Q4 2023?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2023Q4",
+       10,
+       2
+      ],
+      [
+       "2024Q4",
+       14,
+       1
+      ]
+     ],
+     "evidence": [
+      "36,300"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "36,300",
+     "36,200",
+     "36,400",
+     "36.3"
+    ]
+   ],
+   "source": "manual (checked against page image)"
+  },
+  {
+   "id": "ch03",
+   "type": "chart",
+   "question": "In which quarter did Tesla's average COGS per vehicle reach its all-time low, according to the Q4 2024 update?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2024Q4",
+       14,
+       2
+      ]
+     ],
+     "evidence": [
+      "all-time low"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "Q4 2024",
+     "fourth quarter of 2024"
+    ]
+   ],
+   "source": "manual (checked against page image)"
+  },
+  {
+   "id": "ch04",
+   "type": "chart",
+   "question": "Approximately how many cumulative miles had been driven on FSD (Supervised) by June 2025?",
+   "evidence_sets": [
+    {
+     "gold": [
+      [
+       "2025Q2",
+       8,
+       2
+      ]
+     ],
+     "evidence": [
+      "4.5 billion"
+     ]
+    }
+   ],
+   "answer_facts": [
+    [
+     "4.5",
+     "4.6"
+    ]
+   ],
+   "source": "manual (checked against page image)"
+  },
+  {
+   "id": "un01",
+   "type": "unanswerable",
+   "question": "How many vehicles did Tesla deliver in Q3 2025?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un02",
+   "type": "unanswerable",
+   "question": "What was Tesla's operating margin in Q4 2025?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un03",
+   "type": "unanswerable",
+   "question": "How many vehicles did Rivian deliver in Q2 2024?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un04",
+   "type": "unanswerable",
+   "question": "What was Tesla's stock price at the end of Q1 2024?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un05",
+   "type": "unanswerable",
+   "question": "What was Tesla's market capitalization at the end of 2024?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un06",
+   "type": "unanswerable",
+   "question": "What was BYD's share of the global BEV market in Q1 2024?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un07",
+   "type": "unanswerable",
+   "question": "How many employees did Tesla have at the end of 2024?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un08",
+   "type": "unanswerable",
+   "question": "What cash dividend per share did Tesla pay in 2023?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un09",
+   "type": "unanswerable",
+   "question": "What was Tesla's R&D expense in Q3 2025?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  },
+  {
+   "id": "un10",
+   "type": "unanswerable",
+   "question": "How many Cybertrucks did Tesla deliver in Q4 2024?",
+   "evidence_sets": [],
+   "answer_facts": [],
+   "source": "manual (checked absent)"
+  }
+ ]
 }

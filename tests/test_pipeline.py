@@ -3,7 +3,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from finrag import config
-from finrag.evaluate import is_relevant, load_questions
+from finrag.evaluate import load_questions, satisfied_sets
 from finrag.retriever import load_chunks
 
 
@@ -21,8 +21,11 @@ def test_every_question_has_evidence_in_the_index():
     if not config.CHUNKS_FILE.exists():
         pytest.skip("index not built")
     chunks = load_chunks()
-    missing = [q["id"] for q in load_questions() if not any(is_relevant(c, q) for c in chunks)]
-    assert not missing, f"labels without evidence: {missing}"
+    missing = []
+    for q in load_questions():
+        found = {i for c in chunks for i, _ in satisfied_sets(c, q)}
+        missing += [f"{q['id']}[{i}]" for i in range(len(q["sets"])) if i not in found]
+    assert not missing, f"evidence sets without evidence: {missing}"
 
 
 def test_chart_only_fact_is_retrieved_first(retriever):

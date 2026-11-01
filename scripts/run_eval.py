@@ -1,16 +1,17 @@
 """Run the evaluation and write results/ tables.
 
-    python scripts/run_eval.py                    # retrieval metrics (no API key needed)
-    python scripts/run_eval.py --check-repro      # ... and compare with the previous run
-    python scripts/run_eval.py --answers          # + answer correctness (needs an LLM key)
-    python scripts/run_eval.py --answers --limit 5   # quick, cheap trial on 5 questions
-    python scripts/run_eval.py --answers-only --answers   # skip the retrieval grid
-    python scripts/run_eval.py --answers --judge  # + LLM-as-judge
+    python scripts/run_eval.py                       # retrieval grid (no API key needed)
+    python scripts/run_eval.py --check-repro         # ... and compare ranks with the previous run
+    python scripts/run_eval.py --answers-only --answers                # answers, production config
+    python scripts/run_eval.py --answers-only --answers --text-only    # + text-only corpus for comparison
+    python scripts/run_eval.py --answers-only --answers --judge        # + LLM-as-judge
+    python scripts/run_eval.py --answers --limit 5   # quick trial on 5 questions
 
-Ablation grid:
-  modality  : text-only | text+tables | multimodal (text+tables+charts)
+Retrieval grid:
+  corpus    : text-only | text+tables | multimodal (text+tables+charts)
   retriever : bm25 | dense | hybrid (RRF) | hybrid_rerank
-  multimodal also runs with the query -> report filter (doc="auto").
+  the multimodal corpus also runs with the query -> report filter (doc="auto").
+Unanswerable questions are only used for the answer evaluation.
 """
 import _bootstrap  # noqa: F401
 
@@ -20,8 +21,8 @@ import sys
 import time
 
 from finrag import config
-from finrag.evaluate import (facts_correct, first_relevant_rank, judge_correct,
-                             load_questions, retrieval_metrics)
+from finrag.evaluate import (aggregate, facts_correct, ideal_grades, judge_correct,
+                             load_questions, score_ranking, unsupported_numbers)
 from finrag.generate import NOT_FOUND
 from finrag.llm import settings
 from finrag.retriever import MODES, load_retriever
@@ -31,10 +32,12 @@ MODALITIES = {
     "text+tables": {"text", "table"},
     "multimodal": {"text", "table", "chart"},
 }
-QTYPES = ("text", "table", "chart")
+QTYPES = ("text", "table", "chart", "paraphrase", "multi")
 # The configuration the CLI and API use by default.
 PRODUCTION = ("multimodal", "hybrid+doc_filter", "hybrid", "auto")
 METRICS_FILE = config.RESULTS_DIR / "retrieval_metrics.json"
+ANSWERS_FILE = config.RESULTS_DIR / "answer_records.json"
+TOP_K = 10
 
 
 def fmt(x):
@@ -46,63 +49,72 @@ def mean(values):
     return sum(values) / len(values) if values else None
 
 
-def eval_retrieval(retrievers, questions, k=10):
+# --------------------------------------------------------------------------
+# Retrieval
+# --------------------------------------------------------------------------
+def eval_retrieval(retrievers, questions):
+    answerable = [q for q in questions if q["sets"]]
     results, latency, per_question = {}, {}, {}
     for modality, retriever in retrievers.items():
+        ideal = {q["id"]: ideal_grades(retriever.chunks, q) for q in answerable}
         variants = [(m, m, None) for m in MODES]
         if modality == "multimodal":
             variants += [("hybrid+doc_filter", "hybrid", "auto"),
                          ("hybrid_rerank+doc_filter", "hybrid_rerank", "auto")]
         for label, mode, doc in variants:
-            ranks, t0 = [], time.perf_counter()
-            for q in questions:
-                hits = retriever.retrieve(q["question"], mode=mode, top_k=k, doc=doc)
-                rank = first_relevant_rank(hits, q)
-                ranks.append(rank)
+            scores, t0 = {}, time.perf_counter()
+            for q in answerable:
+                hits = retriever.retrieve(q["question"], mode=mode, top_k=TOP_K, doc=doc)
+                scores[q["id"]] = score_ranking(hits, q, ideal[q["id"]])
                 per_question[(modality, label, q["id"])] = {
-                    "rank": rank, "top3": [h.chunk.chunk_id for h in hits[:3]]}
+                    "rank": scores[q["id"]]["rank"], "top3": [h.chunk.chunk_id for h in hits[:3]]}
             key = f"{modality}|{label}"
-            latency[key] = 1000 * (time.perf_counter() - t0) / len(questions)
-            row = {"all": retrieval_metrics(ranks),
-                   "ranks": {q["id"]: r for q, r in zip(questions, ranks)}}
+            latency[key] = 1000 * (time.perf_counter() - t0) / len(answerable)
+            row = {"all": aggregate(list(scores.values())),
+                   "ranks": {qid: [s["rank"], s["recall@10"]] for qid, s in scores.items()}}
             for t in QTYPES:
-                row[t] = retrieval_metrics([r for r, q in zip(ranks, questions) if q["type"] == t])
+                row[t] = aggregate([scores[q["id"]] for q in answerable if q["type"] == t])
             results[key] = row
-            print(f"{modality:12s} {label:25s} R@5={row['all']['recall@5']:.3f} "
-                  f"MRR={row['all']['mrr']:.3f} ({latency[key]:.0f} ms/q)")
+            a = row["all"]
+            print(f"{modality:12s} {label:25s} hit@5={a['hit@5']:.3f} recall@5={a['recall@5']:.3f} "
+                  f"ndcg@10={a['ndcg@10']:.3f} MRR={a['mrr']:.3f} ({latency[key]:.0f} ms/q)")
     return results, latency, per_question
 
 
 def retrieval_report(results, latency, questions):
-    n_by_type = {t: sum(q["type"] == t for q in questions) for t in QTYPES}
+    answerable = [q for q in questions if q["sets"]]
+    counts = ", ".join(f"{sum(q['type'] == t for q in answerable)} {t}" for t in QTYPES)
     lines = ["# Retrieval evaluation", "",
-             f"{len(questions)} questions ({', '.join(f'{n_by_type[t]} {t}' for t in QTYPES)}). "
-             "A hit = a chunk from a gold page that contains the answer evidence. "
-             "`doc_filter` = restrict to the report named in the question (e.g. \"Q3 2023\"). "
-             "Latency is CPU wall-clock per query and varies between runs; the metrics do not.", "",
-             "## All questions", "",
-             "| Modality | Retriever | Recall@1 | Recall@3 | Recall@5 | Recall@10 | MRR | ms/query |",
-             "|---|---|---|---|---|---|---|---|"]
+             f"{len(answerable)} answerable questions ({counts}). A chunk is relevant if it comes from a gold page "
+             "and contains the answer evidence; grade 2 = the period's own report, grade 1 = a later report "
+             "repeating the figure. `recall@k` is the share of a question's evidence sets found in the top k "
+             "(differs from `hit@k` only for multi-period questions). `doc_filter` = restrict to the report named "
+             "in the question. Latency is CPU wall-clock per query and varies between runs; the metrics do not.", "",
+             "## All answerable questions", "",
+             "| Corpus | Retriever | Hit@1 | Hit@5 | Recall@5 | Recall@10 | Precision@5 | NDCG@10 | MRR | ms/query |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
     for key, row in results.items():
-        modality, label = key.split("|")
+        corpus, label = key.split("|")
         a = row["all"]
-        lines.append(f"| {modality} | {label} | {fmt(a['recall@1'])} | {fmt(a['recall@3'])} | "
-                     f"{fmt(a['recall@5'])} | {fmt(a['recall@10'])} | {fmt(a['mrr'])} | {latency[key]:.0f} |")
-    lines += ["", "## Recall@5 by question type", "",
-              "| Modality | Retriever | text | table | chart |", "|---|---|---|---|---|"]
+        lines.append(f"| {corpus} | {label} | {fmt(a['hit@1'])} | {fmt(a['hit@5'])} | {fmt(a['recall@5'])} | "
+                     f"{fmt(a['recall@10'])} | {fmt(a['precision@5'])} | {fmt(a['ndcg@10'])} | {fmt(a['mrr'])} | "
+                     f"{latency[key]:.0f} |")
+    lines += ["", "## Hit@5 by question type (Recall@5 for multi-period)", "",
+              "| Corpus | Retriever | " + " | ".join(QTYPES) + " |", "|---|---|" + "---|" * len(QTYPES)]
     for key, row in results.items():
-        modality, label = key.split("|")
-        lines.append(f"| {modality} | {label} | " + " | ".join(fmt(row[t]["recall@5"]) for t in QTYPES) + " |")
+        corpus, label = key.split("|")
+        cells = [fmt(row[t].get("recall@5" if t == "multi" else "hit@5")) for t in QTYPES]
+        lines.append(f"| {corpus} | {label} | " + " | ".join(cells) + " |")
     return "\n".join(lines) + "\n"
 
 
 def misses_report(per_question, questions):
-    modality, label = PRODUCTION[:2]
-    lines = [f"# Misses at k=5 ({modality}, {label})", "",
-             "Questions whose first relevant chunk is not in the top 5 - start error analysis here.", ""]
+    corpus, label = PRODUCTION[:2]
+    lines = [f"# Misses at k=5 ({corpus}, {label})", "",
+             "Answerable questions whose first relevant chunk is not in the top 5.", ""]
     for q in questions:
-        info = per_question[(modality, label, q["id"])]
-        if info["rank"] is None or info["rank"] > 5:
+        info = per_question.get((corpus, label, q["id"]))
+        if info and (info["rank"] is None or info["rank"] > 5):
             lines.append(f"- **{q['id']}** ({q['type']}) {q['question']}  \n"
                          f"  first relevant rank: {info['rank']}; top-3: {', '.join(info['top3'])}")
     if len(lines) == 4:
@@ -111,7 +123,7 @@ def misses_report(per_question, questions):
 
 
 def check_reproducibility(results):
-    """Compare per-question ranks with the previous run's metrics file."""
+    """Compare per-question ranks and recall with the previous run's metrics file."""
     if not METRICS_FILE.exists():
         print("repro check: no previous results to compare against")
         return True
@@ -120,26 +132,24 @@ def check_reproducibility(results):
     if diffs:
         print(f"repro check: FAILED - ranks differ for {diffs}")
         return False
-    print(f"repro check: OK - identical per-question ranks for all {len(results)} configurations")
+    print(f"repro check: OK - identical per-question results for all {len(results)} configurations")
     return True
 
 
-ANSWERS_FILE = config.RESULTS_DIR / "answer_records.json"
-CORPORA = ("text-only", "multimodal")
-
-
+# --------------------------------------------------------------------------
+# Answers
+# --------------------------------------------------------------------------
 def _save(records):
-    ordered = sorted(records.values(), key=lambda r: (CORPORA.index(r["modality"]), r["order"]))
+    ordered = sorted(records.values(), key=lambda r: (r["modality"], r["order"]))
     ANSWERS_FILE.write_text(json.dumps(ordered, indent=2, ensure_ascii=False), encoding="utf-8")
     return ordered
 
 
-def eval_answers(retrievers, questions, use_judge):
-    """Generate (one question per request, the production path) and score answers
-    for the text-only and multimodal corpora.
+def eval_answers(retrievers, questions, corpora, use_judge):
+    """Generate and score answers on the production path (one question per request).
 
     Resumable: records are saved after every request and a re-run reuses answers
-    from the same model, so a free-tier daily quota can spread the run over days.
+    from the same model, so a free-tier daily quota can spread a run over days.
     """
     from finrag.generate import answer
     from finrag.llm import get_client
@@ -151,23 +161,27 @@ def eval_answers(retrievers, questions, use_judge):
     by_id = {q["id"]: q for q in questions}
     previous = json.loads(ANSWERS_FILE.read_text(encoding="utf-8")) if ANSWERS_FILE.exists() else []
     records = {(r["modality"], r["id"]): r for r in previous
-               if r.get("model") == chat_model and r["id"] in by_id}
+               if r.get("model") == chat_model and r["id"] in by_id and r["modality"] in corpora}
 
-    for modality in CORPORA:
-        pending = [q for q in questions if (modality, q["id"]) not in records]
+    for corpus in corpora:
+        pending = [q for q in questions if (corpus, q["id"]) not in records]
         for i, q in enumerate(pending, 1):
-            hits = retrievers[modality].retrieve(q["question"], mode=mode, doc=doc)
+            hits = retrievers[corpus].retrieve(q["question"], mode=mode, doc=doc)
             out = answer(client, q["question"], hits)
-            records[(modality, q["id"])] = {
-                "modality": modality, "id": q["id"], "order": order[q["id"]], "type": q["type"],
+            cited = [hits[c["n"] - 1].chunk.index_text() for c in out["citations"]]
+            abstained = NOT_FOUND in out["answer"]
+            records[(corpus, q["id"])] = {
+                "modality": corpus, "id": q["id"], "order": order[q["id"]], "type": q["type"],
                 "model": chat_model, "question": q["question"], "answer": out["answer"],
-                "citations": out["citations"], "fact_match": facts_correct(out["answer"], q["answer_facts"])}
+                "citations": out["citations"], "abstained": abstained,
+                "fact_match": facts_correct(out["answer"], q["answer_facts"]) if q["sets"] else None,
+                "unsupported_numbers": [] if abstained else unsupported_numbers(out["answer"], cited)}
             _save(records)
-            print(f"  {modality} {i}/{len(pending)} {q['id']} fact_match={records[(modality, q['id'])]['fact_match']}")
+            print(f"  {corpus} {i}/{len(pending)} {q['id']}")
 
     if use_judge:  # ideally a different model than the generator
         for r in records.values():
-            if r.get("judge_model") != judge_model:
+            if r["fact_match"] is not None and r.get("judge_model") != judge_model:
                 r["judge"], r["judge_reason"] = judge_correct(
                     client, r["question"], r["answer"], by_id[r["id"]]["answer_facts"])
                 r["judge_model"] = judge_model
@@ -175,41 +189,54 @@ def eval_answers(retrievers, questions, use_judge):
 
     ordered = _save(records)
     summary = {}
-    for modality in CORPORA:
-        mine = [r for r in ordered if r["modality"] == modality]
-        row = {"n": len(mine), "fact_match": mean(r["fact_match"] for r in mine)}
+    for corpus in corpora:
+        mine = [r for r in ordered if r["modality"] == corpus]
+        ans = [r for r in mine if r["fact_match"] is not None]
+        una = [r for r in mine if r["fact_match"] is None]
+        spoke = [r for r in mine if not r["abstained"]]
+        row = {"n_answerable": len(ans), "n_unanswerable": len(una),
+               "fact_match": mean(r["fact_match"] for r in ans),
+               "false_refusal": mean(r["abstained"] for r in ans),
+               "correct_refusal": mean(r["abstained"] for r in una),
+               "unsupported_numbers": mean(bool(r["unsupported_numbers"]) for r in spoke)}
         for t in QTYPES:
-            row[f"fact_match_{t}"] = mean(r["fact_match"] for r in mine if r["type"] == t)
+            row[f"fact_match_{t}"] = mean(r["fact_match"] for r in ans if r["type"] == t)
         if use_judge:
-            row["judge"] = mean(r["judge"] for r in mine)
-        row["abstained"] = mean(NOT_FOUND in r["answer"] for r in mine)  # may add an explanation after it
-        summary[modality] = row
-        print(modality, {k: (fmt(v) if k != "n" else v) for k, v in row.items()})
+            row["judge"] = mean(r["judge"] for r in ans if "judge" in r)
+        summary[corpus] = row
+        print(corpus, {k: (fmt(v) if isinstance(v, float) or v is None else v) for k, v in row.items()})
     return ordered, summary
 
 
 def answers_report(summary, use_judge):
     s = settings()
-    lines = [f"# Answer correctness ({PRODUCTION[2]}, doc filter={PRODUCTION[3]}, top-{config.FINAL_K} context)", "",
+    lines = [f"# Answer evaluation ({PRODUCTION[2]}, doc filter={PRODUCTION[3]}, top-{config.FINAL_K} context)", "",
              f"- Generator: `{s['chat_model']}`, one question per request (the production path)",
              "- Fact match: every required fact appears in the answer (numbers matched whole)",
-             f"- LLM judge: `{s['judge_model']}`" if use_judge else "- LLM judge: not run",
-             f"- Abstained: answer contains \"{NOT_FOUND}\"", "",
-             "| Corpus | n | Fact match (all) | text | table | chart |" + (" LLM judge |" if use_judge else "") + " Abstained |",
-             "|---|---|---|---|---|---|" + ("---|" if use_judge else "") + "---|"]
-    for modality, row in summary.items():
-        line = (f"| {modality} | {row['n']} | {fmt(row['fact_match'])} | {fmt(row['fact_match_text'])} | "
-                f"{fmt(row['fact_match_table'])} | {fmt(row['fact_match_chart'])} |")
+             f"- Refusal: the answer contains \"{NOT_FOUND}\"",
+             "- Unsupported numbers: share of non-refusing answers with a number that none of its cited sources "
+             "contains (rounding and $M/$B scale allowed)",
+             f"- LLM judge: `{s['judge_model']}`" if use_judge else "- LLM judge: not run", "",
+             "| Corpus | Fact match | False refusals | Correct refusals (unanswerable) | Unsupported numbers |"
+             + (" LLM judge |" if use_judge else ""),
+             "|---|---|---|---|---|" + ("---|" if use_judge else "")]
+    for corpus, row in summary.items():
+        line = (f"| {corpus} | {fmt(row['fact_match'])} | {fmt(row['false_refusal'])} | "
+                f"{fmt(row['correct_refusal'])} | {fmt(row['unsupported_numbers'])} |")
         if use_judge:
-            line += f" {fmt(row['judge'])} |"
-        line += f" {fmt(row['abstained'])} |"
+            line += f" {fmt(row.get('judge'))} |"
         lines.append(line)
+    lines += ["", "## Fact match by question type", "",
+              "| Corpus | " + " | ".join(QTYPES) + " |", "|---|" + "---|" * len(QTYPES)]
+    for corpus, row in summary.items():
+        lines.append(f"| {corpus} | " + " | ".join(fmt(row[f'fact_match_{t}']) for t in QTYPES) + " |")
     return "\n".join(lines) + "\n"
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--answers", action="store_true", help="also evaluate generated answers")
+    ap.add_argument("--text-only", action="store_true", help="also answer from the text-only corpus")
     ap.add_argument("--judge", action="store_true", help="add LLM-as-judge scoring (with --answers)")
     ap.add_argument("--check-repro", action="store_true", help="compare ranks with the previous run")
     ap.add_argument("--limit", type=int, default=None,
@@ -239,7 +266,8 @@ def main():
         print(f"wrote {config.RESULTS_DIR / 'retrieval_results.md'}")
 
     if args.answers:
-        _, summary = eval_answers(retrievers, questions, args.judge)
+        corpora = ["multimodal"] + (["text-only"] if args.text_only else [])
+        _, summary = eval_answers(retrievers, questions, corpora, args.judge)
         (config.RESULTS_DIR / "answer_results.md").write_text(answers_report(summary, args.judge), encoding="utf-8")
         print(f"wrote {config.RESULTS_DIR / 'answer_results.md'}")
 
