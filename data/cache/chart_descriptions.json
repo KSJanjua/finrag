@@ -1,392 +1,1400 @@
 [
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
-    "page": 1,
-    "description": null,
-    "source": "gemini-3.8-flash"
-  },
-  {
-    "doc": "TSLA-Q1-2023-Update.pdf",
-    "page": 2,
-    "description": null,
-    "source": "gemini-3.8-flash"
-  },
-  {
-    "doc": "TSLA-Q1-2023-Update.pdf",
-    "page": 3,
-    "description": null,
-    "source": "gemini-3.8-flash"
-  },
-  {
-    "doc": "TSLA-Q1-2023-Update.pdf",
-    "page": 4,
-    "description": null,
-    "source": "gemini-3.8-flash"
-  },
-  {
-    "doc": "TSLA-Q1-2023-Update.pdf",
-    "page": 5,
-    "description": null,
-    "source": "gemini-3.8-flash"
-  },
-  {
-    "doc": "TSLA-Q1-2023-Update.pdf",
-    "page": 6,
-    "description": null,
-    "source": "gemini-3.8-flash"
-  },
-  {
-    "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 7,
-    "description": "A multi-line chart titled 'Market share of Tesla vehicles by region (TTM)' showing quarterly trailing twelve months market share from Q1 2017 to Q1 2023. The vertical axis represents percentage market share ranging from 0% to 4%, and the horizontal axis shows quarterly intervals from Q1 2017 through Q1 2023. The legend includes three series: US/Canada (blue line), Europe (red line), and China (green line). In Q1 2017, all three regions were near 0% (US/Canada ~0.1%, Europe ~0.1%, China ~0.1%). US/Canada rises steadily, reaching around 1.3% by Q3 2019, 1.8% by Q3 2021, and climbing steeply to approximately 3.7%–3.8% by Q1 2023. Europe remains low until Q1 2019, rising to about 0.8% in 2020, reaching approximately 1.9% in Q2 2022, and finishing at around 2.4% in Q1 2023. China stays under 0.5% through 2019, starts rising in 2020, reaches ~1.8% in Q2 2022, and ends around 2.0% in Q1 2023. The overall takeaway is that Tesla's trailing twelve-month market share has grown across all three major regions from 2017 to 2023, with US/Canada consistently having the highest market share and strongest acceleration.",
-    "source": "gemini-3.8-flash"
+    "description": "The chart titled 'Market share of Tesla vehicles by region (TTM)' is a line chart showing market share percentages over time from Q1 2017 to Q1 2023. The legend includes three series: US/Canada (blue line), Europe (red line), and China (green line). The Y-axis ranges from 0% to 4%, and the X-axis shows quarterly intervals. By Q1 2023, the US/Canada market share is approximately 3.8%, Europe is approximately 2.3%, and China is approximately 2%. The main trend shows a consistent growth in market share for Tesla across all three regions over the 6-year period, with the US/Canada region leading throughout and showing the most significant acceleration since 2021.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 8,
-    "description": "A line chart titled 'Cumulative miles driven with FSD Beta (millions)' tracking mileage from March 2021 to March 2023. The vertical axis represents cumulative miles driven in millions, ranging from 0 to 140 in increments of 20, and the horizontal axis shows monthly intervals from Mar-21 to Mar-23. The cumulative miles driven curve stays close to 0 through mid-2021, begins rising gradually around Oct-21, reaches roughly 20 million by Apr-22, approximately 40 million by Jul-22, 60 million by Oct-22, and accelerates rapidly to reach around 130 million to over 135 million miles by Mar-23. The key takeaway is the exponential growth in cumulative FSD Beta miles driven over the two-year period, supported by an expanding user fleet.",
-    "source": "gemini-3.8-flash"
+    "description": "The chart 'Cumulative miles driven with FSD Beta (millions)' is a line graph showing growth from March 2021 to March 2023. The x-axis plots months from Mar-21 to Mar-23, and the y-axis shows cumulative miles in millions, ranging from 0 to 140. The graph shows an accelerating exponential trend, reaching approximately 140 million cumulative miles by March 2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 8,
-    "description": "A horizontal bar chart titled 'Global Model 3 cost normalized*' comparing normalized costs between 2018 and 2022. The vertical axis lists the years 2018 (top bar) and 2022 (bottom bar). The bar for 2018 represents the baseline (100%), while the bar for 2022 shows a substantial reduction labeled with '~30% decline'. A footnote clarifies that this metric includes material costs, manufacturing costs, inbound and outbound logistics, and warranty, based on actual results inclusive of trim/region/production mix normalized to 2018 for changes in market rates of lithium, nickel, steel, and aluminum. The primary takeaway is that Tesla reduced the normalized production cost of the Model 3 by approximately 30% from 2018 to 2022.",
-    "source": "gemini-3.8-flash"
+    "description": "The chart 'Global Model 3 cost normalized*' is a horizontal bar chart comparing costs in 2018 versus 2022. The chart uses two horizontal bars to compare cost levels, showing a clear reduction in 2022 compared to 2018. An annotation indicates this represents a '~30% decline' in cost.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 9,
-    "description": "Bar chart titled 'Energy Storage deployments (GWh)' showing quarterly energy storage deployments from Q3-2016 through Q1-2023. The vertical axis represents gigawatt-hours (GWh) ranging from 0 to 4. Energy storage deployments remained below 0.5 GWh until 2019, generally hovered around 0.5 to 1.6 GWh from 2019 through Q2-2022, and then experienced rapid growth starting in Q3-2022 (~2.1 GWh), Q4-2022 (~2.5 GWh), and peaked at approximately 3.9 GWh in Q1-2023, representing a 360% year-over-year increase.",
-    "source": "gemini-3.8-flash"
+    "description": "Energy Storage deployments (GWh) is a vertical bar chart showing deployments from Q3-2016 through Q1-2023. The Y-axis represents gigawatt-hours (GWh) ranging from 0 to 4. The chart shows a generally upward trend with some volatility. Notable values include a peak around Q3-2020 near 1.5 GWh, a dip in Q4-2020, and a sharp, consistent growth in recent quarters, culminating in the highest value of 3.9 GWh in Q1-2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 9,
-    "description": "Bar chart titled 'Services & Other gross margin' displaying quarterly gross margins from Q3'21 through Q1'23. The vertical axis measures percentage from -4% to 8% in 2% increments. The values are approximately -1.8% in Q3'21, 1.3% in Q4'21, -0.6% in Q1'22, 3.8% in Q2'22, 4.0% in Q3'22, 5.6% in Q4'22, and reaching a peak of approximately 7.3% in Q1'23. The takeaway is a strong upward trend in Services & Other gross margin from Q1'22 to reach an all-time high in Q1'23.",
-    "source": "gemini-3.8-flash"
-  },
-  {
-    "doc": "TSLA-Q1-2023-Update.pdf",
-    "page": 10,
-    "description": null,
-    "source": "gemini-3.8-flash"
-  },
-  {
-    "doc": "TSLA-Q1-2023-Update.pdf",
-    "page": 11,
-    "description": null,
-    "source": "gemini-3.8-flash"
+    "description": "Services & Other gross margin is a vertical bar chart showing margin percentages from Q3'21 through Q1'23. The Y-axis represents percentage values ranging from -4% to 8%. The trend shows significant improvement over the period, starting with a negative margin of approximately -2% in Q3'21, fluctuating near 0% in Q1'22, and then experiencing strong, consistent growth in subsequent quarters, reaching its peak of over 7% in Q1'23.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 12,
     "description": null,
-    "source": "gemini-3.8-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 13,
     "description": null,
-    "source": "gemini-3.8-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 14,
     "description": null,
-    "source": "gemini-3.8-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 15,
     "description": null,
-    "source": "gemini-3.8-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 16,
     "description": null,
-    "source": "gemini-3.8-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 17,
     "description": null,
-    "source": "gemini-3.8-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 18,
     "description": null,
-    "source": "gemini-3.8-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 19,
-    "description": "A vertical bar chart titled 'Vehicle Deliveries (millions of units)' showing quarterly vehicle deliveries from 2Q-2020 through 1Q-2023. The vertical axis ranges from 0.0 to 0.5 in increments of 0.1 million units. Approximate values per quarter are: 2Q-2020 (~0.09M), 3Q-2020 (~0.14M), 4Q-2020 (~0.18M), 1Q-2021 (~0.18M), 2Q-2021 (~0.20M), 3Q-2021 (~0.24M), 4Q-2021 (~0.31M), 1Q-2022 (~0.31M), 2Q-2022 (~0.25M), 3Q-2022 (~0.34M), 4Q-2022 (~0.40M), and 1Q-2023 (~0.42M). The general trend shows strong sustained growth over time, reaching a peak delivery volume above 0.4 million units in early 2023, despite a brief dip in 2Q-2022.",
-    "source": "gemini-3.8-flash"
+    "description": "The 'Vehicle Deliveries' chart is a vertical bar chart showing millions of units delivered from 2Q-2020 to 1Q-2023. The x-axis lists the quarters. Values start at approximately 0.1M in 2Q-2020 and trend steadily upward, reaching a peak of just over 0.4M by 1Q-2023. The overall trend shows consistent growth in quarterly vehicle deliveries over the nearly three-year period.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 19,
-    "description": "A grouped vertical bar chart titled 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)' from 2Q-2020 through 1Q-2023. The vertical axis measures billions of dollars from 0 to 6. The blue bars represent Operating Cash Flow and red bars represent Free Cash Flow. Key values include: 2Q-2020 (Operating Cash Flow ~$1.0B, Free Cash Flow ~$0.4B), 4Q-2020 (Operating Cash Flow ~$3.0B, Free Cash Flow ~$1.9B), 4Q-2021 (Operating Cash Flow ~$4.6B, Free Cash Flow ~$2.8B), 3Q-2022 (Operating Cash Flow peak ~$5.1B, Free Cash Flow peak ~$3.3B), and 1Q-2023 (Operating Cash Flow ~$2.5B, Free Cash Flow ~$0.4B). The main takeaway is that cash generation grew substantially through 2021 and 2022, peaking in 3Q-2022, before experiencing a sharp decline in 4Q-2022 and 1Q-2023.",
-    "source": "gemini-3.8-flash"
+    "description": "The 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)' chart is a grouped vertical bar chart comparing these two financial metrics from 2Q-2020 to 1Q-2023. Blue bars represent Operating Cash Flow and red bars represent Free Cash Flow. Both metrics generally trend upward over time, with Operating Cash Flow reaching a peak of over 5.0B in 3Q-2022. There is significant volatility, particularly in 2Q-2022 where Free Cash Flow dropped to near 0.5B, while Operating Cash Flow was higher.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 19,
-    "description": "A grouped vertical bar chart titled 'Net Income ($B)' (blue bars) and 'Adjusted EBITDA ($B)' (red bars) from 2Q-2020 to 1Q-2023. The vertical axis ranges from 0 to 6 billion dollars. Approximate values: 2Q-2020 (Net Income ~$0.1B, Adjusted EBITDA ~$1.2B), 4Q-2020 (Net Income ~$0.3B, Adjusted EBITDA ~$1.9B), 4Q-2021 (Net Income ~$2.3B, Adjusted EBITDA ~$4.1B), 1Q-2022 (Net Income ~$3.3B, Adjusted EBITDA ~$5.0B), 4Q-2022 (Net Income ~$3.7B, Adjusted EBITDA ~$5.4B), and 1Q-2023 (Net Income ~$2.5B, Adjusted EBITDA ~$4.3B). The overall trend shows rapid profitability growth culminating in late 2022 with peak Adjusted EBITDA of ~$5.4B and Net Income of ~$3.7B, followed by a downturn in 1Q-2023.",
-    "source": "gemini-3.8-flash"
+    "description": "The 'Net Income ($B)' and 'Adjusted EBITDA ($B)' chart is a grouped vertical bar chart comparing these two metrics from 2Q-2020 to 1Q-2023. Blue bars represent Net Income and red bars represent Adjusted EBITDA. Both metrics show a strong upward trend from 2Q-2020 (near 0) to a peak in 4Q-2022, where Adjusted EBITDA reached roughly 5.5B and Net Income reached nearly 4.0B. 1Q-2023 shows a pullback for both metrics compared to the previous quarter.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 20,
-    "description": "Title: Vehicle Deliveries (millions of units); Chart type: Column chart; Time period: 2Q-2020 to 1Q-2023; Axes and Legend: Y-axis represents trailing 12 months vehicle deliveries in millions ranging from 0.0 to 1.6; X-axis spans quarterly periods from 2Q-2020 to 1Q-2023; Values: Deliveries steadily grew from ~0.39M units in 2Q-2020 to ~1.43M units in 1Q-2023; Main takeaway: Vehicle deliveries on a trailing 12-month basis experienced continuous growth throughout the entire period.",
-    "source": "gemini-3.6-flash"
+    "description": "Vehicle Deliveries (millions of units) is a bar chart showing trailing 12-month data from 2Q-2020 to 1Q-2023. The x-axis lists the quarters, and the y-axis shows deliveries in millions of units, ranging from 0.0 to 1.6. Values grow steadily from ~0.4 million in 2Q-2020 to ~1.45 million in 1Q-2023, showing a consistent upward trend throughout the period.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 20,
-    "description": "Title: Operating Cash Flow ($B) and Free Cash Flow ($B); Chart type: Dual column chart; Time period: 2Q-2020 to 1Q-2023; Axes and Legend: Y-axis represents billions of USD from 0 to 20; Blue bars represent Operating Cash Flow ($B) and red bars represent Free Cash Flow ($B); Values: Operating Cash Flow grew from ~$2.7B in 2Q-2020 to a peak of ~$16.0B in 3Q-2022 before settling at ~$13.2B in 1Q-2023; Free Cash Flow grew from ~$1.0B in 2Q-2020 to a peak of ~$8.9B in 3Q-2022 before declining to ~$5.7B in 1Q-2023; Main takeaway: Both cash flow metrics grew significantly through late 2022 before moderating slightly in 1Q-2023.",
-    "source": "gemini-3.6-flash"
+    "description": "Operating Cash Flow vs. Free Cash Flow ($B) is a clustered bar chart comparing the two metrics over a trailing 12-month period from 2Q-2020 to 1Q-2023. The x-axis displays quarters, and the y-axis shows billions of dollars (0 to 20). Operating Cash Flow (blue) starts at ~2.8B and peaks at ~16B in 3Q-2022 before dipping to ~13B in 1Q-2023. Free Cash Flow (maroon) starts at ~1B in 2Q-2020 and reaches a peak of ~9B in 3Q-2022, followed by a decline to ~6B in 1Q-2023. Both metrics show a general upward trend followed by slight cooling in the most recent quarters.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 20,
-    "description": "Title: Net Income ($B) and Adjusted EBITDA ($B); Chart type: Dual column chart; Time period: 2Q-2020 to 1Q-2023; Axes and Legend: Y-axis represents billions of USD from 0 to 20; Blue bars represent Net Income ($B) and red bars represent Adjusted EBITDA ($B); Values: Net Income expanded from ~$0.4B in 2Q-2020 to ~$12.6B in 4Q-2022 and ~$11.7B in 1Q-2023; Adjusted EBITDA increased from ~$4.3B in 2Q-2020 to a peak of ~$19.2B in 4Q-2022, standing at ~$18.8B in 1Q-2023; Main takeaway: Profitability metrics surged substantially over the 3-year period, maintaining near-record levels through 1Q-2023.",
-    "source": "gemini-3.6-flash"
+    "description": "Net Income vs. Adjusted EBITDA ($B) is a clustered bar chart comparing the two metrics over a trailing 12-month period from 2Q-2020 to 1Q-2023. The x-axis lists quarters, and the y-axis shows billions of dollars (0 to 20). Net Income (blue) shows significant growth from near zero in 2Q-2020 to a peak of ~12.5B in 4Q-2022, with a slight decrease to ~11.5B in 1Q-2023. Adjusted EBITDA (maroon) grows steadily from ~4.5B in 2Q-2020 to a peak of ~19B in 4Q-2022, slightly decreasing to ~18.5B in 1Q-2023. Both metrics show a strong, consistent upward trend over the time period.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 21,
-    "description": "YoY Revenue Growth: A line chart showing quarterly Trailing 12 Months (TTM) YoY revenue growth from Q1-2019 to Q1-2023. The vertical axis spans from -20% to 90%, and the legend consists of Tesla (red line), Auto Industry (grey line), and S&P 500 (blue line). Tesla's revenue growth starts at ~81% in Q1-2019, dips to ~15% in Q1-2020, peaks again at ~73% in Q1-2022, and declines to ~38% by Q1-2023. In comparison, the Auto Industry ranges between -14% (Q3-2020) and +16% (Q3-2021), ending around 5% in Q1-2023, while the S&P 500 ranges between -2% (Q1-2021) and +16% (Q2-2022), ending around 15% in Q1-2023. The key takeaway is that Tesla's YoY revenue growth significantly outperformed both the overall auto industry and the S&P 500 throughout almost the entire four-year period.",
-    "source": "gemini-3.6-flash"
+    "description": "YoY Revenue Growth: A line chart showing quarterly performance from Q1-2019 to Q1-2023. The vertical axis represents percentage growth from -20% to 90%, and the horizontal axis represents time quarters. The legend includes three series: Tesla (red), Auto Industry (grey), and S&P 500 (blue). Tesla's growth starts high at ~80% in Q1-2019, drops significantly to ~40% in Q3-2019, dips to ~5% in Q1-2020, then rebounds to a peak of ~75% in Q1-2022 before declining to ~40% by Q1-2023. The Auto Industry and S&P 500 remain relatively low, with the Auto Industry dipping as low as -10% around Q3-2020 before recovering to roughly 5% by Q1-2023. The main trend shows Tesla consistently outperforming the Auto Industry and S&P 500 in revenue growth, despite high volatility.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 21,
-    "description": "Operating Margin: A line chart displaying quarterly TTM operating margins from Q1-2019 to Q1-2023. The vertical axis ranges from -4% to 18%, featuring three series: Tesla (red), Auto Industry (grey), and S&P 500 (blue). Tesla starts with a negative operating margin of ~-1.5% in Q1-2019, steadily improves to overtake the Auto Industry around Q2-2021 (~8%), peaks at ~16.8% in Q4-2022 (surpassing the S&P 500), and finishes at ~14.7% in Q1-2023. The Auto Industry fluctuates between ~2.5% and ~8.3%, while the S&P 500 moves between ~10% and ~16.3%. The main takeaway is Tesla's dramatic operating margin improvement over four years, transitioning from negative margins below the auto industry to matching or exceeding S&P 500 benchmarks.",
-    "source": "gemini-3.6-flash"
+    "description": "Operating Margin: A line chart showing quarterly performance from Q1-2019 to Q4-2022 (with Tesla continuing to Q1-2023). The vertical axis represents percentage margin from -4% to 18%, and the horizontal axis represents time quarters. The legend includes three series: Tesla (red), Auto Industry (grey), and S&P 500 (blue). Tesla's operating margin starts negative (approx. -1%) in Q1-2019, fluctuates near 0% until Q1-2020, then rises steeply to peak at nearly 17% in Q4-2022 before dropping slightly in Q1-2023. The Auto Industry stays between 2% and 8%. The S&P 500 maintains a steady performance around 10-16%. The main takeaway is Tesla's dramatic improvement in operating efficiency, starting well below the S&P 500 and Auto Industry averages and eventually surpassing both to achieve the highest margins by late 2021.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q1-2023-Update.pdf",
     "page": 27,
     "description": null,
-    "source": "gemini-3.6-flash"
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 7,
+    "description": "Market share of Tesla vehicles by region (TTM) line chart. The horizontal axis represents time from Q2 2018 to Q1 2024. The vertical axis represents market share percentage from 0% to 4%. The chart shows three series: US/Canada (blue), Europe (red), and China (green). By Q1 2024, the US/Canada market share is approximately 3.7%, Europe is approximately 2.8%, and China is approximately 2.3%. The main trend shows a consistent upward growth in market share across all three regions over the displayed period, with US/Canada holding the largest share throughout, followed by Europe and China.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 8,
+    "description": "The first chart is an area chart titled 'Cumulative miles driven with FSD Beta (billions; as of Apr-21-24)'. The x-axis shows a timeline from Mar-2021 to Mar-2024. The y-axis represents miles in billions, ranging from 0.0 to 1.4. It shows two series: 'FSD Miles' (blue area) and 'FSD V12 Miles' (red area). The data shows steady growth in FSD Miles over time, with a sharp spike and the introduction of FSD V12 Miles reaching nearly 1.4 billion miles by Mar-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 8,
+    "description": "The second chart is an area chart titled 'Tesla AI Training Capacity (H100 Equivalent GPUs)'. The x-axis tracks time from Sep-2019 to Mar-2024. The y-axis represents the number of GPUs, ranging from 0 to 40,000. The chart illustrates a gradual increase in GPU capacity from 2019 to 2023, followed by a dramatic, vertical spike in the number of H100 Equivalent GPUs in early 2024, reaching approximately 35,000-40,000.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 9,
+    "description": "The 'Non-Automotive gross profit ($M)' chart is a bar chart. The vertical axis represents profit in millions of dollars, ranging from -200 to 600. The horizontal axis represents quarters from Q2 2017 through Q1 2024. The data shows a long period of negative or near-zero gross profit from 2017 to early 2022, followed by a dramatic and consistent upward trend in profitability starting in Q3 2022, peaking at over 500 million in Q4 2023 and remaining high at nearly 500 million in Q1 2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 9,
+    "description": "The 'Energy Storage deployments (GWh)' chart is a bar chart. The vertical axis represents energy in gigawatt-hours (GWh), ranging from 0 to 4. The horizontal axis represents quarters from Q2 2017 through Q1 2024. The data illustrates a steady, low-level growth from 2017 through 2019, with significant volatility and spikes in 2020 and 2021, followed by a major, rapid increase in deployment volume starting in late 2022 and accelerating through Q1 2024, where deployments reach a record high of approximately 4.1 GWh.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 12,
+    "description": "Stacked area chart titled 'Global BEV market share* (12-months trailing)'. The x-axis shows a time period from Q1 2017 to Q1 2024E. The y-axis represents market share percentage from 0% to 12%. The chart displays two data series: 'China' (green) and 'World ex-China' (blue). At the start in Q1 2017, the combined share is roughly 0.5%. By the end in Q1 2024E, the total combined share reaches approximately 11.5%, with 'World ex-China' accounting for about 5% and 'China' accounting for the remaining ~6.5%. The main trend shows a steady, slow growth until around Q3 2020, followed by a significantly steeper upward trajectory in BEV market share for both regions.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 13,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 14,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 15,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 16,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 17,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 18,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 19,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 20,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 21,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 22,
+    "description": "Vehicle Deliveries (millions of units) is a vertical bar chart showing quarterly performance from 2Q-2021 to 1Q-2024. The Y-axis represents millions of units, ranging from 0.0 to 0.5. Values are roughly: 2Q-2021 (~0.2), 3Q-2021 (~0.24), 4Q-2021 (~0.31), 1Q-2022 (~0.31), 2Q-2022 (~0.26), 3Q-2022 (~0.34), 4Q-2022 (~0.41), 1Q-2023 (~0.42), 2Q-2023 (~0.47), 3Q-2023 (~0.43), 4Q-2023 (~0.48), 1Q-2024 (~0.39). The trend generally shows steady growth until 1Q-2024, which shows a decline.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 22,
+    "description": "Operating Cash Flow ($B) and Free Cash Flow ($B) is a clustered vertical bar chart covering the period from 2Q-2021 to 1Q-2024. The Y-axis ranges from -3 to 6 in billions of dollars. Key approximate values for Operating Cash Flow (blue): 2Q-2021 (~2.1), 3Q-2021 (~3.1), 4Q-2021 (~4.6), 1Q-2022 (~4.0), 2Q-2022 (~2.3), 3Q-2022 (~5.1), 4Q-2022 (~3.3), 1Q-2023 (~2.5), 2Q-2023 (~3.1), 3Q-2023 (~3.3), 4Q-2023 (~4.4), 1Q-2024 (~0.3). Key approximate values for Free Cash Flow (red): 2Q-2021 (~0.6), 3Q-2021 (~1.3), 4Q-2021 (~2.8), 1Q-2022 (~2.2), 2Q-2022 (~0.6), 3Q-2022 (~3.3), 4Q-2022 (~1.4), 1Q-2023 (~0.4), 2Q-2023 (~1.5), 3Q-2023 (~1.3), 4Q-2023 (~2.5), 1Q-2024 (~-2.4). The trend shows fluctuations in cash flow, with a sharp drop in both metrics in 1Q-2024, resulting in negative Free Cash Flow.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 22,
+    "description": "Net Income ($B) and Adjusted EBITDA ($B) is a clustered vertical bar chart covering the period from 2Q-2021 to 1Q-2024. The Y-axis ranges from 0 to 8 in billions of dollars. Key approximate values for Net Income (blue): 2Q-2021 (~1.1), 3Q-2021 (~1.6), 4Q-2021 (~2.3), 1Q-2022 (~3.3), 2Q-2022 (~2.3), 3Q-2022 (~3.3), 4Q-2022 (~3.7), 1Q-2023 (~2.5), 2Q-2023 (~2.7), 3Q-2023 (~1.9), 4Q-2023 (~7.9), 1Q-2024 (~1.1). Key approximate values for Adjusted EBITDA (red): 2Q-2021 (~2.5), 3Q-2021 (~3.2), 4Q-2021 (~4.1), 1Q-2022 (~5.0), 2Q-2022 (~3.8), 3Q-2022 (~5.0), 4Q-2022 (~5.4), 1Q-2023 (~4.3), 2Q-2023 (~4.7), 3Q-2023 (~3.8), 4Q-2023 (~4.0), 1Q-2024 (~3.4). Net income peaked significantly in 4Q-2023 before dropping in 1Q-2024, while Adjusted EBITDA has remained more stable, though also trending down from its peak.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 23,
+    "description": "The Vehicle Deliveries chart is a bar chart showing the number of vehicles delivered in millions of units from 2Q-2021 to 1Q-2024. The Y-axis represents units in millions (0.0 to 2.0). The chart shows a consistent upward trend in deliveries, starting at ~0.7 million in 2Q-2021, peaking at ~1.8 million in 4Q-2023, with a slight dip to ~1.75 million in 1Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 23,
+    "description": "The Operating Cash Flow and Free Cash Flow chart is a grouped bar chart displaying two financial metrics in $B from 2Q-2021 to 1Q-2024. The Y-axis range is 0 to 20. The blue bars represent Operating Cash Flow and red bars represent Free Cash Flow. Generally, Operating Cash Flow remained consistently higher than Free Cash Flow. Both metrics peaked around 3Q-2022 (Operating Cash Flow at ~16B and Free Cash Flow at ~9B) and have generally trended downward or fluctuated since, with 1Q-2024 showing Operating Cash Flow at ~11B and Free Cash Flow at ~1.5B.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 23,
+    "description": "The Net Income and Adjusted EBITDA chart is a grouped bar chart comparing these two financial metrics in $B from 2Q-2021 to 1Q-2024. The Y-axis ranges from 0 to 20. Blue bars show Net Income and red bars show Adjusted EBITDA. The chart illustrates a growth phase peaking in 2Q-2023 for Adjusted EBITDA (~19B) and 3Q-2023 for Net Income (~15B). In 1Q-2024, Net Income stands at ~13.5B and Adjusted EBITDA at ~15B, showing a decline from the 2023 peaks.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2024-Update.pdf",
+    "page": 29,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 7,
+    "description": "Market share of Tesla vehicles by region (TTM) line chart. The chart plots the percentage market share over time from Q2 2019 to Q1 2025. There are three series: US/Canada (blue line), Europe (red line), and China (green line). The US/Canada line shows growth from approximately 1.2% in Q2 2019 to a peak of around 3.5% around Q4 2023/Q1 2024 before slightly declining to roughly 3.4% by Q1 2025. The Europe line shows a steady increase from nearly 0% in Q2 2019 to approximately 2.5% by Q1 2025. The China line shows growth from near 0% in Q2 2019 to roughly 2.3% by Q1 2025. Overall, the chart indicates a general upward trend in market share for all three regions over the covered period.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 8,
+    "description": "Title: Cumulative miles driven with FSD (Supervised) (billions); Chart type: Stacked area chart. Axes: X-axis represents time from Sep-2021 to Mar-2025; Y-axis represents cumulative miles in billions (0.0 to 4.0). Legend: Two series, 'FSD Miles on V12 and Beyond' (red area) and 'FSD Miles on V11 and Before' (blue area). Values: The 'FSD Miles on V11 and Before' series plateaus at approximately 1.0 billion miles starting around March-2024, while the 'FSD Miles on V12 and Beyond' series grows exponentially from March-2024 to reach approximately 3.7 billion total cumulative miles by March-2025. Takeaway: The chart shows a significant shift in cumulative miles driven, where the vast majority of growth from mid-2024 to early 2025 is attributed to FSD V12 and beyond, while the older V11 and before mileage remains constant.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 9,
+    "description": "The first chart is a vertical bar chart titled 'Energy and Services and Other gross profit (TTM; $M)'. The y-axis shows profit in millions, ranging from -1,000 to 4,000, and the x-axis displays time by quarter from Q2 2018 to Q1 2025. The chart shows a prolonged period of negative or near-zero gross profit until approximately Q2 2022, followed by a consistent and aggressive upward trend, reaching approximately $3,500 million by Q1 2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 9,
+    "description": "The second chart is a vertical bar chart titled 'Energy Storage deployments (TTM; GWh)'. The y-axis represents gigawatt-hours from 0 to 40, and the x-axis displays time by quarter from Q2 2018 to Q1 2025. The data shows relatively flat, low deployment levels until roughly Q4 2021, after which there is a steep, exponential growth trajectory, culminating in a record high of approximately 38 GWh by Q1 2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 12,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 13,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 14,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 15,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 16,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 17,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 18,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 19,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 20,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 21,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 22,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 23,
+    "description": "The first chart is a column chart titled 'Vehicle Deliveries (millions of units)', covering quarterly periods from 2Q-2022 to 1Q-2025. The y-axis shows units in millions, ranging from 0.0 to 0.5. Values are approximate: 2Q-2022 (~0.25), 3Q-2022 (~0.34), 4Q-2022 (~0.40), 1Q-2023 (~0.42), 2Q-2023 (~0.47), 3Q-2023 (~0.43), 4Q-2023 (~0.48), 1Q-2024 (~0.38), 2Q-2024 (~0.44), 3Q-2024 (~0.46), 4Q-2024 (~0.49), and 1Q-2025 (~0.36). The trend shows generally upward growth interrupted by periodic dips, peaking at 4Q-2024 before a decline in 1Q-2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 23,
+    "description": "The second chart is a clustered column chart comparing 'Operating Cash Flow ($B)' (blue) and 'Free Cash Flow ($B)' (red) from 2Q-2022 to 1Q-2025. The y-axis represents values in billions, ranging from -3 to 7. Key approximate values include: Operating Cash Flow peaks at 3Q-2024 (~6.3B) and 3Q-2022 (~5.1B), while Free Cash Flow shows high volatility with a significant negative dip in 1Q-2024 (~ -2.5B). The trend shows both metrics generally tracking together, though with significant fluctuations and a stark negative value for Free Cash Flow in 1Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 23,
+    "description": "The third chart is a clustered column chart comparing 'Net Income ($B)' (blue) and 'Adjusted EBITDA ($B)' (red) from 2Q-2022 to 1Q-2025. The y-axis ranges from 0 to 8. Net Income exhibits notable spikes, particularly in 4Q-2023 (~7.9B), while Adjusted EBITDA shows more consistent levels, generally ranging between ~3.5B and ~5.5B. Most quarters show Adjusted EBITDA being higher than Net Income, with the exception of 4Q-2023 where Net Income is significantly higher.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 24,
+    "description": "Vehicle Deliveries (millions of units) is a bar chart showing quarterly data from 2Q-2022 to 1Q-2025. The y-axis ranges from 0.0 to 2.0. Deliveries generally trended upward from ~1.1 million in 2Q-2022 to a peak of ~1.8 million in 4Q-2023, after which they have fluctuated slightly but remained between ~1.7 and 1.8 million.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 24,
+    "description": "Operating Cash Flow and Free Cash Flow is a grouped bar chart displaying two financial metrics in billions of dollars ($B) across quarters from 2Q-2022 to 1Q-2025. Operating Cash Flow (blue bars) started at ~14B and fluctuated, generally trending lower to ~11B in 1Q-2024 before rising again to ~17B in 1Q-2025. Free Cash Flow (red bars) shows more significant volatility, starting at ~7B, peaking near 9B in 3Q-2022, dipping to ~1.5B in 1Q-2024, and rising to ~7B in 1Q-2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 24,
+    "description": "Net Income and Adjusted EBITDA is a grouped bar chart showing two financial metrics in billions of dollars ($B) from 2Q-2022 to 1Q-2025. Net Income (blue bars) ranged from a low of ~6B in 1Q-2025 to a peak of ~15B in 4Q-2023. Adjusted EBITDA (red bars) is consistently higher than Net Income, ranging from ~15B to ~19B through most of the period, before trending down to ~15B in 1Q-2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q1-2025-Update.pdf",
+    "page": 30,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 7,
-    "description": "The chart is a line graph titled 'Market share of Tesla vehicles by region (TTM)'. The vertical y-axis represents vehicle market share percentage ranging from 0% to 4%, and the horizontal x-axis spans quarters from Q2 2017 through Q2 2023. The graph contains three series: 'US/Canada' (blue line), 'Europe' (red line), and 'China' (green line). Starting near 0% in Q2 2017 across all regions, the market share for US/Canada grows steadily to approximately 1% in Q1 2019, 2% in Q1 2021, 3% in Q1 2022, and reaches nearly 4% (~3.8%) by Q2 2023. Europe and China follow similar lower growth trajectories, both rising from near 0% in 2017 to ~1% in early 2021, and reaching ~2.8% for Europe and ~2.3% for China by Q2 2023. The main takeaway is a strong upward trend in Tesla's market share across all three regions over the 6-year period, with US/Canada consistently maintaining the highest market share.",
-    "source": "gemini-3.6-flash"
+    "description": "The chart, titled 'Market share of Tesla vehicles by region (TTM)', is a line graph displaying the market share percentage over time from Q2 2017 to Q2 2023. The graph features three lines representing different regions: US/Canada (blue), Europe (red), and China (green). The Y-axis represents percentage share (0% to 4%) and the X-axis represents quarterly time periods. As of Q2 2023, the US/Canada region reaches approximately 4%, Europe reaches approximately 2.8%, and China reaches approximately 2.2%. The main trend shows a consistent upward trajectory in market share for all three regions, particularly accelerating since 2021.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 8,
-    "description": "Cumulative miles driven with FSD Beta (millions): Line chart covering March 2021 through June 2023. The vertical y-axis measures miles in millions from 0 to 350, and the horizontal x-axis shows monthly dates from Mar-21 to Jun-23. Starting near 0 in March 2021, the cumulative miles grew steadily to around 50 million by late 2022, reached ~150 million around April 2023, and experienced exponential growth to over 300 million miles by June 2023, reflecting rapid adoption and usage acceleration.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'Cumulative miles driven with FSD Beta (millions)' chart is a line graph covering the period from March 2021 to June 2023. The x-axis plots months from Mar-21 to Jun-23, and the y-axis plots cumulative miles in millions from 0 to 350. The graph shows a steady, accelerating upward trend in FSD Beta usage, starting at near zero and rising to approximately 300+ million miles by June 2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 8,
-    "description": "Internal projection of Dojo compute power: Line chart covering January 2023 to October 2024. The y-axis displays compute capacity in units of A100 GPUs ranging from 0 to 400,000, with a secondary callout for 'Total Amount Of Tesla Compute' reaching 100 Exa-Flops. Key annotations mark the 'Start of Dojo Production' around July 2023 and 'Top 5 in the Entire World Projected' in early 2024. The projected compute ramps up rapidly from near 0 in early 2023 to ~100,000 A100 GPU units by Jan 2024 and approximately 300,000 A100 GPU units (100 Exa-Flops) by October 2024, demonstrating Tesla's planned exponential expansion in AI training hardware.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'Internal projection of Dojo compute power' chart is a line graph covering the period from January 2023 to October 2024. The y-axis represents 'In Units Of A100 GPUs' from 0 to 400,000, and the x-axis represents the date. The blue line depicts the growth of Tesla's internal compute power, which remains relatively flat until mid-2023 before curving sharply upward, projected to reach 100 Exa-Flops of compute power by October 2024. The chart includes annotations for 'Start of Dojo Production' around mid-2023 and 'Top 5 in the Entire World Projected' around early 2024.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 9,
-    "description": "Energy Storage deployments (GWh) is a vertical bar chart showing quarterly deployments from Q4 2016 through Q2 2023. The vertical axis measures energy storage in GWh from 0 to 4. Values remain below 1 GWh through 2019, fluctuate between ~0.4 GWh and 1.6 GWh from 2020 through early 2022, and then surge dramatically in late 2022 and 2023, peaking at ~3.9 GWh in Q1 2023 and reaching ~3.7 GWh in Q2 2023. The main takeaway is a strong accelerating upward trend in energy storage deployments driven by the ramp of the Megafactory.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'Energy Storage deployments (GWh)' chart is a bar chart showing quarterly deployment numbers from Q4 2016 through Q2 2023. The vertical axis represents GWh, ranging from 0 to 4. The bars generally show an upward trend over time, with notable spikes in Q1 2021 (approx. 1.5 GWh), Q1 2023 (nearly 4 GWh), and Q2 2023 (approx. 3.7 GWh). The overall trend indicates significant growth in energy storage deployments, especially in the most recent periods.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 9,
-    "description": "Services & Other gross margin is a vertical bar chart showing quarterly gross margin percentage from Q4 2016 through Q2 2023. The vertical axis ranges from -50% to 10%. Margins were consistently negative for years, reaching lows near -45% in early 2018, before steadily improving to turn positive around Q1 2022 (~1%) and reaching approximately 7-8% in Q2 2023. The key takeaway is a sustained long-term turnaround from deep negative margins to consistent profitability.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'Services & Other gross margin' chart is a bar chart showing quarterly gross margin percentages from Q4 2016 through Q2 2023. The vertical axis represents percentages, ranging from -50% to 10%. The bars represent negative margins for most of the historical period, bottoming out around Q1/Q2 2018 (near -45%). There is a clear upward trend leading to positive margins starting in Q3 2022, with the most recent data points for Q1 and Q2 2023 showing consistent positive margins around 7-8%.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 12,
     "description": null,
-    "source": "gemini-3.7-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 13,
     "description": null,
-    "source": "gemini-3.7-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 14,
     "description": null,
-    "source": "gemini-3.7-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 15,
     "description": null,
-    "source": "gemini-3.7-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 16,
     "description": null,
-    "source": "gemini-3.7-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 17,
-    "description": "Vehicle Deliveries (millions of units): A single-series vertical column chart displaying quarterly vehicle deliveries from 3Q-2020 through 2Q-2023. The vertical axis ranges from 0.0 to 0.5 million units. Key quarterly values include ~0.14M in 3Q-2020, ~0.31M in 4Q-2021, a brief drop to ~0.25M in 2Q-2022, and consecutive increases reaching ~0.42M in 1Q-2023 and ~0.47M in 2Q-2023. The main takeaway is a strong overall upward growth trend in quarterly deliveries over the three-year period.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'Vehicle Deliveries' chart is a vertical bar chart covering the period from 3Q-2020 to 2Q-2023. The vertical axis represents units in millions, ranging from 0.0 to 0.5. The chart shows a generally consistent upward trend in vehicle deliveries, growing from ~0.14 million units in 3Q-2020 to a peak of ~0.47 million units in 2Q-2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 17,
-    "description": "Operating Cash Flow ($B) and Free Cash Flow ($B): A two-series vertical bar chart displaying quarterly cash flows in billions of dollars from 3Q-2020 to 2Q-2023. The vertical axis spans from $0B to $6B, with blue bars for Operating Cash Flow and red bars for Free Cash Flow. Operating cash flow grew from ~$2.4B in 3Q-2020 to a peak of ~$5.1B in 3Q-2022, before settling at ~$3.1B in 2Q-2023. Free cash flow peaked at ~$3.3B in 3Q-2022 and was ~$1.0B in 2Q-2023. The main takeaway shows strong overall cash generation that peaked in Q3 2022 followed by moderation in 2023.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)' chart is a grouped vertical bar chart covering 3Q-2020 to 2Q-2023. The vertical axis represents dollars in billions, ranging from 0 to 6. Operating Cash Flow (blue) and Free Cash Flow (red) show significant quarterly fluctuation but overall growth; notably, Operating Cash Flow hit a peak of over 5 billion in 3Q-2022, while Free Cash Flow reached its highest point of roughly 3.3 billion in the same quarter.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 17,
-    "description": "Net Income ($B) and Adjusted EBITDA ($B): A two-series vertical bar chart showing financial performance in billions of dollars from 3Q-2020 to 2Q-2023. The vertical axis spans from $0B to $6B, featuring blue bars for Net Income ($B) and dark red bars for Adjusted EBITDA ($B). Net income rose from ~$0.3B in 3Q-2020 to a peak of ~$3.7B in 4Q-2022, reaching ~$2.7B in 2Q-2023. Adjusted EBITDA increased from ~$1.8B in 3Q-2020 to a peak of ~$5.4B in 4Q-2022, standing at ~$4.7B in 2Q-2023. The main takeaway is significant multi-year profitability expansion culminating in late 2022.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'Net Income ($B)' and 'Adjusted EBITDA ($B)' chart is a grouped vertical bar chart covering 3Q-2020 to 2Q-2023. The vertical axis represents dollars in billions, ranging from 0 to 6. The data shows a strong upward trajectory for both metrics: Adjusted EBITDA (red) grew from under 2 billion in 3Q-2020 to a peak of over 5 billion in 4Q-2022, while Net Income (blue) grew from nearly 0 to a peak of nearly 4 billion in 4Q-2022, showing a generally positive correlation between the two metrics.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 18,
-    "description": "Vehicle Deliveries (millions of units) is a vertical column chart covering quarterly TTM periods from 3Q-2020 to 2Q-2023. The vertical axis measures units in millions, ranging from 0.0 to 1.8. Values grow continuously from ~0.43 million units in 3Q-2020, to ~1.05 million in 1Q-2022, reaching ~1.64 million units by 2Q-2023. The main takeaway is consistent, uninterrupted growth in trailing 12-month vehicle deliveries across the entire timeframe.",
-    "source": "gemini-3.6-flash"
+    "description": "The first chart is a bar chart titled 'Vehicle Deliveries (millions of units)'. It covers the time period from 3Q-2020 to 2Q-2023. The vertical axis represents millions of units, ranging from 0.0 to 1.8. Deliveries show a consistent upward trend over the period, growing from approximately 0.4 million in 3Q-2020 to approximately 1.6-1.7 million in 2Q-2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 18,
-    "description": "Operating Cash Flow ($B) and Free Cash Flow ($B) is a grouped bar chart covering quarterly TTM periods from 3Q-2020 to 2Q-2023. The vertical axis ranges from $0B to $20B. Series include Operating Cash Flow ($B) in blue and Free Cash Flow ($B) in red. Operating Cash Flow increases from ~$4.3B in 3Q-2020 to a peak of ~$16.0B in 3Q-2022, settling at ~$13.9B in 2Q-2023. Free Cash Flow rises from ~$1.9B in 3Q-2020 to a peak of ~$8.9B in 3Q-2022, sitting at ~$6.2B in 2Q-2023. The main takeaway is strong expansion in cash generation through late 2022 followed by moderate stabilization.",
-    "source": "gemini-3.6-flash"
+    "description": "The second chart is a grouped bar chart with two series: 'Operating Cash Flow ($B)' (blue) and 'Free Cash Flow ($B)' (red). It covers the period from 3Q-2020 to 2Q-2023. The vertical axis represents billions of dollars, ranging from 0 to 20. Both metrics generally trended upward from 3Q-2020 to 3Q-2022, peaking in 3Q-2022, before dipping and then stabilizing/slightly recovering in 2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 18,
-    "description": "Net Income ($B) and Adjusted EBITDA ($B) is a grouped bar chart spanning quarterly TTM periods from 3Q-2020 to 2Q-2023. The vertical axis ranges from $0B to $20B. Series include Net Income ($B) in blue and Adjusted EBITDA ($B) in red. Net Income rises from ~$0.5B in 3Q-2020 to ~$12.5B in 4Q-2022 and ~$12.2B in 2Q-2023. Adjusted EBITDA expands from ~$5.2B in 3Q-2020 to over $19B in 4Q-2022 and 2Q-2023. The key trend shows dramatic profitability growth through 2022, sustaining near peak levels into mid-2023.",
-    "source": "gemini-3.6-flash"
+    "description": "The third chart is a grouped bar chart with two series: 'Net Income ($B)' (blue) and 'Adjusted EBITDA ($B)' (red). It covers the period from 3Q-2020 to 2Q-2023. The vertical axis represents billions of dollars, ranging from 0 to 20. Both metrics show a strong, consistent growth trend from 2020 through 2022, reaching peaks around 4Q-2022, followed by a slight plateau or minor decline in the first half of 2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 19,
-    "description": "Line chart titled 'YoY Revenue Growth' showing quarterly TTM revenue growth from Q2-2019 to Q2-2023 for Tesla (red line), Auto Industry (grey line), and S&P 500 (blue line). The vertical axis ranges from -20% to 90%. Tesla begins around 82% in Q2-2019, drops to ~3% in Q2-2020, peaks around 73% in Q1-2022, and declines to ~40% by Q2-2023. The Auto Industry fluctuates between -15% (Q3-2020) and +17% (Q3-2021), ending around 7% in Q2-2023, while the S&P 500 ranges between -2% (Q1-2021) and +17% (Q2-2022), ending at ~13%. The main takeaway is that Tesla's revenue growth consistently outpaces both the broader auto industry and the S&P 500 throughout the period.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'YoY Revenue Growth' chart is a line chart covering the period from Q2-2019 to Q1-2023. It tracks the year-over-year revenue growth percentages for three entities: Tesla (red line), Auto Industry (grey line), and S&P 500 (blue line). Tesla's growth started high at over 80% in Q2-2019, dropped significantly to around 15% by Q4-2019, then climbed to over 70% in Q1-2022 before declining to around 40% by Q1-2023. The Auto Industry fluctuated mostly between -10% and 15%, while the S&P 500 stayed relatively stable, generally fluctuating between 0% and 15%. Tesla experienced significant volatility compared to the other two indices.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 19,
-    "description": "Line chart titled 'Operating Margin' displaying quarterly TTM operating margins from Q2-2019 to Q2-2023 for Tesla (red line), Auto Industry (grey line), and S&P 500 (blue line). The vertical axis ranges from -4% to 18%. Tesla starts near 0% in Q2-2019, steadily increases to peak at nearly 17% in Q4-2022, and settles around 13.5% in Q2-2023. The S&P 500 stays between 10% and 16%, while the Auto Industry ranges between 2% and 8%. The main takeaway is that Tesla transformed its operating margin from near zero/negative in 2019 to exceeding both the average automotive industry and the S&P 500 by late 2022.",
-    "source": "gemini-3.6-flash"
+    "description": "The 'Operating Margin' chart is a line chart covering the period from Q2-2019 to Q2-2023. It tracks the operating margin percentages for three entities: Tesla (red line), Auto Industry (grey line), and S&P 500 (blue line). Tesla's margin began near 0% in Q2-2019 and trended steadily upward, reaching a peak of nearly 17% in Q4-2022 before dipping to just under 14% in Q2-2023. The Auto Industry's margin hovered between 2% and 8% throughout the period. The S&P 500's margin remained relatively consistent, oscillating between 10% and 16%, peaking around Q1-2022. The main takeaway is Tesla's significant improvement in operating margins, which surpassed both the Auto Industry and the S&P 500 averages by 2021-2022.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q2-2023-Update.pdf",
     "page": 25,
     "description": null,
-    "source": "gemini-3.6-flash"
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 7,
+    "description": "The chart is a line graph titled 'Market share of Tesla vehicles by region (TTM)'. The vertical axis represents a percentage scale from 0% to 4%, and the horizontal axis represents time from Q3 2018 to Q2 2024. The legend shows three lines: 'US/Canada' (blue), 'Europe' (red), and 'China' (green). By Q2 2024, the US/Canada market share is approximately 3.5%, Europe is approximately 2.6%, and China is approximately 2.2%. The main trend shows that Tesla's market share in all three regions has experienced growth since 2018, with the US/Canada region consistently maintaining the highest share, though growth has leveled off or slightly declined since Q3/Q4 2023.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 8,
+    "description": "The 'Cumulative miles driven with FSD (Supervised)' chart is an area chart covering the period from June 2021 to June 2024. The y-axis represents billions of miles, ranging from 0.0 to 1.6. The series are 'FSD V12 Miles' (red) and 'FSD Miles' (blue). The data shows a relatively slow, steady increase until around June 2023, followed by a sharper, accelerating upward trend. By June 2024, total cumulative miles reach approximately 1.5 billion, with the FSD V12 component contributing significantly to the recent growth.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 8,
+    "description": "The 'Tesla AI training capacity ramp through end of year (H100 equivalent GPUs)' chart is a step chart covering the period from June 2021 to December 2024. The y-axis represents capacity in units ranging from 0 to 90,000. The series are 'Existing Capacity' (solid line) and 'Future Planned Capacity' (dotted line). The data shows incremental, step-like growth in capacity over time, with a significant jump occurring between March 2024 and June 2024. The capacity hits a plateau of roughly 35,000 units around mid-2024, with 'Future Planned Capacity' showing a sharp, rapid projected increase to approximately 90,000 units by December 2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 9,
+    "description": "The 'Non-Automotive gross profit ($M)' chart is a vertical bar chart. The x-axis represents time periods by quarter, starting from Q3 2017 to Q2 2024. The y-axis shows profit in millions of dollars, ranging from -1,000 to 1,000. For most of the early period up to Q1 2022, the bars show negative or near-zero profit, with dips around Q1 2019 and Q1 2021. Starting in Q2 2022, profit turns positive and shows a consistent upward trend, culminating in a significant peak of approximately $900 million in Q2 2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 9,
+    "description": "The 'Energy Storage deployments (GWh)' chart is a vertical bar chart. The x-axis represents time periods by quarter from Q3 2017 to Q2 2024. The y-axis represents gigawatt-hours (GWh) ranging from 0 to 10. The chart shows relatively low, steady deployment from 2017 to 2020. Growth begins to accelerate noticeably from 2021 onwards. There is a sharp spike in the final bar for Q2 2024, reaching a value slightly below 10 GWh (approximately 9.4 GWh as noted in the text).",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 12,
+    "description": "The chart is a stacked area chart titled 'Global BEV market share* (12-months trailing)'. The X-axis represents time from Q1 2017 to Q2 2024E, and the Y-axis represents percentage market share from 0% to 12%. The chart includes two series: 'China' (represented by the green area on top) and 'World ex-China' (represented by the blue area at the bottom). In Q1 2017, the total market share was near 0%. By Q2 2024E, the total market share reached approximately 12%, with the 'World ex-China' portion contributing roughly 5% and the 'China' portion contributing the remaining ~7%. The main trend shows a consistent and accelerating growth in global BEV market share over the 7-year period, with China consistently accounting for a larger portion of this growth compared to the rest of the world.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 13,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 14,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 15,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 16,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 17,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 18,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 19,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 20,
+    "description": "The 'Vehicle Deliveries' chart is a vertical bar chart representing millions of units delivered from 3Q-2021 to 2Q-2024. The Y-axis ranges from 0.0 to 0.5. Values generally trend upwards: starting at ~0.24 in 3Q-2021, reaching peaks around 4Q-2023 (~0.48), with a dip in 1Q-2024 (~0.39) and a recovery to ~0.44 in 2Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 20,
+    "description": "The central chart displays 'Operating Cash Flow' (blue bars) and 'Free Cash Flow' (red bars) in $B from 3Q-2021 to 2Q-2024. The Y-axis ranges from -3 to 6. Operating Cash Flow shows significant volatility, peaking at ~5.1 in 3Q-2022 and dropping sharply to near zero in 1Q-2024 before rebounding to ~3.5 in 2Q-2024. Free Cash Flow is generally lower than Operating Cash Flow, turning negative (~ -2.5) in 1Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 20,
+    "description": "The right-most chart displays 'Net Income' (blue bars) and 'Adjusted EBITDA' (red bars) in $B from 3Q-2021 to 2Q-2024. The Y-axis ranges from 0 to 8. Net Income shows a steady climb reaching a peak of nearly 8.0 in 4Q-2023, followed by a sharp decline in 1Q-2024 (~1.2) and a slight rise in 2Q-2024 (~1.5). Adjusted EBITDA shows more stable performance, generally ranging between 3 and 5, with a peak of ~5.4 in 4Q-2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 21,
+    "description": "Vehicle Deliveries chart (column chart). Shows vehicle deliveries in millions of units from 3Q-2021 to 2Q-2024. Values start at ~0.8 in 3Q-2021, increase steadily, peaking at ~1.8 in 4Q-2023, then slightly decline to ~1.75 in 2Q-2024. The main trend is a long-term growth trajectory in deliveries, with a slight flattening or dip in the most recent two quarters.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 21,
+    "description": "Operating Cash Flow and Free Cash Flow chart (grouped column chart). Shows Operating Cash Flow (blue) and Free Cash Flow (red) in billions of dollars from 3Q-2021 to 2Q-2024. Operating Cash Flow peaks at ~16 in 3Q-2022 before fluctuating downward, ending at ~1.1 in 2Q-2024. Free Cash Flow follows a similar, more volatile pattern, peaking at ~8.9 in 3Q-2022 and dropping to ~1.7 in 2Q-2024. The trend shows a significant decline in both metrics from their peaks in 2022 to the lows in 2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 21,
+    "description": "Net Income and Adjusted EBITDA chart (grouped column chart). Shows Net Income (blue) and Adjusted EBITDA (red) in billions of dollars from 3Q-2021 to 2Q-2024. Net Income rises from ~3.5 in 3Q-2021 to a peak of ~15 in 4Q-2023, before falling to ~1.2 in 2Q-2024. Adjusted EBITDA rises from ~9.4 in 3Q-2021 to a peak of ~19.3 in 4Q-2022, followed by a decline to ~14.8 in 2Q-2024. The overall trend shows growth until late 2022/early 2023, followed by a noticeable decline in both profitability metrics.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2024-Update.pdf",
+    "page": 27,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 7,
+    "description": "The chart is a line graph titled 'Market share of Tesla vehicles by region (TTM)'. It shows the trailing twelve-month market share from Q3 2019 to Q2 2025 across three regions: US/Canada (blue line), Europe (red line), and China (green line). The Y-axis represents market share from 0% to 4%. The trend shows a general upward trajectory for all regions peaking around early 2024, followed by a slight decline or stabilization. Specifically, US/Canada peaked near 4%, Europe peaked near 3%, and China peaked just above 2%, with all three trending downwards slightly toward Q2 2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 8,
+    "description": "A stacked area chart titled 'Cumulative miles driven with FSD (Supervised)¹ (billions)'. The chart covers the period from Sep-2021 to Jun-2025. The y-axis represents billions of miles, ranging from 0.0 to 5.0. There are two series: 'FSD Miles on V12 and Beyond' (red area) and 'FSD Miles on V11 and Before' (blue area). The blue area remains constant at approximately 1 billion miles from early 2024 onwards. The red area shows exponential growth starting around early 2024, reaching a total cumulative value of approximately 4.5 billion miles by Jun-2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 8,
+    "description": "A line chart titled 'Tesla AI training capacity ramp through end of September (H100 equivalent GPUs)'. The x-axis covers the period from Jun-2021 to Sep-2025. The y-axis represents capacity in units of 20,000, ranging from 0 to 140,000. It shows 'Existing Capacity' as a solid line and 'Future Planned Capacity' as a dotted line. The trend is a significant, stepwise growth. Capacity starts near zero in 2021, experiences multiple jumps, with notable steep increases occurring around mid-2024 and early 2025, reaching approximately 105,000 capacity units by mid-2025, with a final planned increase to roughly 125,000 by Sep-2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 9,
+    "description": "The 'Energy and Services and Other gross profit (TTM; $M)' chart is a vertical bar chart. The horizontal axis represents quarters from Q3 2018 to Q2 2025. The vertical axis represents gross profit in millions of dollars, ranging from -1,000 to 4,000. The bars are consistently negative from Q3 2018 through Q1 2022, hovering around the -200 to -400 range. There is a shift to positive profitability starting around Q2 2022, with a strong upward trend thereafter, reaching approximately $3,500 million by Q2 2025. The main takeaway is the dramatic turnaround from negative to significant positive gross profit over the seven-year period.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 9,
+    "description": "The 'Energy Storage deployments (TTM; GWh)' chart is a vertical bar chart. The horizontal axis covers the time period from Q3 2018 to Q2 2025. The vertical axis represents energy storage in gigawatt-hours (GWh), ranging from 0 to 40. The chart shows a relatively flat, low level of deployments (below 4 GWh) from Q3 2018 until about Q2 2021. From Q3 2021 onwards, there is a clear, accelerating upward trend in deployment volumes, culminating in a peak of approximately 36-38 GWh by Q2 2025. The main takeaway is the significant and accelerating growth in energy storage deployment capacity over the last several years.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 12,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 13,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 14,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 15,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 16,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 17,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 18,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 19,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 20,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 21,
+    "description": "The first chart is a vertical bar chart titled 'Vehicle Deliveries (millions of units)', covering the period from 3Q-2022 to 2Q-2025. The y-axis represents vehicle deliveries in millions, ranging from 0.0 to 0.5. Each bar corresponds to a quarter. Approximated values include: 3Q-2022 (~0.34M), 4Q-2022 (~0.41M), 1Q-2023 (~0.42M), 2Q-2023 (~0.47M), 3Q-2023 (~0.43M), 4Q-2023 (~0.48M), 1Q-2024 (~0.39M), 2Q-2024 (~0.44M), 3Q-2024 (~0.46M), 4Q-2024 (~0.48M), 1Q-2025 (~0.34M), and 2Q-2025 (~0.39M). The main trend shows overall growth over time with seasonal fluctuations and dips in 1Q-2024 and 1Q-2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 21,
+    "description": "The second chart is a grouped bar chart showing 'Operating Cash Flow ($B)' in blue and 'Free Cash Flow ($B)' in red, covering the period from 3Q-2022 to 2Q-2025. The y-axis represents billions of dollars, ranging from -3 to 7. Key observations include consistently positive operating cash flow except for a dip in 1Q-2024, and variable free cash flow, including a significant negative value in 1Q-2024 (~ -2.5B). Most other quarters show positive free cash flow, generally between 0.5B and 3.5B, with a peak in 3Q-2024 for operating cash flow at over 6B.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 21,
+    "description": "The third chart is a grouped bar chart displaying 'Net Income ($B)' in blue and 'Adjusted EBITDA ($B)' in red, covering the period from 3Q-2022 to 2Q-2025. The y-axis represents billions of dollars, ranging from 0 to 8. Net income fluctuates, with a notable peak in 4Q-2023 at nearly 8B. Adjusted EBITDA generally remains higher than or comparable to net income in most periods, showing relative stability between 3B and 5B for most quarters, though both metrics show a decline in the first quarter of 2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 22,
+    "description": "The first chart is a vertical bar chart titled 'Vehicle Deliveries (millions of units)', covering the period from 3Q-2022 to 2Q-2025. The y-axis represents millions of units, ranging from 0.0 to 2.0. The x-axis shows quarterly intervals. Deliveries started at approximately 1.2M units in 3Q-2022, peaked around 1.8M units in 4Q-2023, and show a slight decline to approximately 1.7M units by 2Q-2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 22,
+    "description": "The second chart is a grouped vertical bar chart showing 'Operating Cash Flow ($B)' in blue and 'Free Cash Flow ($B)' in red, covering the period from 3Q-2022 to 2Q-2025. The y-axis represents billions of dollars, ranging from 0 to 20. Operating Cash Flow shows fluctuations, peaking around 17B in 1Q-2025 before declining to around 16B in 2Q-2025. Free Cash Flow shows a significant downward trend over the period, starting at roughly 9B in 3Q-2022 and dropping to well under 6B by 2Q-2025.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 22,
+    "description": "The third chart is a grouped vertical bar chart showing 'Net Income ($B)' in blue and 'Adjusted EBITDA ($B)' in red, covering the period from 3Q-2022 to 2Q-2025. The y-axis represents billions of dollars, ranging from 0 to 20. Both metrics trended upwards initially, with Adjusted EBITDA reaching nearly 20B in 1Q-2023. Since then, both metrics have generally declined, with Net Income dropping to approximately 6B in 2Q-2025 and Adjusted EBITDA dropping to approximately 15B in the same period.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q2-2025-Update.pdf",
+    "page": 28,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 7,
-    "description": "Market share of Tesla vehicles by region (TTM) is a line chart showing market share percentages from Q3 2017 through Q3 2023 across three regions: US/Canada (blue line), Europe (red line), and China (green line). The vertical axis measures percentage market share from 0% to 4%, and the horizontal axis shows quarters from Q3 2017 to Q3 2023. In Q3 2017, market share for all regions was under 0.5% (US/Canada ~0.2%, Europe ~0.1%, China ~0.3%). By Q3 2023, US/Canada reaches nearly 4% (~3.8%), Europe reaches ~2.7%, and China reaches ~2.3%. The key takeaway is a strong upward trajectory in Tesla's market share across all major operating regions over the 6-year period, with US/Canada maintaining the highest share throughout.",
-    "source": "gemini-3.6-flash"
+    "description": "The chart is a line graph titled 'Market share of Tesla vehicles by region (TTM)'. It shows the market share percentage on the y-axis, ranging from 0% to 4%, and time periods on the x-axis from Q3 2017 to Q3 2023. The legend identifies three series: US/Canada (blue), Europe (red), and China (green). The blue line (US/Canada) shows a steady upward trend, starting near 0% in Q3 2017 and ending at approximately 4% in Q3 2023. The red line (Europe) is relatively flat initially but rises sharply after Q1 2022, ending at nearly 3%. The green line (China) shows a gradual, consistent increase throughout the period, ending at just over 2%.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 8,
-    "description": "Title: Cumulative miles driven with FSD Beta (millions); Type: Line chart; X-axis: Monthly timestamps from Mar-21 to Sep-23; Y-axis: Cumulative miles in millions (0 to 600); Key values: Starts near 0 in Mar-21, reaches ~100 million in early 2023, and rapidly ascends to ~500 million miles by Sep-23; Main takeaway: Exponential growth in total cumulative miles driven using FSD Beta.",
-    "source": "gemini-3.6-flash"
+    "description": "The first chart is a line graph titled 'Cumulative miles driven with FSD Beta (millions)'. The horizontal axis represents time from March 2021 to September 2023, while the vertical axis shows miles in millions, ranging from 0 to 600. The curve starts very low near 0, grows gradually through 2022, and shows a sharp, exponential-like upward trend starting around early 2023, ending at over 500 million miles by September 2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 8,
-    "description": "Title: Cost of goods sold per vehicle; Type: Bar chart; X-axis: Quarters from Q3 2022 to Q3 2023; Y-axis: US dollars per vehicle ($36,000 to $40,000); Key values: Q3 2022 (~$39,300), Q4 2022 (~$39,500), Q1 2023 (~$38,500), Q2 2023 (~$37,900), Q3 2023 (~$37,500); Main takeaway: Average cost of goods sold per vehicle has steadily declined over recent quarters, reaching approximately $37,500 in Q3 2023.",
-    "source": "gemini-3.6-flash"
+    "description": "The second chart is a bar graph titled 'Cost of goods sold per vehicle'. The horizontal axis lists quarters from Q3 2022 to Q3 2023, and the vertical axis represents dollar amounts ranging from $36,000 to $40,000. The values are approximately: ~$39,300 for Q3 2022, ~$39,500 for Q4 2022, ~$38,500 for Q1 2023, ~$37,900 for Q2 2023, and ~$37,500 for Q3 2023. The trend shows a decline in the cost of goods sold per vehicle, with the most recent quarter (Q3 2023) highlighted in red at the lowest point.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 9,
-    "description": "In 'Energy Storage deployments (GWh)', a vertical bar chart covers quarterly periods from Q1 2017 to Q3 2023. The vertical axis measures storage deployments in gigawatt-hours (GWh), ranging from 0 to 4 GWh. Early periods (2017–2019) show deployments below 0.5 GWh, gradually rising to ~1.6 GWh in Q4 2020, before accelerating sharply throughout late 2022 and 2023 to reach ~3.9 GWh in Q1 2023, ~3.7 GWh in Q2 2023, and a peak of ~4.0 GWh in Q3 2023. The main takeaway is that energy storage deployments have experienced massive overall growth, reaching an all-time quarterly high in Q3 2023.",
-    "source": "gemini-3.6-flash"
+    "description": "The first chart is a vertical bar chart titled 'Energy Storage deployments (GWh)'. It shows quarterly data from Q1 2017 through Q3 2023. The vertical axis represents GWh, ranging from 0 to 4. The bars show relatively low, steady growth from 2017 to 2019, followed by a noticeable increase starting in 2020. There is significant volatility, particularly a sharp peak in Q4 2020 (~1.6 GWh), followed by a dip, then a very strong upward trend starting from Q3 2022. The most recent bar, Q3 2023, is the highest at 4.0 GWh, indicating a major acceleration in deployment volume.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 9,
-    "description": "In 'Services & Other gross profit ($M)', a vertical bar chart displays quarterly gross profit in millions of dollars from Q1 2017 to Q3 2023. The vertical axis ranges from (200) to 200 ($M). From Q1 2017 through Q4 2021, gross profit was consistently negative, dipping as low as ~(170M) in Q2 2019. The metric turned positive in early 2022 and expanded rapidly through 2022 and 2023, reaching ~$160M in Q2 2023 and ~$130M in Q3 2023. The main takeaway is a successful financial turnaround in Services and Other business, shifting from years of losses to sustained profitability.",
-    "source": "gemini-3.6-flash"
+    "description": "The second chart is a vertical bar chart titled 'Services & Other gross profit ($M)'. It covers the period from Q1 2017 to Q3 2023. The vertical axis represents dollars in millions, ranging from (200) to 200. The chart illustrates a transition from consistent losses (negative values below the zero line) in the early years (2017-2020), with a significant dip in Q3 2019 (~(180)M) and Q4 2020 (~(140)M), to a clear positive trend beginning in Q4 2021. Since Q4 2021, all bars are positive, with the highest profit recorded in Q2 2023 (~160M), though there is a sequential decline in the most recent quarter (Q3 2023) to approximately 130M.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 12,
-    "description": "A choropleth/pricing map titled 'MODEL Y STARTING PRICE INCLUSIVE OF NATIONAL AND STATE LEVEL SUBSIDIES*' showing the effective starting price of a Tesla Model Y across the United States. Specific states with extra subsidies are highlighted with darker shades of blue and labeled with specific prices: Colorado (CO) at $31,490; Illinois (IL) at $32,490; New Jersey (NJ) at $32,490; Massachusetts (MA) at $32,990; Maryland (MD) at $33,490; Vermont (VT) at $33,990; Delaware (DE) at $33,990; Connecticut (CT) at $34,240; Pennsylvania (PA) at $34,490; Maine (ME) at $35,490; and New York (NY) at $35,990. For all remaining states without additional state-level incentives, the starting price is indicated as '$36,490 in all other states'. The main takeaway is that state-level incentives combined with national subsidies lower the Model Y starting price significantly below the baseline price of $36,490, reaching as low as $31,490 in Colorado.",
-    "source": "gemini-3.7-flash"
+    "description": "Title: Model Y Starting Price Inclusive of National and State Level Subsidies. Chart Type: Choropleth Map. Features: The map displays the starting price of a Model Y vehicle in various U.S. states, with specific prices highlighted for states offering additional subsidies compared to the standard price. Time Period: Not explicitly stated, current. Specific Values: 'All other states' have a price of $36,490. Highlighted state prices include: CO $31,490; IL $32,490; NY $35,990; PA $34,490; ME $35,490; VT $33,990; MA $32,990; CT $34,240; NJ $32,490; DE $33,990; MD $33,490. Main Trend: The map illustrates that while most of the U.S. has a uniform starting price of $36,490, several states offer lower prices due to specific state-level subsidies, with Colorado (CO) having the lowest starting price shown at $31,490.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 13,
     "description": null,
-    "source": "gemini-3.7-flash"
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 14,
     "description": null,
-    "source": "gemini-3.7-flash"
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2023-Update-3.pdf",
+    "page": 15,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 16,
-    "description": "Vehicle Deliveries (millions of units): Bar chart displaying quarterly vehicle deliveries from 4Q-2020 to 3Q-2023. The vertical axis ranges from 0.0 to 0.5 million units. Deliveries start at approximately 0.18 million in 4Q-2020, rising steadily to ~0.31M in 1Q-2022, dropping to ~0.25M in 2Q-2022, reaching a peak of ~0.47M in 2Q-2023, and finishing at ~0.43M in 3Q-2023. The key takeaway is an overall upward trajectory in vehicle deliveries over the 3-year period.",
-    "source": "gemini-3.6-flash"
+    "description": "The chart titled 'Vehicle Deliveries (millions of units)' is a bar chart displaying quarterly data from 4Q-2020 through 3Q-2023. The vertical axis represents millions of units, ranging from 0.0 to 0.5. Key approximate values include roughly 0.18M (4Q-2020), a significant peak near 0.47M (2Q-2023), and 0.44M (3Q-2023). The general trend shows a consistent upward trajectory in vehicle deliveries over the three-year period, with minor dips, such as in 2Q-2022.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 16,
-    "description": "Operating Cash Flow ($B) and Free Cash Flow ($B): Grouped bar chart covering 4Q-2020 to 3Q-2023 with a y-axis from 0 to 6 billion dollars. Blue bars represent Operating Cash Flow (peaking at ~$5.1B in 3Q-2022) and red bars represent Free Cash Flow (peaking at ~$3.3B in 3Q-2022). In 3Q-2023, Operating Cash Flow was ~$3.3B and Free Cash Flow was ~$0.8B. The main takeaway is that cash flow peaked in late 2022 and experienced moderation in 2023.",
-    "source": "gemini-3.6-flash"
+    "description": "The chart titled 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)' is a clustered bar chart displaying quarterly financial data from 4Q-2020 through 3Q-2023. The vertical axis represents billions of dollars, ranging from 0 to 6. Operating Cash Flow (blue bars) shows higher values, peaking near 5.1B in 2Q-2022, while Free Cash Flow (red bars) also shows growth, peaking near 3.3B in 2Q-2022 and 3Q-2022. The trend generally shows both metrics growing over time, though with noticeable volatility quarter-to-quarter.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 16,
-    "description": "Net Income ($B) and Adjusted EBITDA ($B): Grouped bar chart from 4Q-2020 to 3Q-2023 with a y-axis ranging from 0 to 6 billion dollars. Blue series indicates Net Income and red series indicates Adjusted EBITDA. Net Income grew from ~$0.3B in 4Q-2020 to a peak of ~$3.7B in 4Q-2022 before dropping to ~$1.9B in 3Q-2023; Adjusted EBITDA grew from ~$1.8B in 4Q-2020 to a peak of ~$5.4B in 4Q-2022, standing at ~$3.8B in 3Q-2023. The main takeaway shows strong growth through 2022 followed by a decline in profitability metrics during 2023.",
-    "source": "gemini-3.6-flash"
+    "description": "The chart titled 'Net Income ($B)' and 'Adjusted EBITDA ($B)' is a clustered bar chart displaying quarterly financial data from 4Q-2020 through 3Q-2023. The vertical axis represents billions of dollars, ranging from 0 to 6. Net Income (blue bars) shows a general upward trend peaking at roughly 3.7B in 4Q-2022. Adjusted EBITDA (red bars) shows a more pronounced upward trend, reaching a peak of approximately 5.4B in 4Q-2022, before moderating in 2023. Overall, both profitability metrics show strong growth compared to 2020 levels.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 17,
-    "description": "Bar chart titled 'Vehicle Deliveries (millions of units)' under 'KEY METRICS TRAILING 12 MONTHS (TTM)'. The vertical axis shows volume in millions from 0.0 to 2.0 in increments of 0.2. The horizontal axis covers quarters from 4Q-2020 through 3Q-2023. Values increase consistently across the period: ~0.5M in 4Q-2020, ~0.6M in 1Q-2021, ~0.7M in 2Q-2021, ~0.8M in 3Q-2021, ~0.9M in 4Q-2021, ~1.1M in 1Q-2022, ~1.1M in 2Q-2022, ~1.2M in 3Q-2022, ~1.3M in 4Q-2022, ~1.4M in 1Q-2023, ~1.6M in 2Q-2023, reaching ~1.7M in 3Q-2023. Main takeaway is the continuous steady growth in trailing 12-month vehicle deliveries from ~0.5 million to over 1.7 million units over the 3-year period.",
-    "source": "gemini-3.7-flash"
+    "description": "Vehicle Deliveries chart (bar chart). The horizontal axis shows time periods from 4Q-2020 to 3Q-2023. The vertical axis represents millions of units, ranging from 0.0 to 2.0. The single data series shows steady, consistent growth in vehicle deliveries, starting at approximately 0.5 million in 4Q-2020 and reaching roughly 1.75 million by 3Q-2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 17,
-    "description": "Grouped bar chart titled 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)' under 'KEY METRICS TRAILING 12 MONTHS (TTM)'. The y-axis shows billions of dollars from 0 to 20 in steps of 2. The x-axis spans 4Q-2020 through 3Q-2023. Operating Cash Flow (blue bars) grows from ~$5.9B in 4Q-2020, peaking at ~$16.0B in 3Q-2022, then softening to ~$12.2B in 3Q-2023. Free Cash Flow (red/brown bars) begins around ~$2.8B in 4Q-2020, peaks at ~$8.9B in 3Q-2022, and drops to ~$3.8B by 3Q-2023. Main takeaway is that both trailing 12-month operating cash flow and free cash flow expanded significantly through late 2022, peaking in 3Q-2022, before experiencing a decline through 2023.",
-    "source": "gemini-3.7-flash"
+    "description": "Operating Cash Flow and Free Cash Flow chart (grouped bar chart). The horizontal axis covers time periods from 4Q-2020 to 3Q-2023. The vertical axis represents values in $B, ranging from 0 to 20. The legend includes Operating Cash Flow (blue bars) and Free Cash Flow (red bars). Both metrics show an upward trend peaking around 3Q-2022 (Operating Cash Flow ~16B, Free Cash Flow ~9B) followed by a slight decline, with Operating Cash Flow ending at approximately 12B and Free Cash Flow at approximately 4B in 3Q-2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 17,
-    "description": "Grouped bar chart titled 'Net Income ($B)' and 'Adjusted EBITDA ($B)' under 'KEY METRICS TRAILING 12 MONTHS (TTM)'. The y-axis shows billions of dollars from 0 to 20 in increments of 2. The x-axis spans 4Q-2020 through 3Q-2023. Net Income (blue bars) grows from ~$0.7B in 4Q-2020 to peak at ~$12.6B in 4Q-2022, easing to ~$10.8B by 3Q-2023. Adjusted EBITDA (red/brown bars) rises from ~$5.8B in 4Q-2020 to peak around ~$19.2B in 4Q-2022 and 2Q-2023, sitting at ~$18.0B in 3Q-2023. Main takeaway is rapid earnings expansion from late 2020 through late 2022, plateauing at near-record levels (~$18B-$19B Adjusted EBITDA and ~$11B-$13B Net Income) throughout 2023.",
-    "source": "gemini-3.7-flash"
+    "description": "Net Income and Adjusted EBITDA chart (grouped bar chart). The horizontal axis covers time periods from 4Q-2020 to 3Q-2023. The vertical axis represents values in $B, ranging from 0 to 20. The legend includes Net Income (blue bars) and Adjusted EBITDA (red bars). Both metrics show strong growth over the period, with Adjusted EBITDA consistently higher than Net Income. Both metrics reached their peak around 2Q-2023 (Adjusted EBITDA ~19B, Net Income ~12B) before a slight dip in 3Q-2023.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 18,
-    "description": "Title: YoY Revenue Growth (Line chart). The horizontal axis shows quarterly periods from Q3-2019 to Q3-2023, and the vertical axis indicates year-over-year revenue growth percentage ranging from -20% to 90%. Three series are shown: Tesla (red), Auto Industry (grey, ending at Q2-2023), and S&P 500 (blue, ending at Q2-2023). Values for Tesla start around 39% in Q3-2019, drop to around 0% in Q2-2020, rise rapidly to peak at approximately 73% in Q1-2022, and subsequently decline to around 28% in Q3-2023. Auto Industry fluctuates between about -15% (Q3-2020) and +17% (Q3-2021), ending around 10% in Q2-2023. S&P 500 drops to around -2% in Q4-2020 before rising to roughly 17% in Q2-2022 and ending around 12% in Q2-2023. The main takeaway is that Tesla consistently outpaced the Auto Industry and S&P 500 in revenue growth from mid-2020 onward, though its growth decelerated notably through 2022 and 2023.",
-    "source": "gemini-3.7-flash"
+    "description": "YoY Revenue Growth: A line chart showing quarterly year-over-year revenue growth from Q3-2019 to Q3-2023. The legend includes three series: Tesla (red), Auto Industry (grey), and S&P 500 (blue). For Q3-2023, Tesla is at approximately 28%. The chart shows Tesla's revenue growth peaking around 73% in Q1-2022 before declining to its current level, while the Auto Industry and S&P 500 lines remain largely flat between 0-20% growth.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 18,
-    "description": "Title: Operating Margin (Line chart). The horizontal axis spans quarterly periods from Q3-2019 to Q3-2023, while the vertical axis displays operating margin percentage from -4% to 18%. Three series are plotted: Tesla (red), Auto Industry (grey, ending at Q2-2023), and S&P 500 (blue, ending at Q2-2023). Tesla starts at around 0% in Q3-2019 and -0.5% in Q4-2019, increases steadily to surpass the Auto Industry around Q2-2021 (~8%), peaks at approximately 16.8% in Q4-2022 (surpassing the S&P 500), and then declines sharply to roughly 11% by Q3-2023. S&P 500 remains relatively high, starting at ~13.5%, peaking around 16.3% in Q1-2022, and tapering to about 13.8% in Q2-2023. The Auto Industry margin hovers between 2.5% and 8.5% over the entire timeframe. The main trend shows Tesla dramatically improving its operating margin from near-zero to leading both the broader auto industry and the S&P 500 in late 2022, followed by margin compression in 2023.",
-    "source": "gemini-3.7-flash"
+    "description": "Operating Margin: A line chart showing quarterly operating margin percentages from Q3-2019 to Q3-2023. The legend includes three series: Tesla (red), Auto Industry (grey), and S&P 500 (blue). For the most recent period (Q3-2023), Tesla is at approximately 11%. The chart illustrates Tesla's significant margin improvement from a near-zero base in 2019 to a peak of nearly 17% in late 2022, before experiencing a recent downward trend, while the S&P 500 and Auto Industry lines have been relatively stable, with the S&P 500 peaking around 16% and the Auto Industry around 8%.",
+    "source": "gemini-3.1-flash-lite"
   },
   {
     "doc": "TSLA-Q3-2023-Update-3.pdf",
     "page": 24,
     "description": null,
-    "source": "gemini-3.7-flash"
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 7,
+    "description": "Line chart titled 'Market share of Tesla vehicles by region (TTM)'. The X-axis represents time from Q4 2018 to Q3 2024. The Y-axis represents market share from 0% to 4%. Three colored lines represent the regions: US/Canada (blue), Europe (red), and China (green). The US/Canada line shows steady growth from around 1% in late 2018 to a peak near 4% in 2023, followed by a slight decline to just under 4% by Q3 2024. The Europe line shows a trend starting near 0% and growing steadily to reach approximately 2.5% by Q3 2024. The China line shows growth from near 0% to approximately 2.4% by Q3 2024, showing strong upward momentum relative to the starting point.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 8,
+    "description": "The top chart is an area chart titled 'Cumulative miles driven with FSD (Supervised) (billions)'. It shows two series: 'FSD V12 Miles' (red) and 'FSD Miles' (blue), plotted against a time axis ranging from Jun-2021 to Sep-2024. The Y-axis measures miles in billions, ranging from 0.0 to 2.0. The blue 'FSD Miles' area grows steadily and flattens out around 0.8 billion miles starting roughly in early 2024, while the red 'FSD V12 Miles' area begins a sharp, vertical-like ascent around Mar-2024, reaching a total cumulative value of approximately 1.9 billion miles by Sep-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 8,
+    "description": "The bottom chart is a line chart titled 'Tesla AI training capacity ramp through end of year (H100 equivalent GPUs)'. It features two series: 'Existing Capacity' (solid line) and 'Future Planned Capacity' (dotted line). The X-axis represents time from Jun-2021 to Dec-2024. The Y-axis measures capacity, ranging from 0 to 90,000 H100 equivalent GPUs. The 'Existing Capacity' line shows a stair-step progression, reaching approximately 40,000 units around mid-2024, then experiencing a sharp vertical jump to roughly 90,000 units in Sep-2024, where it transitions into a 'Future Planned Capacity' dotted line that holds flat through Dec-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 9,
+    "description": "The first chart is a vertical bar chart titled 'Energy and Services and Other gross profit ($M)'. The x-axis covers time from Q4 2017 to Q3 2024. The y-axis represents gross profit in millions of dollars, ranging from -1,000 to 1,000. The bars show negative profit values consistently until about Q1 2022, after which the trend shifts upward, showing significant positive growth, reaching a peak near 900-1,000 in Q3 2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 9,
+    "description": "The second chart is a vertical bar chart titled 'Energy Storage deployments (GWh)'. The x-axis covers time from Q4 2017 to Q3 2024. The y-axis represents energy storage deployments in gigawatt-hours (GWh) on a scale from 0 to 10. The data shows relatively low, fluctuating deployments until Q3 2022, followed by a noticeable upward trend in growth, with a sharp spike to nearly 10 GWh in Q2 2024 before dipping slightly to around 7 GWh in Q3 2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 12,
+    "description": "Global BEV market share (12-months trailing) area chart. The Y-axis represents market share percentage from 0% to 12%, while the X-axis spans from Q1 2017 to Q3 2024E. The chart consists of two stacked series: 'China' (green) and 'World ex-China' (blue). At the start (Q1 2017), global market share is near 0%. By the end (Q3 2024E), the total market share reaches approximately 12%, with the 'World ex-China' portion contributing about 5% and the 'China' portion contributing the remaining ~7%. The main trend is a steady, significant increase in global BEV market share over the period, with an acceleration starting around 2020.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 14,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 15,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 16,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 17,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 18,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 19,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 20,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 21,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 22,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 23,
+    "description": "Vehicle Deliveries (millions of units) is a bar chart showing quarterly data from 4Q-2021 to 3Q-2024. The Y-axis represents units in millions, ranging from 0.0 to 0.5. The chart shows a generally upward trend in deliveries, peaking around 4Q-2023 at nearly 0.5 million units, with a dip in 1Q-2024 to just below 0.4 million before recovering slightly in 3Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 23,
+    "description": "Operating Cash Flow vs Free Cash Flow ($B) is a clustered bar chart covering the period from 4Q-2021 to 3Q-2024. The Y-axis displays billions of dollars from -3 to 7. Blue bars represent Operating Cash Flow and red bars represent Free Cash Flow. The data shows volatility; Operating Cash Flow is generally higher, peaking near 6.5 in 3Q-2024, while Free Cash Flow shows a significant negative dip in 1Q-2024 to approximately -2.5, followed by a strong recovery in 3Q-2024 to nearly 3.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 23,
+    "description": "Net Income vs Adjusted EBITDA ($B) is a clustered bar chart showing quarterly performance from 4Q-2021 to 3Q-2024. The Y-axis represents billions of dollars from 0 to 8. Blue bars represent Net Income and red bars represent Adjusted EBITDA. Adjusted EBITDA consistently tracks higher than Net Income throughout the period. A notable peak in Net Income occurs at 4Q-2023 (nearly 8), while Adjusted EBITDA peaks earlier at 4Q-2022 (around 5.5). Both metrics show a general decline in the first two quarters of 2024 compared to previous periods, with a slight recovery in 3Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 24,
+    "description": "The first chart is a bar chart titled 'Vehicle Deliveries (millions of units)'. It covers the period from 4Q-2021 to 3Q-2024. The Y-axis represents millions of units, ranging from 0.0 to 2.0. The data shows a generally upward trend from ~0.9M in 4Q-2021 to a peak of ~1.8M in 4Q-2023, with subsequent quarters remaining relatively flat, ending at ~1.8M in 3Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 24,
+    "description": "The second chart is a grouped bar chart titled 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)'. The period covered is from 4Q-2021 to 3Q-2024. The Y-axis represents billions of dollars, ranging from 0 to 20. Blue bars represent Operating Cash Flow and red bars represent Free Cash Flow. The data shows fluctuating values for both, with Operating Cash Flow reaching a peak of ~16B in 3Q-2022 and ending at ~14B in 3Q-2024, while Free Cash Flow peaked at ~9B in 3Q-2022 and ended at ~4B in 3Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 24,
+    "description": "The third chart is a grouped bar chart titled 'Net Income ($B)' and 'Adjusted EBITDA ($B)'. The period covered is from 4Q-2021 to 3Q-2024. The Y-axis represents billions of dollars, ranging from 0 to 20. Blue bars represent Net Income and red bars represent Adjusted EBITDA. Both metrics show a growth trend up until a peak in 4Q-2022, where Adjusted EBITDA reached ~19B and Net Income reached ~13B, followed by a general decline in the following periods.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q3-2024-Update.pdf",
+    "page": 30,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 9,
+    "description": "Market share of Tesla vehicles by region (TTM) line chart. The chart plots the percentage market share over time from Q4 2016 to Q4 2022. The y-axis shows percentages from 0% to 4%. Three lines represent different regions: US/Canada (blue), Europe (red), and China (green). The US/Canada line shows a clear upward trend, reaching slightly above 3.5% by Q4 2022. The Europe and China lines both show a gradual increase, ending at approximately 2% by Q4 2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 10,
+    "description": "A line graph titled 'Cumulative miles driven with FSD Beta (millions)' showing the growth of FSD Beta miles over time. The x-axis spans from March 2021 to December 2022. The y-axis represents millions of miles from 0 to 100. The line remains relatively flat until late 2021, after which it curves upward significantly, showing a strong acceleration in cumulative miles driven, reaching approximately 90 million by December 2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 10,
+    "description": "A grouped bar chart titled 'Miles driven per accident (millions)' comparing the safety of different categories of drivers over time. The x-axis displays quarterly intervals from Q3 2018 through Q3 2022. The y-axis shows millions of miles per accident ranging from 0 to 7. There are three data series: 'Tesla vehicles using Autopilot technology' (dark blue), 'Tesla vehicles not using Autopilot technology' (medium blue), and 'United States average' (light gray). The trend shows that 'Tesla vehicles using Autopilot technology' consistently have the highest miles driven per accident, generally fluctuating between 3 and nearly 7 million miles, whereas the 'United States average' and 'Tesla vehicles not using Autopilot technology' bars remain significantly lower and consistent throughout the period, with the US average staying consistently low near the bottom of the chart.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 11,
+    "description": "The top chart is a bar chart titled 'Energy Storage deployments (GWh)'. The x-axis shows years from 2015 to 2022, and the y-axis shows GWh, ranging from 0 to 7. It tracks annual energy storage deployments. The data values are approximately: 2015 (~0.1), 2016 (~0.2), 2017 (~0.4), 2018 (~1.1), 2019 (~1.7), 2020 (~3.1), 2021 (~4.2), and 2022 (~6.5). The main trend is a strong, consistent year-over-year growth in energy storage deployments, accelerating significantly in the latter years.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 11,
+    "description": "The bottom chart is a bar chart titled 'Number of Supercharging locations'. The x-axis shows years from 2015 to 2022, and the y-axis shows the number of locations ranging from 0 to 5,000. It tracks the cumulative number of Supercharging locations. The data values are approximately: 2015 (~600), 2016 (~800), 2017 (~1,100), 2018 (~1,400), 2019 (~1,800), 2020 (~2,500), 2021 (~3,500), and 2022 (~4,600). The main trend is continuous exponential growth in the number of Supercharging locations over the eight-year period.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 14,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 15,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 16,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 17,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 18,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 19,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 20,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 21,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 22,
+    "description": "Chart 1: 'Vehicle Deliveries (millions of units)' is a bar chart displaying quarterly data from 1Q-2020 to 4Q-2022. The Y-axis represents units in millions, ranging from 0.0 to 0.5. The bars show a general upward trend, starting at approximately 0.1 million in 1Q-2020 and reaching over 0.4 million in 4Q-2022, with a slight dip in 2Q-2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 22,
+    "description": "Chart 2: This bar chart displays 'Operating Cash Flow ($B)' (blue bars) and 'Free Cash Flow ($B)' (red bars) from 1Q-2020 to 4Q-2022. The Y-axis represents billions of dollars, ranging from -1 to 6. Both metrics show a general long-term growth trend, with significant volatility, peaking for Operating Cash Flow at over 5 in 3Q-2022 and Free Cash Flow exceeding 3 in 3Q-2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 22,
+    "description": "Chart 3: This bar chart displays 'Net Income ($B)' (blue bars) and 'Adjusted EBITDA ($B)' (red bars) from 1Q-2020 to 4Q-2022. The Y-axis represents billions of dollars, ranging from 0 to 6. Both metrics demonstrate a strong upward trend over the period, with Net Income reaching nearly 4 and Adjusted EBITDA exceeding 5 by the end of 2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 23,
+    "description": "The chart titled 'Vehicle Deliveries (millions of units)' is a vertical bar chart showing TTM (Trailing 12 Months) data from 1Q-2020 to 4Q-2022. The Y-axis represents units in millions, ranging from 0.0 to 1.4. The bars show a steady, consistent upward trend over the period. Starting at approximately 0.4 million units in 1Q-2020, it reaches roughly 1.3 million units by 4Q-2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 23,
+    "description": "The middle chart is a grouped vertical bar chart showing 'Operating Cash Flow ($B)' (blue) and 'Free Cash Flow ($B)' (red) over the TTM period from 1Q-2020 to 4Q-2022. The Y-axis ranges from 0 to 18 ($B). Both metrics demonstrate a clear positive growth trend over time, with Operating Cash Flow reaching approximately 15-16B and Free Cash Flow reaching approximately 7-8B by 4Q-2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 23,
+    "description": "The rightmost chart is a grouped vertical bar chart displaying 'Net Income ($B)' (blue) and 'Adjusted EBITDA ($B)' (red) over the TTM period from 1Q-2020 to 4Q-2022. The Y-axis ranges from -3 to 21 ($B). Both metrics show significant growth, particularly from 2021 onwards. Adjusted EBITDA shows a consistent upward climb, reaching nearly 20B by 4Q-2022, while Net Income also shows strong growth, reaching approximately 12-13B in the same period.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 24,
+    "description": "The 'YoY Revenue Growth' line chart displays year-over-year revenue growth for Tesla, the Autos Industry, and the S&P 500 from Q1-2019 to Q3-2022. The vertical axis represents percentage growth from -20% to 90%. Tesla's growth fluctuated significantly, starting at ~80% in Q1-2019, dropping sharply to ~4% by Q2-2020, rebounding to a peak of ~74% in Q1-2022, and ending at ~50% in Q3-2022. The Autos Industry followed a mostly negative or low positive trend, dipping as low as -13% around Q3-2020 before recovering to roughly 0% by Q3-2022. The S&P 500 series remained relatively stable, hovering between roughly -4% and 15% throughout the period. The main takeaway is Tesla's high volatility and superior growth performance relative to the Autos Industry and S&P 500 for the majority of the period shown.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 24,
+    "description": "The 'Operating Margin' line chart tracks the operating margin for Tesla, the Autos Industry, and the S&P 500 from Q1-2019 to Q3-2022. The vertical axis shows percentages ranging from -4% to 18%. Tesla's margin began negative at approximately -1% in Q1-2019, stayed near 0% until Q1-2020, and then climbed consistently, reaching ~17% by Q3-2022. The Autos Industry remained between roughly 2% and 8%, with a dip during mid-2020. The S&P 500 maintained a higher, more stable margin that fluctuated between approximately 10% and 15%. The main takeaway is that Tesla's operating margin has shown a strong, consistent upward trend, overtaking the Autos Industry and approaching or exceeding S&P 500 levels by the end of the period.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 25,
+    "description": "This is a combination chart titled 'Vehicle ASP vs. Operating Margin (GAAP)' showing data from 2017 to 2022. It uses a primary left Y-axis for 'ASP' (Average Selling Price) measured in dollars, and a secondary right Y-axis for 'Operating Margin' measured in percentages. The legend identifies the blue bars as 'ASP' and the red line as 'Operating Margin'. The bar chart values for ASP are approximately: 2017 (~$107,000), 2018 (~$73,000), 2019 (~$57,000), 2020 (~$53,000), 2021 (~$51,000), and 2022 (~$54,000). The line chart values for Operating Margin are approximately: 2017 (~ -14%), 2018 (~ -2%), 2019 (~ 0%), 2020 (~ 6%), 2021 (~ 12%), and 2022 (~ 17%). The main trend is that while the Vehicle ASP has generally declined and stabilized over this period, the Operating Margin has steadily and significantly increased from negative levels to double-digit positive percentages.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 26,
+    "description": "The chart is a grouped bar chart titled 'Vehicle Delivery Growth Rate - Assuming 50% CAGR Since 2020'. The x-axis covers the years 2020, 2021, 2022, and 2023. The y-axis represents the number of vehicle deliveries, ranging from 0 to 1,800,000. There are two series: '50% CAGR Since 2020' (blue) and 'Reported Deliveries' (red). In 2020, both are at ~500,000. In 2021, the blue bar is ~750,000 and the red bar is ~950,000. In 2022, the blue bar is ~1,125,000 and the red bar is ~1,300,000. In 2023, there is only a blue bar present, which is ~1,680,000. The trend shows that 'Reported Deliveries' exceeded the '50% CAGR' target in both 2021 and 2022, demonstrating strong growth performance relative to the baseline projection.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2022-Update.pdf",
+    "page": 33,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 9,
+    "description": "The chart is a line graph titled 'Market share of Tesla vehicles by region (TTM)'. The x-axis represents time in quarters from Q4 2017 to Q4 2023. The y-axis represents market share percentage from 0% to 4%. The legend identifies three series: US/Canada (blue), Europe (red), and China (green). The graph shows that US/Canada has the highest market share, growing steadily from under 1% in late 2017 to roughly 4% by Q4 2023. Europe and China show similar growth patterns, both rising from near 0% to between 2% and 3% over the same period, with Europe showing a slightly steeper trend compared to China in the later years.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 10,
+    "description": "Cumulative miles driven with FSD Beta (millions) line chart shows the growth of miles driven from March 2021 to December 2023. The x-axis plots dates by month, and the y-axis shows millions of miles in increments of 100 up to 800. The trend is exponential growth, remaining relatively flat through 2021 and 2022, then accelerating significantly starting in early 2023, reaching approximately 750 million miles by December 2023.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 10,
+    "description": "Cost of goods sold per vehicle bar chart shows the cost per vehicle from Q4 2022 to Q4 2023. The y-axis represents cost in dollars, ranging from $34,000 to $40,000. Values for each quarter are approximately: Q4 2022 (~$39,600), Q1 2023 (~$38,500), Q2 2023 (~$37,900), Q3 2023 (~$37,500), and Q4 2023 (~$36,300). The trend shows a consistent sequential decline in cost of goods sold over the five quarters.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 11,
+    "description": "Energy Storage deployments (GWh) bar chart: Shows yearly deployment from 2015 to 2023. The x-axis represents the years, and the y-axis represents gigawatt-hours (GWh). Values are approximately: 2015 (~0), 2016 (~0.2), 2017 (~0.4), 2018 (~1.0), 2019 (~1.5), 2020 (~3.0), 2021 (~4.0), 2022 (~6.5), 2023 (~14.7). The trend shows consistent annual growth, with a significant acceleration in 2023.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 11,
+    "description": "Services & Other gross profit ($M) bar chart: Shows yearly gross profit in millions of dollars from 2015 to 2023. The x-axis represents the years, and the y-axis represents millions of dollars. Values are approximately: 2015 (~0), 2016 (~0), 2017 (~ -225), 2018 (~ -490), 2019 (~ -540), 2020 (~ -360), 2021 (~ -100), 2022 (~200), 2023 (~500). The trend shows a period of negative gross profit peaking in 2018-2019, followed by a turnaround and rapid growth in positive gross profit starting in 2022.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 14,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 15,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 16,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 17,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 18,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 19,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 20,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 21,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 22,
+    "description": "The 'Vehicle Deliveries' chart is a vertical bar chart showing Tesla's vehicle deliveries in millions of units from 1Q-2021 to 4Q-2023. The vertical axis represents units in millions (0.0 to 0.5). Deliveries generally show an upward trend: starting around 0.18M in 1Q-2021, reaching roughly 0.31M in 4Q-2021, dipping slightly in 1Q-2022 to ~0.26M, climbing to roughly 0.41M in 1Q-2023, and peaking near 0.49M in 4Q-2023.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 22,
+    "description": "The 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)' chart is a grouped vertical bar chart covering the period from 1Q-2021 to 4Q-2023. The vertical axis represents billions of dollars (0 to 8). Blue bars represent Operating Cash Flow and red bars represent Free Cash Flow. The data shows fluctuating performance with Operating Cash Flow reaching peaks like ~5.1B in 2Q-2022 and ~4.4B in 4Q-2023, while Free Cash Flow reached its highest point around 3.3B in 2Q-2022, though it dropped to ~2.1B in 4Q-2023.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 22,
+    "description": "The 'Net Income ($B)' and 'Adjusted EBITDA ($B)' chart is a grouped vertical bar chart covering the period from 1Q-2021 to 4Q-2023. The vertical axis represents billions of dollars (0 to 8). Blue bars represent Net Income and red bars represent Adjusted EBITDA. Net Income trends upward significantly, growing from roughly 0.5B in 1Q-2021 to a peak of ~3.7B in 4Q-2022, before dipping and recovering to nearly 8B in 4Q-2023. Adjusted EBITDA also shows general growth, peaking at roughly 5.4B in 4Q-2022 and ending at ~4B in 4Q-2023.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 23,
+    "description": "The first chart is a vertical bar chart titled 'Vehicle Deliveries (millions of units)'. It covers the period from 1Q-2021 to 4Q-2023. The vertical axis represents millions of units, ranging from 0.0 to 2.0. The values start at approximately 0.6 million in 1Q-2021 and show a consistent upward trend, reaching approximately 1.8 million by 4Q-2023. The main takeaway is the sustained, steady growth in vehicle deliveries over the three-year period.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 23,
+    "description": "The second chart is a grouped vertical bar chart titled 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)'. It covers the period from 1Q-2021 to 4Q-2023. The vertical axis represents billions of dollars, ranging from 0 to 20. Operating Cash Flow (blue bars) generally trends upward, peaking around 16 in 3Q-2022 before dipping and recovering to over 13 in 4Q-2023. Free Cash Flow (red bars) also shows an upward trend, peaking near 9 in 3Q-2022, but exhibits more volatility, reaching roughly 4 in 4Q-2023. Overall, the chart illustrates strong cash generation with some fluctuation in recent quarters.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 23,
+    "description": "The third chart is a grouped vertical bar chart titled 'Net Income ($B)' and 'Adjusted EBITDA ($B)'. It covers the period from 1Q-2021 to 4Q-2023. The vertical axis represents billions of dollars, ranging from 0 to 20. Net Income (blue bars) shows significant growth from approximately 1 in 1Q-2021 to a peak near 15 in 4Q-2023. Adjusted EBITDA (red bars) shows a similar upward trend, peaking near 19 in 2Q-2023 before slightly declining to roughly 16.5 in 4Q-2023. The main takeaway is the substantial profitability growth over the TTM period, despite slight recent variations.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2023-Update.pdf",
+    "page": 30,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 9,
+    "description": "Market share of Tesla vehicles by region (TTM) line chart. The chart tracks market share percentages from 0% to 4% on the Y-axis against time on the X-axis, covering Q1 2019 to Q4 2024. The legend includes three series: US/Canada (blue line), Europe (red line), and China (green line). US/Canada rose from ~1% in 2019 to a peak of ~3.5% in late 2023 before slightly declining. Europe and China started near 0% in 2019 and both followed a steady upward trend, reaching approximately 2.5% market share by the end of 2024, with Europe remaining slightly higher than China.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 10,
+    "description": "The 'Cumulative miles driven with FSD (Supervised) (billions)' chart is a stacked area chart showing the growth of Full Self-Driving miles from June 2021 to December 2024. The X-axis represents time in three-month increments, and the Y-axis represents miles in billions. The series are 'FSD Miles on V12 and Beyond' (red area) and 'FSD Miles on V11 and Before' (blue area). At the end of the period (Dec-2024), total cumulative miles reach approximately 2.9 billion, with FSD Miles on V11 and Before plateauing at 1.0 billion while FSD Miles on V12 and Beyond accelerate rapidly from 1.0 billion in Mar-2024 to nearly 2.0 billion added by Dec-2024. The main trend is a significant shift and acceleration in miles driven using V12 and beyond software versions, especially throughout 2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 10,
+    "description": "The 'Million miles driven before an accident occurs' chart is a line chart covering the period from Q4 2019 to Q4 2024. The Y-axis represents millions of miles. The three series are: 'Tesla vehicles using Autopilot technology' (red line), 'Tesla vehicles not using Autopilot technology' (blue line), and 'U.S. avg' (grey line). By Q4 2024, 'Tesla vehicles using Autopilot technology' reaches roughly 5.94 million miles, 'Tesla vehicles not using Autopilot technology' is around 1.1 million miles, and the 'U.S. avg' remains flat at roughly 0.7 million miles. The trend shows a consistent and widening gap where Tesla vehicles using Autopilot technology demonstrate a significantly higher number of miles driven before an accident occurs compared to both non-Autopilot Tesla vehicles and the U.S. national average.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 11,
+    "description": "Energy and Services and Other gross profit ($M), a bar chart. The horizontal axis covers the time period from Q1 2018 to Q4 2024. The vertical axis represents profit in millions of dollars, ranging from -1,000 to 1,000. For most of 2018-2021, the values hovered near 0 or were negative (e.g., ~$100M loss in Q1 2019). Starting in Q3 2022, the trend turned positive and grew significantly, reaching peak values of roughly $900M in Q3 2024 and slightly below $900M in Q4 2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 11,
+    "description": "Energy Storage deployments (GWh), a bar chart. The horizontal axis covers the time period from Q1 2018 to Q4 2024. The vertical axis represents deployments in Gigawatt-hours (GWh), ranging from 0 to 12. Deployments remained low, mostly under 1 GWh, until 2021. Growth accelerated significantly in 2023 and 2024, with Q3 2024 showing nearly 9 GWh and Q4 2024 showing a peak of roughly 11 GWh.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 14,
+    "description": "The chart is a bar chart titled 'Average COGS per vehicle* Achieved an all-time low in Q4 2024'. The Y-axis represents the cost in dollars, ranging from $32,000 to $39,000, and the X-axis represents quarterly periods from Q1 2023 to Q4 2024. The bar values are approximately: Q1 2023 ~$38,500, Q2 2023 ~$37,900, Q3 2023 ~$37,500, Q4 2023 ~$36,300, Q1 2024 ~$36,700, Q2 2024 ~$36,800, Q3 2024 ~$35,100, and Q4 2024 ~$34,700. The main trend shows a general downward trajectory in COGS per vehicle over the two-year period, with Q4 2024 reaching the lowest point.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 16,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 17,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 18,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 19,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 20,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 21,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 22,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 23,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 24,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 25,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 26,
+    "description": "The first chart is a vertical bar chart titled 'Vehicle Deliveries (millions of units)'. It covers the period from 1Q-2022 to 4Q-2024. The Y-axis represents units in millions, ranging from 0.0 to 0.5. The chart displays a generally upward trend in deliveries, starting at approximately 0.31 million in 1Q-2022 and reaching a peak of nearly 0.5 million in 4Q-2024, with minor fluctuations such as dips in 2Q-2022 and 1Q-2024.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 26,
+    "description": "The second chart is a grouped vertical bar chart titled 'Operating Cash Flow ($B)' and 'Free Cash Flow ($B)'. It covers the period from 1Q-2022 to 4Q-2024. The Y-axis represents billions of dollars, ranging from -3 to 7. The blue bars represent Operating Cash Flow and the red bars represent Free Cash Flow. Notable values include a significant negative dip in Free Cash Flow in 1Q-2024 (approx -$2.5B), while Operating Cash Flow shows varied performance with a peak of over 6 in 3Q-2024. The trend shows volatility in both metrics, with Free Cash Flow generally tracking lower than Operating Cash Flow throughout the period.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 26,
+    "description": "The third chart is a grouped vertical bar chart titled 'Net Income ($B)' and 'Adjusted EBITDA ($B)'. It covers the period from 1Q-2022 to 4Q-2024. The Y-axis represents billions of dollars, ranging from 0 to 8. The blue bars represent Net Income and the red bars represent Adjusted EBITDA. A prominent outlier is the Net Income spike in 4Q-2023, reaching nearly 8, while Adjusted EBITDA shows a more consistent but varied trend, typically ranging between 3 and 5. Throughout the period, Adjusted EBITDA generally remains higher than Net Income.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 27,
+    "description": "The first chart is a bar chart titled 'Vehicle Deliveries (millions of units)', displaying Tesla vehicle delivery data from 1Q-2022 to 4Q-2024. The Y-axis represents millions of units, ranging from 0.0 to 2.0. The X-axis lists the quarterly periods. The trend shows steady growth, starting at approximately 1.05M in 1Q-2022, peaking at ~1.8M in 4Q-2023, and fluctuating slightly around 1.75M-1.8M through 2024, with the final value for 4Q-2024 at ~1.8M.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 27,
+    "description": "The second chart is a grouped bar chart with a legend indicating 'Operating Cash Flow ($B)' in blue and 'Free Cash Flow ($B)' in red. It covers the period from 1Q-2022 to 4Q-2024. The Y-axis represents billions of dollars, ranging from 0 to 20. Operating cash flow remains relatively stable, hovering between 11B and 16B throughout the period. Free Cash Flow shows higher volatility, peaking at ~9B in 3Q-2022, then significantly declining, reaching its lowest point in 1Q-2024 at just over 1B, and remaining below 4B for the most recent quarters.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 27,
+    "description": "The third chart is a grouped bar chart with a legend indicating 'Net Income ($B)' in blue and 'Adjusted EBITDA ($B)' in red, covering the period from 1Q-2022 to 4Q-2024. The Y-axis represents billions of dollars, ranging from 0 to 20. Adjusted EBITDA consistently tracks higher than Net Income. Both metrics grew steadily through 2022 and early 2023, with Adjusted EBITDA reaching a peak of ~19B in 2Q-2023. Both metrics trended downward following that peak, with Net Income dipping significantly to ~7B in 4Q-2024, while Adjusted EBITDA ended the period at ~16B.",
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 33,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
+  },
+  {
+    "doc": "TSLA-Q4-2024-Update.pdf",
+    "page": 34,
+    "description": null,
+    "source": "gemini-3.1-flash-lite"
   }
 ]

@@ -1,8 +1,8 @@
 """Describe the charts on each PDF page with a vision LLM and cache the results.
 
-    python scripts/describe_charts.py                  # candidate pages that are not cached yet
+    python scripts/describe_charts.py                  # candidate pages not yet described by this model
     python scripts/describe_charts.py --all-pages      # skip the chart-candidate filter
-    python scripts/describe_charts.py --force          # redo pages that are already cached
+    python scripts/describe_charts.py --force          # redo pages even if this model described them
     python scripts/describe_charts.py --max-pages 15   # cap the number of API calls for this run
     python scripts/describe_charts.py --pages 8 12 --doc TSLA-Q3-2023-Update-3.pdf
 
@@ -47,8 +47,10 @@ def main():
                 if reason:
                     jobs.append((pdf_path, page_no, reason))
 
-    if not args.force:  # skip pages that are already cached
-        done = {(e["doc"], e["page"]) for e in cache}
+    if not args.force:
+        # Pages described by a different model are redone, so switching models keeps
+        # every chart chunk consistent, and a restarted run picks up where it stopped.
+        done = {(e["doc"], e["page"]) for e in cache if e.get("source") == vision_model}
         jobs = [j for j in jobs if (j[0].name, j[1]) not in done]
     # Pages with chart axes first: they are the most likely to hold chart-only facts.
     jobs.sort(key=lambda j: j[2] != "axis-ticks")

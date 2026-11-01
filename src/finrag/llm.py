@@ -17,8 +17,11 @@ PROVIDERS = {
     "gemini": {
         "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
         "key_env": "GEMINI_API_KEY",
-        "chat_model": "gemini-3.8-flash",
-        "vision_model": "gemini-3.8-flash",
+        # flash-lite has by far the largest free-tier daily quota, which bulk jobs
+        # (chart descriptions, evaluation runs) need. The judge uses a different
+        # model so answers are never graded by the model that wrote them.
+        "chat_model": "gemini-3.1-flash-lite",
+        "vision_model": "gemini-3.1-flash-lite",
         "judge_model": "gemini-3.8-flash",
         # Gemini 3 models always "think"; thinking tokens count against a token cap,
         # so a small cap can leave an empty answer. Keep thinking low and don't cap.

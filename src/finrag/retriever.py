@@ -21,21 +21,22 @@ from .sparse import BM25Retriever
 
 MODES = ("bm25", "dense", "hybrid", "hybrid_rerank")
 
-# "Q3 2023", "Q3-2023", "Q3'23" -> the report for that quarter
-QUARTER_PATTERN = re.compile(r"\bQ([1-3])[\s\-']*(?:20)?23\b", re.IGNORECASE)
-QUARTER_DOCS = {"1": "TSLA-Q1-2023-Update.pdf", "2": "TSLA-Q2-2023-Update.pdf",
-                "3": "TSLA-Q3-2023-Update-3.pdf"}
+# "Q3 2023", "Q3-2023", "Q3'23" -> (2023, 3)
+QUARTER_PATTERN = re.compile(r"\bQ([1-4])[\s\-']*(?:20)?(\d\d)\b", re.IGNORECASE)
 
 
 def infer_doc(query):
     """Metadata extraction from the query: which report is it asking about?
 
-    The three reports share near-identical tables, so "connectors at the end
-    of Q3 2023" otherwise matches the Q1 and Q2 tables just as well. Returns
-    None when the query names no quarter (or several), i.e. no filter.
+    The quarterly reports share near-identical tables, so "connectors at the
+    end of Q3 2023" otherwise matches the other quarters' tables just as well.
+    Returns None when the query names no quarter, several quarters, or a
+    quarter that isn't in the registry, i.e. no filter.
     """
-    quarters = set(QUARTER_PATTERN.findall(query))
-    return QUARTER_DOCS[quarters.pop()] if len(quarters) == 1 else None
+    periods = {(2000 + int(yy), int(q)) for q, yy in QUARTER_PATTERN.findall(query)}
+    if len(periods) != 1:
+        return None
+    return config.DOC_BY_PERIOD.get(periods.pop())
 
 
 class Retriever:

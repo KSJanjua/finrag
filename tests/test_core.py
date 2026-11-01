@@ -107,12 +107,39 @@ def test_citation_parsing():
 @pytest.mark.parametrize("query, expected", [
     ("Supercharger connectors at the end of Q3 2023?", "TSLA-Q3-2023-Update-3.pdf"),
     ("Total production in Q2-2023", "TSLA-Q2-2023-Update.pdf"),
-    ("cost in Q4 2022 as shown in the Q3 2023 chart", "TSLA-Q3-2023-Update-3.pdf"),
+    ("Energy storage deployed in Q4 2024", "TSLA-Q4-2024-Update.pdf"),
+    ("Operating margin in Q1'25", "TSLA-Q1-2025-Update.pdf"),
     ("Compare Q1 2023 and Q2 2023", None),      # two quarters -> no filter
+    ("Revenue in Q1 2021", None),               # not in the registry
     ("Model Y price in Colorado", None),
 ])
 def test_infer_doc(query, expected):
     assert infer_doc(query) == expected
+
+
+def test_registry_is_chronological_and_complete():
+    from finrag import config
+    periods = [(d["fiscal_year"], d["quarter"]) for d in config.DOCUMENTS.values()]
+    assert periods == sorted(periods) and len(periods) == len(set(periods))
+    assert all(name in config.PDF_URLS for name in config.DOCUMENTS)
+
+
+def test_doc_codes_resolve_through_registry():
+    from finrag.evaluate import doc_for_code
+    assert doc_for_code("2023Q3") == "TSLA-Q3-2023-Update-3.pdf"
+    with pytest.raises(ValueError):
+        doc_for_code("Q3")
+
+
+@pytest.mark.parametrize("line, expected", [
+    ("C O R E   T E C H N O L O G Y", "CORE TECHNOLOGY"),
+    ("M O D E L   Y   S T A R T I N G   P R I C E   S U B S I D I E S*", "MODEL Y STARTING PRICE SUBSIDIES*"),
+    ("P H O T O S   &   C H A R T S", "PHOTOS & CHARTS"),
+    ("Revenue grew 9%", "Revenue grew 9%"),
+    ("Q3-2023", "Q3-2023"),
+])
+def test_letter_spaced_headings(line, expected):
+    assert clean_text(line) == expected
 
 
 def test_table_quality_check():

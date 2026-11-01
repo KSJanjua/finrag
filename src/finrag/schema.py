@@ -10,13 +10,15 @@ class Chunk:
     page: int         # 1-based page number, used for citations
     type: str         # "text" | "table" | "chart"
     text: str
-    section: str = ""  # page heading, e.g. "OPERATIONAL SUMMARY"
+    section: str = ""     # page heading, e.g. "OPERATIONAL SUMMARY"
+    fiscal_year: int = 0  # reporting period of the source document
+    quarter: int = 0
 
     def index_text(self) -> str:
         """Text that is embedded / BM25-indexed / reranked.
 
         Prepending metadata lets retrieval use the document name and section,
-        which matters because the three reports share almost identical wording.
+        which matters because the quarterly reports share almost identical wording.
         """
         header = f"{self.doc_label} | page {self.page} | {self.section} | {self.type}"
         return f"{header}\n{self.text}"

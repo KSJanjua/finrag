@@ -5,17 +5,18 @@ import re
 from . import config
 from .llm import chat, parse_json, settings
 
-DOC_CODES = {
-    "Q1": "TSLA-Q1-2023-Update.pdf",
-    "Q2": "TSLA-Q2-2023-Update.pdf",
-    "Q3": "TSLA-Q3-2023-Update-3.pdf",
-}
+def doc_for_code(code):
+    """'2023Q3' -> the registered PDF for that period."""
+    m = re.fullmatch(r"(\d{4})Q([1-4])", code)
+    if not m or (int(m[1]), int(m[2])) not in config.DOC_BY_PERIOD:
+        raise ValueError(f"unknown document code {code!r}; expected e.g. '2023Q3'")
+    return config.DOC_BY_PERIOD[(int(m[1]), int(m[2]))]
 
 
 def load_questions(path=config.QUESTIONS_FILE):
     data = json.loads(path.read_text(encoding="utf-8"))
     for q in data["questions"]:
-        q["gold_pages"] = {(DOC_CODES[d], p) for d, p in q["gold"]}
+        q["gold_pages"] = {(doc_for_code(d), p) for d, p in q["gold"]}
     return data["questions"]
 
 

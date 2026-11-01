@@ -1,4 +1,5 @@
-"""Central configuration: paths, model names and retrieval hyper-parameters."""
+"""Central configuration: paths, document registry, model names and retrieval hyper-parameters."""
+import json
 import os
 from pathlib import Path
 
@@ -18,17 +19,22 @@ CHUNKS_FILE = INDEX_DIR / "chunks.jsonl"
 EMBEDDINGS_FILE = INDEX_DIR / "embeddings.npy"
 QUESTIONS_FILE = EVAL_DIR / "questions.json"
 
-# Human-readable document names. They are added to every chunk so that a query
-# like "Q2 2023 capacity" can match the right report lexically and semantically.
-DOC_LABELS = {
-    "TSLA-Q1-2023-Update.pdf": "Tesla Q1 2023 Quarterly Update",
-    "TSLA-Q2-2023-Update.pdf": "Tesla Q2 2023 Quarterly Update",
-    "TSLA-Q3-2023-Update-3.pdf": "Tesla Q3 2023 Quarterly Update",
-}
-PDF_URLS = {
-    name: f"https://digitalassets.tesla.com/tesla-contents/image/upload/IR/{name}"
-    for name in DOC_LABELS
-}
+REGISTRY_FILE = DATA_DIR / "documents.json"
+
+
+def _load_registry():
+    """Source documents keyed by file name, in chronological order."""
+    docs = json.loads(REGISTRY_FILE.read_text(encoding="utf-8"))["documents"]
+    docs.sort(key=lambda d: (d["fiscal_year"], d["quarter"]))
+    return {d["file"]: d for d in docs}
+
+
+DOCUMENTS = _load_registry()
+# Labels are added to every chunk so that a query like "Q2 2023 capacity" can
+# match the right report lexically and semantically.
+DOC_LABELS = {name: d["label"] for name, d in DOCUMENTS.items()}
+PDF_URLS = {name: d["url"] for name, d in DOCUMENTS.items()}
+DOC_BY_PERIOD = {(d["fiscal_year"], d["quarter"]): name for name, d in DOCUMENTS.items()}
 
 # --- Chunking ---------------------------------------------------------------
 CHUNK_SIZE = 800          # characters

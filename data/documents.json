@@ -1,0 +1,126 @@
+{
+  "_doc": "Document registry: one entry per source PDF. 'published' comes from the PDF's own creation-date metadata.",
+  "documents": [
+    {
+      "file": "TSLA-Q4-2022-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2022,
+      "quarter": 4,
+      "label": "Tesla Q4 2022 Quarterly Update",
+      "published": "2023-01-27",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q4-2022-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q1-2023-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2023,
+      "quarter": 1,
+      "label": "Tesla Q1 2023 Quarterly Update",
+      "published": "2023-04-19",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q1-2023-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q2-2023-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2023,
+      "quarter": 2,
+      "label": "Tesla Q2 2023 Quarterly Update",
+      "published": "2023-07-19",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q2-2023-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q3-2023-Update-3.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2023,
+      "quarter": 3,
+      "label": "Tesla Q3 2023 Quarterly Update",
+      "published": "2023-10-18",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q3-2023-Update-3.pdf"
+    },
+    {
+      "file": "TSLA-Q4-2023-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2023,
+      "quarter": 4,
+      "label": "Tesla Q4 2023 Quarterly Update",
+      "published": "2024-01-24",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q4-2023-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q1-2024-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2024,
+      "quarter": 1,
+      "label": "Tesla Q1 2024 Quarterly Update",
+      "published": "2024-04-23",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q1-2024-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q2-2024-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2024,
+      "quarter": 2,
+      "label": "Tesla Q2 2024 Quarterly Update",
+      "published": "2024-07-23",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q2-2024-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q3-2024-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2024,
+      "quarter": 3,
+      "label": "Tesla Q3 2024 Quarterly Update",
+      "published": "2024-10-23",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q3-2024-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q4-2024-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2024,
+      "quarter": 4,
+      "label": "Tesla Q4 2024 Quarterly Update",
+      "published": "2025-01-29",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q4-2024-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q1-2025-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2025,
+      "quarter": 1,
+      "label": "Tesla Q1 2025 Quarterly Update",
+      "published": "2025-04-22",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q1-2025-Update.pdf"
+    },
+    {
+      "file": "TSLA-Q2-2025-Update.pdf",
+      "company": "Tesla",
+      "ticker": "TSLA",
+      "doc_type": "quarterly_update",
+      "fiscal_year": 2025,
+      "quarter": 2,
+      "label": "Tesla Q2 2025 Quarterly Update",
+      "published": "2025-07-23",
+      "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/IR/TSLA-Q2-2025-Update.pdf"
+    }
+  ]
+}

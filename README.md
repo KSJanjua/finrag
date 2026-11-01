@@ -1,8 +1,13 @@
 # Multimodal RAG for Financial Document Analysis
 
-An end-to-end retrieval-augmented generation (RAG) system over Tesla's three 2023 quarterly
-investor updates (82 pages). It answers questions whose evidence sits in **text, tables or
-charts**, cites the page it used, and says "I could not find this" instead of guessing.
+An end-to-end retrieval-augmented generation (RAG) system over Tesla's quarterly investor
+updates. It answers questions whose evidence sits in **text, tables or charts**, cites the page it
+used, and says "I could not find this" instead of guessing.
+
+> **v2 in progress.** The corpus now covers 11 quarterly updates (Q4 2022 – Q2 2025, 339 pages,
+> listed in `data/documents.json`). The results below are from v1 (tag `v1.0`, three 2023
+> reports) until the v2 evaluation is in place. Plan: [docs/ROADMAP.md](docs/ROADMAP.md);
+> design decisions: [docs/DECISIONS.md](docs/DECISIONS.md).
 
 ```
 PDF ──► PyMuPDF ──┬─ text blocks ─► clean ─► recursive chunks (800 chars / 150 overlap) ─┐
@@ -93,7 +98,7 @@ and **resume** where they stopped when re-run.
 | Variable | Default | Purpose |
 |---|---|---|
 | `FINRAG_LLM_PROVIDER` | `gemini` | `gemini`, `openai` (needs `OPENAI_API_KEY`, paid) or `custom` |
-| `FINRAG_CHAT_MODEL` / `FINRAG_VISION_MODEL` / `FINRAG_JUDGE_MODEL` | `gemini-3.8-flash` | model per role |
+| `FINRAG_CHAT_MODEL` / `FINRAG_VISION_MODEL` / `FINRAG_JUDGE_MODEL` | `gemini-3.1-flash-lite` (chat, vision), `gemini-3.8-flash` (judge) | model per role |
 | `FINRAG_BASE_URL`, `FINRAG_API_KEY` | - | for `custom`, e.g. a local Ollama at `http://localhost:11434/v1` (not tested here) |
 | `FINRAG_MIN_INTERVAL` | 4 s (gemini) | minimum seconds between requests |
 
@@ -141,7 +146,7 @@ python scripts/reranker_sweep.py | chunk_sweep.py | faiss_benchmark.py   # exper
 
 ```
 src/finrag/
-  config.py      paths, models, hyper-parameters, defaults
+  config.py      paths, document registry, models, hyper-parameters, defaults
   schema.py      Chunk (doc, page, type, section, text)
   ingest.py      PyMuPDF text/tables, cleaning, row-rebuild table fallback, chunk building
   chunking.py    recursive splitter with overlap; table splitting with repeated header
@@ -157,6 +162,7 @@ src/finrag/
   api.py         FastAPI: /health, /search, /ask
 scripts/         build_index, check_llm, describe_charts, ask, run_eval, validate_questions,
                  reranker_sweep, chunk_sweep, faiss_benchmark
+data/documents.json        document registry (period, label, URL, publication date)
 data/eval/questions.json   38 labelled questions      data/cache/   chart descriptions
 results/                   generated reports          tests/        52 tests
 docs/ARCHITECTURE.md       architecture diagrams (Mermaid, generated from docs/architecture/*.mmd)

@@ -15,7 +15,10 @@ from .schema import Chunk
 fitz.TOOLS.mupdf_display_errors(False)  # these PDFs trigger harmless structure-tree warnings
 
 NUMERIC_LINE = re.compile(r"^[\s\d.,%$()\-–—+/xX]*$")
-LETTER_SPACED = re.compile(r"^(?:\S )+\S$")
+# One letter-spaced word: single characters separated by single spaces ("S U M M A R Y"),
+# possibly a single character ("Y" in "M O D E L   Y", "&"), optionally ending in a
+# footnote marker ("S U B S I D I E S*").
+LETTER_SPACED = re.compile(r"^(?:\S )*\S[^\w\s]*$")
 
 
 # --------------------------------------------------------------------------
@@ -171,12 +174,20 @@ def page_text_outside(page, rects):
 # --------------------------------------------------------------------------
 # Chunk builders
 # --------------------------------------------------------------------------
+def _tag_period(chunk):
+    meta = config.DOCUMENTS.get(chunk.doc, {})
+    chunk.fiscal_year = meta.get("fiscal_year", 0)
+    chunk.quarter = meta.get("quarter", 0)
+    return chunk
+
+
 def parse_pdf(path, chunk_size=config.CHUNK_SIZE, overlap=config.CHUNK_OVERLAP):
     """Yield text and table chunks for one PDF."""
     doc_name = path.name
     label = config.DOC_LABELS.get(doc_name, doc_name)
     with fitz.open(path) as pdf:
-        yield from _parse_pages(pdf, doc_name, label, chunk_size, overlap)
+        for chunk in _parse_pages(pdf, doc_name, label, chunk_size, overlap):
+            yield _tag_period(chunk)
 
 
 def _parse_pages(pdf, doc_name, label, chunk_size, overlap):
@@ -218,21 +229,30 @@ def chart_chunks(cache_path=config.CHART_CACHE, sections=None):
             continue
         key = (e["doc"], e["page"])
         counter[key] = counter.get(key, -1) + 1
-        chunks.append(Chunk(
+        chunks.append(_tag_period(Chunk(
             chunk_id=f"{e['doc']}:p{e['page']}:chart{counter[key]}",
             doc=e["doc"], doc_label=config.DOC_LABELS.get(e["doc"], e["doc"]),
             page=e["page"], type="chart",
             text=f"Chart description: {e['description']}",
             section=sections.get(key, ""),
-        ))
+        )))
     return chunks
 
 
 def build_chunks(pdf_dir=config.PDF_DIR, chart_cache=config.CHART_CACHE,
-                 chunk_size=config.CHUNK_SIZE, overlap=config.CHUNK_OVERLAP):
+                 chunk_size=config.CHUNK_SIZE, overlap=config.CHUNK_OVERLAP, docs=None):
+    """Chunks for every registered document (or the given subset of file names).
+
+    Only documents listed in the registry are ingested, in chronological order,
+    so an unrelated PDF in the folder can't end up in the index.
+    """
+    names = list(docs) if docs is not None else list(config.DOCUMENTS)
+    missing = [n for n in names if not (pdf_dir / n).exists()]
+    if missing:
+        raise FileNotFoundError(f"missing PDFs {missing} - run scripts/build_index.py to download them")
     chunks = []
-    for path in sorted(pdf_dir.glob("*.pdf")):
-        chunks.extend(parse_pdf(path, chunk_size, overlap))
+    for name in names:
+        chunks.extend(parse_pdf(pdf_dir / name, chunk_size, overlap))
     sections = {(c.doc, c.page): c.section for c in chunks}
-    chunks.extend(chart_chunks(chart_cache, sections))
+    chunks.extend(c for c in chart_chunks(chart_cache, sections) if c.doc in names)
     return chunks
